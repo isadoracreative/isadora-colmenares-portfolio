@@ -1,3 +1,5 @@
+/* Custom variables */
+
 // Primitive colors
 $black: #000000;
 $blue-00: #edf9fd;
@@ -134,7 +136,7 @@ $spacing-96: 96px;
 $spacing-144: 144px;
 $spacing-192: 192px;
 
-// Override Bootstrap variables here
+/* Override Bootstrap variables here */
 
 // Colors
 $primary: $interactive-interactive;
@@ -205,6 +207,11 @@ $spacers: (
   4: $spacing-16,
   5: $spacing-24,
 );
+
+/* Compile custom from this file and partials files */
+
+// Import partials
+@import 'partials/_navbar';
 
 // Import Bootstrap
 @import "~bootstrap/scss/bootstrap";
