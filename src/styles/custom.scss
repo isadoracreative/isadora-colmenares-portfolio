@@ -182,8 +182,10 @@ $icon-color: $primary;
 /* Compile this file with partials and bootstrap */
 
 // Import partials
-@import 'partials/_typography';
+@import 'partials/_sizing';
 @import 'partials/_spacing';
+@import 'partials/_typography';
+@import 'partials/_visibility';
 
 // Import Bootstrap
 @import "~bootstrap/scss/bootstrap";
