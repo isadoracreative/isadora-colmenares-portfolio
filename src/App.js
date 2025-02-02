@@ -13,8 +13,8 @@ function App() {
           <span><i className="fa-sharp-duotone fa-regular fa-bars"></i></span>
           </button>
           <div class="offcanvas offcanvas-end mt-48 w-auto align-items-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-body d-flex align-items-start">
-              <ul class="navbar-nav pe-3">
+            <div class="offcanvas-body d-flex align-items-start px-0">
+              <ul class="navbar-nav px-0">
                 <HeaderNavLink href="#" active>Portfolio</HeaderNavLink>
                 <HeaderNavLink href="#">About</HeaderNavLink>
                 <HeaderNavLink href="#">Contact</HeaderNavLink>
