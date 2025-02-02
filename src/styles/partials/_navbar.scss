@@ -27,4 +27,6 @@
 
 .nav-link:hover {
   background-color: $core-colors-purple-light;
+  color: $nav-link-color !important;
+  color: $nav-link-hover-color !important;
 }

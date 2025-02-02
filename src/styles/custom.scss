@@ -148,6 +148,26 @@ $danger: $core-colors-red;
 $light: $core-colors-gray-light;
 $dark: $core-colors-gray-dark;
 
+// Link colors
+$link-color: $interactive-interactive;
+$link-decoration: none;
+$link-hover-color: $interactive-hover;
+$link-hover-decoration: underline;
+$link-focus-color: $interactive-active;
+$link-focus-decoration: underline;
+$link-active-color: $interactive-active;
+$link-active-decoration: underline;
+
+// Nav-link colors
+$nav-link-color: $interactive-interactive;
+$nav-link-hover-color: $interactive-hover;
+$nav-link-disabled-color: $core-colors-gray;
+$nav-tabs-border-color: $core-colors-gray-light;
+$nav-tabs-link-hover-border-color: $core-colors-gray-light;
+$nav-tabs-link-active-color: $link-active-color;
+$nav-tabs-link-active-bg: $core-colors-white;
+$nav-tabs-link-active-border-color: $core-colors-gray-light;
+
 
 // Typography
 $font-family-sans-serif: $font-body-text, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
