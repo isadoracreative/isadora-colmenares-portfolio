@@ -1,0 +1,210 @@
+// Primitive colors
+$black: #000000;
+$blue-00: #edf9fd;
+$blue-10: #daf3fc;
+$blue-100: #020e13;
+$blue-20: #99def5;
+$blue-30: #6acff1;
+$blue-40: #3bc0ec;
+$blue-50: #15addf;
+$blue-60: #118ab2;
+$blue-70: #0c6582;
+$blue-80: #084254;
+$blue-90: #052733;
+$gray-00: #f7f8f8;
+$gray-10: #eceeee;
+$gray-100: #0a0b0b;
+$gray-20: #d4d8d8;
+$gray-30: #b9c0c0;
+$gray-40: #9ea7a8;
+$gray-50: #838f90;
+$gray-60: #6a7576;
+$gray-70: #525b5b;
+$gray-80: #3a4041;
+$gray-90: #222526;
+$green-00: #ebfff9;
+$green-10: #d3fdf2;
+$green-100: #01140f;
+$green-20: #a7fbe5;
+$green-30: #5df4cd;
+$green-40: #13e7b0;
+$green-50: #06d6a0;
+$green-60: #05ae82;
+$green-70: #037759;
+$green-80: #024f3b;
+$green-90: #012d21;
+$purple-00: #f6f0f9;
+$purple-10: #efe4f6;
+$purple-100: #14091a;
+$purple-20: #e1ceee;
+$purple-30: #cdabe2;
+$purple-40: #b888d7;
+$purple-50: #a368ca;
+$purple-60: #7d44a2;
+$purple-70: #5f2d81;
+$purple-80: #492262;
+$purple-90: #301640;
+$red-00: #fff0f3;
+$red-10: #fcd9e2;
+$red-100: #21030a;
+$red-20: #f8b4c4;
+$red-30: #f37291;
+$red-40: #ef476f;
+$red-50: #eb194b;
+$red-60: #c0113b;
+$red-70: #9b0d2f;
+$red-80: #750a24;
+$red-90: #420614;
+$white: #ffffff;
+$yellow-00: #fff9eb;
+$yellow-10: #fff0cc;
+$yellow-100: #140e00;
+$yellow-20: #ffe099;
+$yellow-30: #ffd166;
+$yellow-40: #fdc135;
+$yellow-50: #f4ae0b;
+$yellow-60: #cc8f00;
+$yellow-70: #996b00;
+$yellow-80: #664700;
+$yellow-90: #2e2000;
+
+//Named colors
+$core-colors-black: $black;
+$core-colors-blue: $blue-60;
+$core-colors-blue-dark: $blue-80;
+$core-colors-blue-light: $blue-10;
+$core-colors-gray: $gray-50;
+$core-colors-gray-dark: $gray-80;
+$core-colors-gray-light: $gray-10;
+$core-colors-green: $green-50;
+$core-colors-green-dark: $green-80;
+$core-colors-green-light: $green-10;
+$core-colors-purple: $purple-50;
+$core-colors-purple-dark: $purple-70;
+$core-colors-purple-light: $purple-10;
+$core-colors-red: $red-40;
+$core-colors-red-dark: $red-70;
+$core-colors-red-light: $red-10;
+$core-colors-white: $white;
+$core-colors-yellow: $yellow-30;
+$core-colors-yellow-dark: $yellow-70;
+$core-colors-yellow-light: $yellow-10;
+$interactive-active: $purple-80;
+$interactive-hover: $purple-70;
+$interactive-interactive: $purple-60;
+$text-text-primary: $gray-90;
+$text-text-secondary: $gray-60;
+$text-text-white: $white;
+
+// Typography
+// Fonts
+$font-body-text: 'Karla', sans-serif;
+$font-heading-text: 'Montserrat', sans-serif;
+$font-icon: 'Font Awesome 6 Sharp Duotone';
+// Sizes
+$text-size-para-extra-small: 0.75rem;
+$text-size-para-small: 0.875rem;
+$text-size-para: 1rem;
+$text-size-para-large: 1.125rem;
+$text-size-para-extra-large: 1.25rem;
+$text-size-h1: 2.5rem;
+$text-size-h2: 2rem;
+$text-size-h3: 1.75rem;
+$text-size-h4: 1.5rem;
+$text-size-h5: 1.375rem;
+$text-size-h6: 1.25rem;
+// Desktop sizes
+$text-size-h1-desktop: 3.75rem;
+$text-size-h2-desktop: 2.75rem;
+$text-size-h3-desktop: 2rem;
+$text-size-h4-desktop: 1.625rem;
+
+// Spacing
+$spacing-0: 0px;
+$spacing-2: 2px;
+$spacing-4: 4px;
+$spacing-8: 8px;
+$spacing-12: 12px;
+$spacing-16: 16px;
+$spacing-24: 24px;
+$spacing-36: 36px;
+$spacing-48: 48px;
+$spacing-72: 72px;
+$spacing-96: 96px;
+$spacing-144: 144px;
+$spacing-192: 192px;
+
+// Override Bootstrap variables here
+
+// Colors
+$primary: $interactive-interactive;
+$secondary: $core-colors-gray-dark;
+$success: $core-colors-green;
+$info: $core-colors-blue;
+$warning: $core-colors-yellow;
+$danger: $core-colors-red;
+$light: $core-colors-gray-light;
+$dark: $core-colors-gray-dark;
+
+// Typography
+$font-family-sans-serif: $font-body-text, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base: $font-body-text;
+$font-size-base: $text-size-para;
+$font-size-lg: $text-size-para-large;
+$font-size-sm: $text-size-para-small;
+$font-weight-base: 400;
+$font-weight-bolder: bolder;
+$font-weight-bold: 700;
+$font-weight-normal: 400;
+$font-weight-light: 300;
+$font-weight-lighter: lighter;
+$line-height-base: 1.5;
+$h1-font-size: $text-size-h1;
+$h2-font-size: $text-size-h2;
+$h3-font-size: $text-size-h3;
+$h4-font-size: $text-size-h4;
+$h5-font-size: $text-size-h5;
+$h6-font-size: $text-size-h6;
+
+// Custom heading font
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading-text;
+  font-weight: bold;
+}
+
+// Icons
+$icon-font-name: "Font Awesome 6 Sharp Duotone";
+$icon-font-size-base: 1rem;
+$icon-font-size-lg: 1.5rem;
+$icon-font-size-sm: 0.75rem;
+$icon-color: $primary;
+
+// Custom icon styles
+.fa, .fas, .far, .fal, .fad, .fab {
+  font-family: $font-icon;
+  font-size: $icon-font-size-base;
+  color: $icon-color;
+}
+
+.fa-lg {
+  font-size: $icon-font-size-lg;
+}
+
+.fa-sm {
+  font-size: $icon-font-size-sm;
+}
+
+// Spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacing-4,
+  2: $spacing-8,
+  3: $spacing-12,
+  4: $spacing-16,
+  5: $spacing-24,
+);
+
+// Import Bootstrap
+@import "~bootstrap/scss/bootstrap";
