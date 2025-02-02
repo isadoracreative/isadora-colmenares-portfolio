@@ -1,9 +1,26 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 .offcanvas-backdrop {
   background-color: rgba(0, 0, 0, 0) !important;
 }
+
 .nav-link.border-inactive {
   border-left: 4px solid rgba(0, 0, 0, 0);
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    // Add properties that only apply at the md breakpoint
+    border-left: none;
+    border-bottom: 4px solid rgba(0, 0, 0, 0);
+  }
 }
+
 .nav-link.border-active {
   border-left: 4px solid $interactive-interactive;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    // Add properties that only apply at the md breakpoint
+    border-left: none;
+    border-bottom: 4px solid $interactive-interactive;
+  }
 }

@@ -7,12 +7,12 @@ function App() {
   return (
     <div className="App container-fluid px-0">
       <nav class="navbar navbar-expand-md fixed-top bg-white border-bottom border-secondary-subtle py-0">
-        <div class="container-fluid ps-16 pe-12">
+        <div class="container-fluid ps-16 pe-12 ps-sm-24 ps-lg-36 pe-lg-24 ps-xl-48 pe-xl-36">
           <a class="navbar-brand" href="#">Isadora Colmenares</a>
           <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span><i className="fa-sharp-duotone fa-regular fa-bars"></i></span>
           </button>
-          <div class="offcanvas offcanvas-end mt-48 w-auto align-items-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas offcanvas-end mt-48 mt-md-0 w-auto align-items-start align-items-md-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-body d-flex align-items-start px-0">
               <ul class="navbar-nav px-0">
                 <HeaderNavLink href="#" active>Portfolio</HeaderNavLink>
