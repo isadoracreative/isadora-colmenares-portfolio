@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/isadora-colmenares-portfolio/static/css/main.bd0a600a.css",
+    "main.js": "/isadora-colmenares-portfolio/static/js/main.bd9de933.js",
+    "index.html": "/isadora-colmenares-portfolio/index.html",
+    "main.bd0a600a.css.map": "/isadora-colmenares-portfolio/static/css/main.bd0a600a.css.map",
+    "main.bd9de933.js.map": "/isadora-colmenares-portfolio/static/js/main.bd9de933.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd0a600a.css",
+    "static/js/main.bd9de933.js"
+  ]
+}
