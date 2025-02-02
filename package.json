@@ -2,7 +2,7 @@
   "name": "isadora-colmenares-portfolio",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://isadoracreative.github.io/isadora-colmenares-portfolio/",
+  "homepage": "https://isadoracreative.github.io/isadora-colmenares-portfolio/public/index.html",
   "dependencies": {
     "bootstrap": "^5.3.3",
     "react": "^18.0.0",
