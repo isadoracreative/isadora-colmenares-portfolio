@@ -148,6 +148,7 @@ $danger: $core-colors-red;
 $light: $core-colors-gray-light;
 $dark: $core-colors-gray-dark;
 
+
 // Typography
 $font-family-sans-serif: $font-body-text, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -168,12 +169,8 @@ $h3-font-size: $text-size-h3;
 $h4-font-size: $text-size-h4;
 $h5-font-size: $text-size-h5;
 $h6-font-size: $text-size-h6;
-
-// Custom heading font
-h1, h2, h3, h4, h5, h6 {
-  font-family: $font-heading-text;
-  font-weight: bold;
-}
+$text-color: $text-text-primary;
+$text-muted: $text-text-secondary;
 
 // Icons
 $icon-font-name: "Font Awesome 6 Sharp Duotone";
@@ -182,36 +179,11 @@ $icon-font-size-lg: 1.5rem;
 $icon-font-size-sm: 0.75rem;
 $icon-color: $primary;
 
-// Custom icon styles
-.fa, .fas, .far, .fal, .fad, .fab {
-  font-family: $font-icon;
-  font-size: $icon-font-size-base;
-  color: $icon-color;
-}
-
-.fa-lg {
-  font-size: $icon-font-size-lg;
-}
-
-.fa-sm {
-  font-size: $icon-font-size-sm;
-}
-
-// Spacing
-$spacer: 1rem;
-$spacers: (
-  0: 0,
-  1: $spacing-4,
-  2: $spacing-8,
-  3: $spacing-12,
-  4: $spacing-16,
-  5: $spacing-24,
-);
-
-/* Compile custom from this file and partials files */
+/* Compile this file with partials and bootstrap */
 
 // Import partials
-@import 'partials/_navbar';
+@import 'partials/_typography';
+@import 'partials/_spacing';
 
 // Import Bootstrap
 @import "~bootstrap/scss/bootstrap";

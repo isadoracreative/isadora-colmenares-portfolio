@@ -1,0 +1,40 @@
+// Text color
+  .text-light {
+    color: $text-text-secondary!important;
+  }
+  .text-dark {
+    color: $text-text-primary !important;
+  }
+  .text-body {
+    color: $text-text-primary !important;
+  }
+  .text-muted {
+    color: $text-text-secondary !important;
+  }
+  .heading-color {
+    color: $text-text-primary !important;
+  }
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading-text;
+    font-weight: bold;
+  }
+
+// Icons
+.fa, .fas, .far, .fal, .fad, .fab {
+    font-family: $font-icon;
+    font-size: $icon-font-size-base;
+    color: $icon-color;
+  }
+.fa-lg {
+    font-size: $icon-font-size-lg;
+  }
+.fa-sm {
+    font-size: $icon-font-size-sm;
+  }
+
+// Navbar
+.navbar-brand {
+    font-family: $font-heading-text;
+}
