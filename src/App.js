@@ -26,14 +26,14 @@ function App() {
       <main className="container mt-96 flex-grow-1">
         <h1 className="mt-4">Heading H1</h1>
       </main>
-      <footer className="text-start mt-auto px-16 py-48">
-        <div className="container">
-          <ul className="list-unstyled d-flex flex-column gap-12">
-            <li><a href="#" className="text-decoration-underline">Link 1</a></li>
-            <li><a href="#" className="text-decoration-underline">Link 2</a></li>
-            <li><a href="#" className="text-decoration-underline">Link 3</a></li>
+      <footer className="text-start mt-auto px-16 px-sm-36 py-48">
+        <div className="container-fluid d-flex flex-column gap-24 flex-md-row justify-content-between p-0">
+          <ul className="list-unstyled d-flex flex-column flex-md-row gap-12 gap-md-24 m-0">
+            <li><a href="#" className="text-decoration-underline">Portfolio</a></li>
+            <li><a href="#" className="text-decoration-underline">About</a></li>
+            <li><a href="#" className="text-decoration-underline">Contact</a></li>
           </ul>
-          <span>© 2025 Isadora Colmenares. All rights reserved.</span>
+          <p className="m-0">© 2025 Isadora Colmenares. All rights reserved.</p>
         </div>
       </footer>
     </div>
