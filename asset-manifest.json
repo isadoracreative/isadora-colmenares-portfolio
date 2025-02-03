@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/isadora-colmenares-portfolio/static/css/main.62a44510.css",
-    "main.js": "/isadora-colmenares-portfolio/static/js/main.6fdcdc62.js",
+    "main.css": "/isadora-colmenares-portfolio/static/css/main.792436eb.css",
+    "main.js": "/isadora-colmenares-portfolio/static/js/main.ee80debb.js",
     "index.html": "/isadora-colmenares-portfolio/index.html",
-    "main.62a44510.css.map": "/isadora-colmenares-portfolio/static/css/main.62a44510.css.map",
-    "main.6fdcdc62.js.map": "/isadora-colmenares-portfolio/static/js/main.6fdcdc62.js.map"
+    "main.792436eb.css.map": "/isadora-colmenares-portfolio/static/css/main.792436eb.css.map",
+    "main.ee80debb.js.map": "/isadora-colmenares-portfolio/static/js/main.ee80debb.js.map"
   },
   "entrypoints": [
-    "static/css/main.62a44510.css",
-    "static/js/main.6fdcdc62.js"
+    "static/css/main.792436eb.css",
+    "static/js/main.ee80debb.js"
   ]
 }
