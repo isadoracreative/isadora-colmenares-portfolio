@@ -5,7 +5,7 @@ import HeaderNavLink from './components/HeaderNavLink'; // Import the new compon
 
 function App() {
   return (
-    <div className="App container-fluid px-0">
+    <div className="App container-fluid px-0 d-flex flex-column min-vh-100">
       <nav class="navbar navbar-expand-md fixed-top bg-white border-bottom border-secondary-subtle py-0">
         <div class="container-fluid ps-16 pe-12 ps-sm-24 ps-lg-36 pe-lg-24 ps-xl-48 pe-xl-36">
           <a class="navbar-brand" href="#">Isadora Colmenares</a>
@@ -23,9 +23,19 @@ function App() {
           </div>
         </div>
       </nav>
-      <div className="container mt-96">
+      <main className="container mt-96 flex-grow-1">
         <h1 className="mt-4">Heading H1</h1>
-      </div>
+      </main>
+      <footer className="text-start mt-auto px-16 py-48">
+        <div className="container">
+          <ul className="list-unstyled d-flex flex-column gap-12">
+            <li><a href="#" className="text-decoration-underline">Link 1</a></li>
+            <li><a href="#" className="text-decoration-underline">Link 2</a></li>
+            <li><a href="#" className="text-decoration-underline">Link 3</a></li>
+          </ul>
+          <span>© 2025 Isadora Colmenares. All rights reserved.</span>
+        </div>
+      </footer>
     </div>
   );
 }

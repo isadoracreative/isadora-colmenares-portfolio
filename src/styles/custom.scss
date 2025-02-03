@@ -37,7 +37,6 @@ $green-80: #024f3b;
 $green-90: #012d21;
 $purple-00: #f6f0f9;
 $purple-10: #efe4f6;
-$purple-100: #14091a;
 $purple-20: #e1ceee;
 $purple-30: #cdabe2;
 $purple-40: #b888d7;
@@ -46,6 +45,7 @@ $purple-60: #7d44a2;
 $purple-70: #5f2d81;
 $purple-80: #492262;
 $purple-90: #301640;
+$purple-100: #14091a;
 $red-00: #fff0f3;
 $red-10: #fcd9e2;
 $red-100: #21030a;
@@ -206,6 +206,7 @@ $icon-color: $primary;
 @import 'partials/_spacing';
 @import 'partials/_typography';
 @import 'partials/_navbar';
+@import 'partials/_footer';
 
 // Import Bootstrap
 @import "~bootstrap/scss/bootstrap";

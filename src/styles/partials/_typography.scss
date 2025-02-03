@@ -41,3 +41,9 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-brand {
     font-family: $font-heading-text;
 }
+
+// Link decoration
+a { 
+  text-decoration-thickness: 6%; /* 0.84px */
+  text-underline-offset: 12%; /* 1.68px */
+}
