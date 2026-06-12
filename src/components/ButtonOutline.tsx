@@ -35,9 +35,7 @@ export default function ButtonOutline({
       {...props}
     >
       {iconName && (
-        <span className={`font-icon ${iconSizeClasses[size]}`}>
-          {iconName}
-        </span>
+        <i className={`fa-solid fa-${iconName} ${iconSizeClasses[size]}`}></i>
       )}
       
       {/* Using 'children' allows you to pass any text or elements into the button */}
