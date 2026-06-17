@@ -1,16 +1,48 @@
 import type { Metadata } from "next";
-import { Montserrat, Karla } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
 
-const montserrat = Montserrat({
+const montserrat = localFont({
+  src: [
+    {
+      path: "../../public/fonts/montserrat-400.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/montserrat-600.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/montserrat-700.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-montserrat",
-  subsets: ["latin"],
 });
 
-const karla = Karla({
+const karla = localFont({
+  src: [
+    {
+      path: "../../public/fonts/karla-400.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/karla-600.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/karla-700.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-karla",
-  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -34,3 +66,4 @@ export default function RootLayout({
     </html>
   );
 }
+
