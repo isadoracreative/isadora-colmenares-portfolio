@@ -28,6 +28,18 @@ export default function ButtonOutline({
     large: "text-[16px]",
   };
 
+  // Determine the correct Font Awesome icon prefix
+  let iconClass = "";
+  if (iconName) {
+    if (iconName === "linkedin") {
+      iconClass = "fa-brands fa-linkedin";
+    } else if (iconName.startsWith("fa-")) {
+      iconClass = iconName;
+    } else {
+      iconClass = `fa-sharp fa-thin fa-${iconName}`;
+    }
+  }
+
   return (
     <button
       type="button"
@@ -35,7 +47,7 @@ export default function ButtonOutline({
       {...props}
     >
       {iconName && (
-        <i className={`fa-solid fa-${iconName} ${iconSizeClasses[size]}`}></i>
+        <i className={`${iconClass} ${iconSizeClasses[size]}`}></i>
       )}
       
       {/* Using 'children' allows you to pass any text or elements into the button */}
