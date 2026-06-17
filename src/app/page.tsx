@@ -1,23 +1,14 @@
 import React from "react";
-import HeroSection from "../components/organisms/HeroSection";
-import SkillsSection from "../components/organisms/SkillsSection";
-import ExperienceSection from "../components/organisms/ExperienceSection";
-import AccoladesSection from "../components/organisms/AccoladesSection";
-import RecommendationsSection from "../components/organisms/RecommendationsSection";
-import Footer from "../components/organisms/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      <main className="flex-1">
-        <HeroSection />
-        <SkillsSection />
-        <ExperienceSection />
-        <AccoladesSection />
-        <RecommendationsSection />
-      </main>
-      <Footer />
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-center p-12 bg-white">
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl font-bold text-gray-900">Isadora Colmenares</h1>
+        <p className="text-lg text-gray-600">
+          Portfolio basic site structure.
+        </p>
+      </div>
+    </main>
   );
 }
-

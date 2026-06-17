@@ -10,13 +10,18 @@
 
   --font-weight-heading: 600;
 
-  --text-h1: 60px;
-  --text-h2: 44px;
+  --text-h1: 32px;
+  --text-h2: 24px;
+  --text-h3: 22px;
+  --text-h4: 20px;
+  --text-h5: 19px;
+  --text-h6: 18px;
   --text-para-xl: 20px;
   --text-para-lg: 18px;
   --text-para: 16px;
   --text-para-sm: 14px;
   --text-para-xs: 12px;
+
 
   /* =========================================
      CORE PALETTE
@@ -108,16 +113,38 @@
      SEMANTIC TOKENS
      ========================================= */
   --color-white: #ffffff;
-  
+
   --color-text-primary: var(--color-gray-90);
   --color-text-secondary: var(--color-gray-60);
   --color-text-white: var(--color-white);
-  
+
   --color-interactive: var(--color-gray-80);
 
   /* =========================================
      LAYOUT & SPACING
      ========================================= */
   --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
   --container-xs: 288px;
+  --container-sm: 592px;
+  --container-md: 720px;
+  --container-lg: 952px;
+  --container-xl: 1208px;
+  --container-2xl: 1440px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --text-h1: 60px;
+    --text-h2: 44px;
+    --text-h3: 32px;
+    --text-h4: 26px;
+    --text-h5: 22px;
+    --text-h6: 20px;
+  }
 }
