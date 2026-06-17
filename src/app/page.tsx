@@ -1,24 +1,23 @@
 import React from "react";
-import ButtonOutline from "../components/ButtonOutline";
+import HeroSection from "../components/organisms/HeroSection";
+import SkillsSection from "../components/organisms/SkillsSection";
+import ExperienceSection from "../components/organisms/ExperienceSection";
+import AccoladesSection from "../components/organisms/AccoladesSection";
+import RecommendationsSection from "../components/organisms/RecommendationsSection";
+import Footer from "../components/organisms/Footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-8 p-12 bg-white">
-      <div className="text-center space-y-4">
-        <h1 className="text-h1 font-heading text-text-primary">Welcome to My Portfolio</h1>
-        <p className="text-para-lg font-body text-text-secondary">
-          This is a test page to verify our new Tailwind v4 design tokens and components.
-        </p>
-      </div>
-      
-      <div className="flex gap-4">
-        <ButtonOutline size="large" iconName="rocket">
-          Get Started
-        </ButtonOutline>
-        <ButtonOutline size="default">
-          Learn More
-        </ButtonOutline>
-      </div>
-    </main>
+    <div className="flex flex-col min-h-screen bg-white">
+      <main className="flex-1">
+        <HeroSection />
+        <SkillsSection />
+        <ExperienceSection />
+        <AccoladesSection />
+        <RecommendationsSection />
+      </main>
+      <Footer />
+    </div>
   );
 }
+
