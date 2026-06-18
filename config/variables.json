@@ -1,380 +1,5 @@
 [
   {
-    "Breakpoints": {
-      "modes": {
-        "Mode 1": {
-          "viewport xs": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 320
-          },
-          "viewport sm": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 640
-          },
-          "viewport md": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 768
-          },
-          "viewport lg": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 1024
-          },
-          "viewport xl": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 1280
-          },
-          "viewport 2xl": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 1536
-          }
-        }
-      }
-    }
-  },
-  {
-    "Colors": {
-      "modes": {
-        "Mode 1": {
-          "Core Colors": {
-            "White": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{White}"
-            },
-            "Black": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Black}"
-            },
-            "Gray": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Gray 50}"
-            },
-            "Gray light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Gray 10}"
-            },
-            "Gray dark": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Gray 80}"
-            },
-            "Blue": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Blue 60}"
-            },
-            "Blue light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Blue 10}"
-            },
-            "Blue dark": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Blue 80}"
-            },
-            "Green": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Green 50}"
-            },
-            "Green light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Green 10}"
-            },
-            "Green dark": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Green 80}"
-            },
-            "Yellow": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Yellow 30}"
-            },
-            "Yellow light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Yellow 10}"
-            },
-            "Yellow dark": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Yellow 70}"
-            },
-            "Orange": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Orange 40}"
-            },
-            "Orange light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Orange 10}"
-            },
-            "Orange dark": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Orange 70}"
-            },
-            "Red": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Red 40}"
-            },
-            "Red light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Red 10}"
-            },
-            "Red dark": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Red 70}"
-            },
-            "Purple": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Purple 50}"
-            },
-            "Purple light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Purple 10}"
-            },
-            "Purple dark": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Purple 70}"
-            }
-          },
-          "Text": {
-            "Text primary": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Gray 90}"
-            },
-            "Text secondary": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Gray 60}"
-            },
-            "Text white": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{White}"
-            }
-          },
-          "Interactive": {
-            "Interactive": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Gray 80}"
-            },
-            "Hover": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Gray 70}"
-            },
-            "Active": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive colors",
-              "$value": "{Gray 100}"
-            }
-          }
-        }
-      }
-    }
-  },
-  {
-    "Container max width": {
-      "modes": {
-        "Mode 1": {
-          "container-xs": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 288
-          },
-          "container-sm": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 592
-          },
-          "container-md": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 720
-          },
-          "container-lg": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 952
-          },
-          "container-xl": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 1208
-          },
-          "container-2xl": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 1440
-          }
-        }
-      }
-    }
-  },
-  {
     "Primitive colors": {
       "modes": {
         "Mode 1": {
@@ -936,141 +561,275 @@
     }
   },
   {
-    "Responsive sizes": {
-      "modes": {
-        "xs": {
-          "Breakpoint": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "xs"
-          }
-        },
-        "sm-md": {
-          "Breakpoint": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "sm-md"
-          }
-        },
-        "lg": {
-          "Breakpoint": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "lg"
-          }
-        },
-        "xl-2xl": {
-          "Breakpoint": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "xl-2xl"
-          }
-        }
-      }
-    }
-  },
-  {
-    "Spacing": {
+    "Colors": {
       "modes": {
         "Mode 1": {
-          "0": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 0
+          "Core Colors": {
+            "White": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{White}"
+            },
+            "Black": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Black}"
+            },
+            "Gray": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Gray 50}"
+            },
+            "Gray light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Gray 10}"
+            },
+            "Gray dark": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Gray 80}"
+            },
+            "Blue": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Blue 60}"
+            },
+            "Blue light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Blue 10}"
+            },
+            "Blue dark": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Blue 80}"
+            },
+            "Green": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Green 50}"
+            },
+            "Green light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Green 10}"
+            },
+            "Green dark": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Green 80}"
+            },
+            "Yellow": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Yellow 30}"
+            },
+            "Yellow light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Yellow 10}"
+            },
+            "Yellow dark": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Yellow 70}"
+            },
+            "Orange": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Orange 40}"
+            },
+            "Orange light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Orange 10}"
+            },
+            "Orange dark": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Orange 70}"
+            },
+            "Red": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Red 40}"
+            },
+            "Red light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Red 10}"
+            },
+            "Red dark": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Red 70}"
+            },
+            "Purple": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Purple 50}"
+            },
+            "Purple light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Purple 10}"
+            },
+            "Purple dark": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Purple 70}"
+            }
           },
-          "2": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 2
+          "Text": {
+            "Text primary": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Gray 90}"
+            },
+            "Text secondary": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Gray 60}"
+            },
+            "Text white": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{White}"
+            }
           },
-          "4": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 4
-          },
-          "8": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 8
-          },
-          "12": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 12
-          },
-          "16": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 16
-          },
-          "24": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 24
-          },
-          "36": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 36
-          },
-          "48": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 48
-          },
-          "72": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 72
-          },
-          "96": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 96
-          },
-          "144": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 144
-          },
-          "192": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "float",
-            "$value": 192
+          "Interactive": {
+            "Interactive": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Gray 80}"
+            },
+            "Hover": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Gray 70}"
+            },
+            "Active": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive colors",
+              "$value": "{Gray 100}"
+            }
           }
         }
       }
