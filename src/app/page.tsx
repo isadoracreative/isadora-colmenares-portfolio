@@ -39,7 +39,7 @@ export default function Home() {
                           H1 / H6 sizes bump automatically via globals.css
                           responsive CSS variables (no extra classes needed)
         */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-6 lg:gap-9">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-start lg:gap-9 xl:w-10/12 xl:mx-auto 2xl:w-9/12 ">
 
           {/* ── Profile photo ─────────────────────────────────────────── */}
           {/*
