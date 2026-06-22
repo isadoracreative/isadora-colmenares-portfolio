@@ -1,24 +1,30 @@
 import type { Metadata } from "next";
-import { Montserrat, Karla } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
+/*
+  @fontsource-variable packages ship a single variable-font .woff2 per subset,
+  covering the full weight axis (100–900) in one file — smaller payload than
+  individual weight files, and zero network calls at compile/render time.
+  This sidesteps the Turbopack worker → fonts.googleapis.com connection failure
+  that affects next/font/google in this environment.
+*/
+const montserrat = localFont({
+  src: "../../node_modules/@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2",
   variable: "--font-montserrat",
   display: "swap",
+  weight: "100 900",
 });
 
-const karla = Karla({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const karla = localFont({
+  src: "../../node_modules/@fontsource-variable/karla/files/karla-latin-wght-normal.woff2",
   variable: "--font-karla",
   display: "swap",
+  weight: "100 900",
 });
-
 
 export const metadata: Metadata = {
   title: "Isadora Colmenares — Experience Design Leader",

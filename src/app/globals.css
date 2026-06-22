@@ -4,8 +4,18 @@
   /* =========================================
      TYPOGRAPHY
      ========================================= */
-  --font-heading: var(--font-montserrat), sans-serif;
-  --font-body: var(--font-karla), sans-serif;
+
+  /*
+    NOTE: --font-heading and --font-body are intentionally NOT defined here.
+    Tailwind v4 @theme is evaluated at build time; var() references to
+    next/font's runtime-injected CSS variables (--font-montserrat,
+    --font-karla) are unresolvable at that stage and get stripped, causing
+    the properties to show as undefined in DevTools.
+
+    Instead, font-heading and font-body are declared as @utility rules below
+    so they reference --font-montserrat / --font-karla directly at runtime,
+    where those variables are always available via inheritance from <body>.
+  */
 
   --font-weight-heading: 600;
 
@@ -170,6 +180,24 @@
 }
 
 /* =========================================
+   FONT FAMILY UTILITIES
+   ========================================= */
+
+/*
+  font-heading / font-body are defined as @utility (not @theme) so the
+  var() references resolve against the runtime CSS variables that next/font
+  injects on <body>. Elements inside <body> inherit --font-montserrat and
+  --font-karla via the normal CSS cascade.
+*/
+@utility font-heading {
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+@utility font-body {
+  font-family: var(--font-karla), sans-serif;
+}
+
+/* =========================================
    LAYOUT UTILITIES
    ========================================= */
 
@@ -207,7 +235,7 @@
    ========================================= */
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: var(--font-montserrat), sans-serif;
     font-weight: var(--font-weight-heading);
     line-height: 1.2;
   }
@@ -220,7 +248,7 @@
   h6 { font-size: var(--text-h6); }
 
   body, p, li, dd, dt, blockquote {
-    font-family: var(--font-body);
+    font-family: var(--font-karla), sans-serif;
     font-weight: 400;
     font-size: var(--text-para);
     line-height: 1.6;
