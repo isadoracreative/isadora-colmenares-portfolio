@@ -1,6 +1,76 @@
 import Image from 'next/image';
 import DividerShort from '@/components/DividerShort';
 
+/* ── Core Skills data ───────────────────────────────────────────────── */
+
+const coreSkills = [
+  {
+    icon: 'sign-post',
+    heading: 'Experience & Spatial Design',
+    items: [
+      'Information Architecture',
+      'Spatial Storytelling',
+      'Environmental Typography',
+      'Wayfinding',
+      'Exhibition Design',
+      'Identity Systems',
+    ],
+  },
+  {
+    icon: 'chart-network',
+    heading: 'Research & Methods',
+    items: [
+      'Stakeholder Workshops',
+      'Contextual Inquiry',
+      'User Journey Mapping',
+      'UI Pattern Analysis, Usability Testing',
+    ],
+  },
+  {
+    icon: 'laptop-code',
+    heading: 'Technologies & Frameworks',
+    items: [
+      'HTML5',
+      'CSS3/SCSS',
+      'JavaScript',
+      'Angular/TypeScript',
+      'Bootstrap',
+      'Git',
+      'API Integration',
+    ],
+  },
+  {
+    icon: 'pen-nib',
+    heading: 'Tools & Software',
+    items: [
+      'Figma',
+      'Miro, FigJam',
+      'VS Code',
+      'Adobe Creative Cloud (Photoshop, Illustrator, InDesign, After Effects)',
+      'SketchUp (Basic)',
+    ],
+  },
+  {
+    icon: 'cubes',
+    heading: 'Emerging Tech',
+    items: [
+      'Generative AI Integration',
+      'Conversational Design Architecture',
+      'AI-Driven Feature Logic',
+    ],
+  },
+  {
+    icon: 'earth-americas',
+    heading: 'Languages',
+    items: [
+      'English (Native)',
+      'Spanish (Professional Working Proficiency)',
+      'Portuguese (Limited Working Proficiency)',
+      'French (Elementary Proficiency)',
+    ],
+  },
+];
+
 /* ── Hero content ────────────────────────────────────────────────────── */
 
 const bioParagraphs = [
@@ -132,6 +202,54 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Core Skills & Expertise ───────────────────────────────────── */}
+      {/*
+        Fluid section: full-viewport-width bg-gray-00 band.
+        Content sits inside container-inner (responsive max-width),
+        then narrows to 10/12 at xl matching the hero column width.
+
+        Grid columns:
+          xs      → 1 col  (stacked)
+          sm/md   → 2 cols
+          lg+     → 3 cols
+        Gap: 36px column / 24px row (matches Figma gap-x/gap-y spec)
+        Padding: 36px top/bottom xs–md, 48px lg+
+      */}
+      <div className="w-full bg-gray-00 py-9 lg:py-12">
+        <div className="container-inner">
+          <div className="xl:w-10/12 xl:mx-auto flex flex-col gap-9">
+
+            {/* Section heading + accent divider */}
+            <div className="flex flex-col gap-3">
+              <h2 className="leading-none">Core Skills &amp; Expertise</h2>
+              <DividerShort />
+            </div>
+
+            {/* 6-card skill grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-9 gap-y-6">
+              {coreSkills.map(({ icon, heading, items }) => (
+                <div key={heading} className="flex flex-col gap-3">
+                  {/* FA7 Sharp Thin icon — core purple, 40px */}
+                  <i
+                    className={`fa-sharp fa-thin fa-${icon} text-[40px] leading-none text-core-purple`}
+                    aria-hidden="true"
+                  />
+                  <div className="flex flex-col gap-2 text-text-primary">
+                    <h6>{heading}</h6>
+                    <ul className="list-disc pl-6">
+                      {items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     </main>
   );
