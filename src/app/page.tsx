@@ -47,7 +47,7 @@ const coreSkills = [
     items: [
       'Figma',
       'Miro, FigJam',
-      'VS Code',
+      'VS Code, Cursor (Claude)',
       'Adobe Creative Cloud (Photoshop, Illustrator, InDesign, After Effects)',
       'SketchUp (Basic)',
     ],
@@ -56,6 +56,7 @@ const coreSkills = [
     icon: 'cubes',
     heading: 'Emerging Tech',
     items: [
+      'AI-Assisted Development',
       'Generative AI Integration',
       'Conversational Design Architecture',
       'AI-Driven Feature Logic',
@@ -213,17 +214,17 @@ const smallPhotos = [
 const recommendations = [
   {
     quote:
+      '\u201cIsadora brought a formidable range of UX and front-end development knowledge; her collaboration with content providers, marketers, engineers, and designers assured a project\u2019s success. Major initiatives were successful due to her involvement. Unfailingly generous with her time and willingness to assist others, we all benefited from Isadora\u2019s excellent energy, humor, and creative nature.\u201d',
+    source: 'Tom Norton, Design Director at Cambridge Innovation Institute',
+    avatar: '/images/avatar-tom-norton.jpg',
+    avatarAlt: 'Tom Norton',
+  },
+  {
+    quote:
       '\u201cI was always impressed by her diligence and steady leadership as a UX Manager. She did a great job keeping projects organized and creating a collaborative environment where people could do their best work. Isa combines strong UX expertise with clear communication and thoughtful management.\u201d',
     source: 'Meera Butler, Senior Director Product Management at Korn Ferry',
     avatar: '/images/avatar-meera-butler.jpg',
     avatarAlt: 'Meera Butler',
-  },
-  {
-    quote:
-      '\u201cIsadora went above and beyond, found solutions to complex components, filled in when others were sick, and truly was there for any change or improvement. Her work included an intense ramp up on a library that was complicated and she dove right into it and was more than dedicated. Her attention to detail is fantastic and her documentation process was so helpful.\u201d',
-    source: 'Kate Baillargeon, Senior UX Designer for Conversational AI at Verizon',
-    avatar: '/images/avatar-kate-baillargeon.jpg',
-    avatarAlt: 'Kate Baillargeon',
   },
   {
     quote:
@@ -234,6 +235,13 @@ const recommendations = [
   },
   {
     quote:
+      '\u201cIsadora went above and beyond, found solutions to complex components, filled in when others were sick, and truly was there for any change or improvement. Her work included an intense ramp up on a library that was complicated and she dove right into it and was more than dedicated. Her attention to detail is fantastic and her documentation process was so helpful.\u201d',
+    source: 'Kate Baillargeon, Senior UX Designer for Conversational AI at Verizon',
+    avatar: '/images/avatar-kate-baillargeon.jpg',
+    avatarAlt: 'Kate Baillargeon',
+  },
+  {
+    quote:
       '\u201cI observed how glowingly her reports speak of her and credit her leadership to their success. I rarely speak with designers who have such a deep understanding of users with disabilities and real empathy for their needs. Isadora made a positive impact on our culture with her warm and engaging leadership style. She identified process improvements to increase efficiency and business value.\u201d',
     source: 'Michellanne Li, Accessibility Product Designer at Aon',
     avatar: '/images/avatar-michellanne-li.jpg',
@@ -241,14 +249,7 @@ const recommendations = [
   },
   {
     quote:
-      '\u201cIsadora brought a formidable range of UX and front-end development knowledge; her collaboration with content providers, marketers, engineers, and designers assured a project\u2019s success. Major initiatives were successful due to her involvement. Unfailingly generous with her time and willingness to assist others, we all benefited from Isadora\u2019s excellent energy, humor, and creative nature.\u201d',
-    source: 'Tom Norton, Design Director at Cambridge Innovation Institute',
-    avatar: '/images/avatar-tom-norton.jpg',
-    avatarAlt: 'Tom Norton',
-  },
-  {
-    quote:
-      '\u201cAs a new employee, Isadora worked on a complex, multi-screen animation. Her creative input and attention to detail was matched by her speed and efficiency in completing the program on time and on budget. I enjoyed working with Isadora. Her talents, good nature, and adaptability will be a measurable asset on any project she works on.\u201d',
+      '\u201cAs a new employee, Isadora worked on a complex, multi-screen animation. Her creative input and attention to detail were matched by her speed and efficiency in completing the program on time and on budget. I enjoyed working with Isadora. Her talents, good nature, and adaptability will be a measurable asset on any project she works on.\u201d',
     source: 'Robert Pascarella, Creative Director at Cramer Productions',
     avatar: '/images/avatar-robert-pascarella.jpg',
     avatarAlt: 'Robert Pascarella',
@@ -281,7 +282,7 @@ export default function Home() {
             xs–lg  → col-span-12  (full container width)
             xl+    → col-start-2  col-span-10  (centered 10/12)
         */}
-        <div className="col-span-12  xl:col-start-3 xl:col-span-9 flex flex-col gap-6 sm:flex-row sm:items-start lg:gap-9">
+        <div className="col-span-12  xl:col-start-2 xl:col-span-10 2xl:col-start-3 2xl:col-span-9 flex flex-col gap-6 sm:flex-row sm:items-start lg:gap-9">
 
           {/* ── Profile photo ─────────────────────────────────────────── */}
           {/*
@@ -379,7 +380,7 @@ export default function Home() {
       {/*
         Fluid section: full-viewport-width bg-gray-00 band.
         Content sits inside container-inner (responsive max-width),
-        then narrows to 10/12 at xl matching the hero column width.
+        then narrows to 10/12 at 2xl matching the hero column width.
 
         Grid columns:
           xs      → 1 col  (stacked)
@@ -395,7 +396,7 @@ export default function Home() {
               xs–lg  → col-span-12
               xl+    → col-start-3  col-span-9 (centered)
           */}
-          <div className="col-span-12 xl:col-start-3 xl:col-span-9 flex flex-col gap-9">
+          <div className="col-span-12 xl:col-start-2 xl:col-span-10 2xl:col-start-3 2xl:col-span-9 flex flex-col gap-9">
 
             {/* Section heading + accent divider */}
             <div className="flex flex-col gap-3">
@@ -416,7 +417,7 @@ export default function Home() {
                     <h6>{heading}</h6>
                     <ul className="list-disc pl-6">
                       {items.map((item) => (
-                        <li key={item}>{item}</li>
+                        <li key={item} className="text-balance">{item}</li>
                       ))}
                     </ul>
                   </div>
@@ -444,7 +445,7 @@ export default function Home() {
           NOTE: lg:col-start-2 is required — without it, col-span-10 starts
           at column 1 and is left-aligned rather than centred.
         */}
-        <div className="col-span-12 lg:col-span-10 xl:col-start-3 xl:col-span-7 flex flex-col gap-9">
+        <div className="col-span-12 lg:col-span-10 xl:col-start-2 xl:col-span-8 2xl:col-start-3 2xl:col-span-7 flex flex-col gap-9">
 
           {/* Section heading + accent divider */}
           <div className="flex flex-col gap-3">
@@ -532,7 +533,7 @@ export default function Home() {
       */}
       <section aria-labelledby="accolades-heading" className="w-full bg-gray-00 py-9 lg:py-12">
         <div className="container-inner grid grid-cols-12">
-          <div className="col-span-12 xl:col-start-3 xl:col-span-8 flex flex-col gap-9">
+          <div className="col-span-12 xl:col-start-2 xl:col-span-10 2xl:col-start-3 2xl:col-span-9 flex flex-col gap-9">
 
             {/* Section heading + accent divider */}
             <div className="flex flex-col gap-3">
@@ -582,7 +583,7 @@ export default function Home() {
         its typographic position without a separate DOM element.
       */}
       <section aria-labelledby="recommendations-heading" className="container-inner py-9 lg:py-12 grid grid-cols-12">
-        <div className="col-span-12 xl:col-start-3 xl:col-span-8 flex flex-col gap-9">
+        <div className="col-span-12 xl:col-start-2 xl:col-span-10 2xl:col-start-3 2xl:col-span-9 flex flex-col gap-9">
 
           {/* Section heading + accent divider */}
           <div className="flex flex-col gap-3">
@@ -608,12 +609,12 @@ export default function Home() {
             {recommendations.map(({ quote, source, avatar, avatarAlt }) => (
               <blockquote
                 key={source}
-                className="col-span-12 sm:col-span-6 flex flex-col gap-3"
+                className="col-span-12 sm:col-span-6 2xl:col-span-4 flex flex-col gap-3"
               >
                 <p className="hanging-open-quote text-text-primary">{quote}</p>
                 <footer className="flex gap-2 items-center pl-[0.4em]">
                   <Avatar src={avatar} alt={avatarAlt} size={67} decorative />
-                  <p className="flex-1 min-w-0 text-text-secondary">{source}</p>
+                  <p className="flex-1 min-w-0 text-text-secondary text-balance">{source}</p>
                 </footer>
               </blockquote>
             ))}

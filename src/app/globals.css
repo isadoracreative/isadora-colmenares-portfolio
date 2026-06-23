@@ -287,5 +287,11 @@
     font-size: var(--text-para);
     line-height: 1.6;
     color: var(--color-text-primary);
+    /*
+      text-wrap: pretty — prevents orphaned single words on the last line of
+      multi-line body text. Applied globally here; specific short-text elements
+      (skill labels, quote attribution) override to `balance` via Tailwind class.
+    */
+    text-wrap: pretty;
   }
 }
