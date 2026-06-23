@@ -429,7 +429,9 @@ export default function Home() {
               variant="outline"
               icon="download"
               label="Download Full CV"
-              href="#"
+              href="https://www.dropbox.com/scl/fi/v8etkykw5q286jeq4wgr0/isadora-colmenares-cv.pdf?dl=1"
+              target="_blank"
+              rel="noopener noreferrer"
             />
           </div>
 
