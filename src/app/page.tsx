@@ -203,9 +203,9 @@ const bioParagraphs = [
 
 const smallPhotos = [
   { src: '/images/isa-letterpress.jpg', alt: 'Letterpress printing' },
-  { src: '/images/isa-crochet.jpg', alt: 'Crochet craft work' },
-  { src: '/images/isa-wildlife-research.jpg', alt: 'Wildlife research in the field' },
   { src: '/images/isa-manatee.jpg', alt: 'Manatee research' },
+  { src: '/images/isa-wildlife-research.jpg', alt: 'Wildlife research in the field' },
+  { src: '/images/isa-crochet.jpg', alt: 'Crochet craft work' },
 ];
 
 /* ── Recommendations data ───────────────────────────────────────────── */
