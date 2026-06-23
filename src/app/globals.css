@@ -233,6 +233,36 @@
 }
 
 /* =========================================
+   TYPOGRAPHY UTILITIES
+   ========================================= */
+
+/*
+  hanging-open-quote — applies hanging punctuation to an opening curly quote (").
+
+  Strategy (layered for cross-browser support):
+  1. Chrome / Firefox / others: no native `hanging-punctuation` support.
+     `text-indent: -0.5em` pulls the first line (with the ") 0.5 em to the left;
+     `padding-inline-start: 0.5em` restores the gutter so subsequent lines
+     align with the container edge — visually identical to hanging punctuation.
+
+  2. Safari (10+): `hanging-punctuation: first` is supported natively.
+     The @supports block enables it and zeroes out the fallback offsets so
+     both techniques don't compound.
+*/
+@utility hanging-open-quote {
+  text-indent: -0.4em;
+  padding-inline-start: 0.4em;
+}
+
+@supports (hanging-punctuation: first) {
+  .hanging-open-quote {
+    hanging-punctuation: first;
+    text-indent: 0;
+    padding-inline-start: 0;
+  }
+}
+
+/* =========================================
    BASE TYPOGRAPHY
    ========================================= */
 @layer base {
