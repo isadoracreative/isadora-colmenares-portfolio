@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import DividerShort from '@/components/DividerShort';
+import Button from '@/components/Button';
 
 /* ── Core Skills data ───────────────────────────────────────────────── */
 
@@ -71,6 +72,98 @@ const coreSkills = [
   },
 ];
 
+/* ── Work Experience data ───────────────────────────────────────────── */
+
+/*
+  Em-space (U+2003) replaces the two regular spaces flanking " | " so the
+  separator reads as a proper typographic pause, per the design spec.
+*/
+const EM = '\u2003';
+
+const workExperience = [
+  {
+    logo: '/images/logo-amnh.jpg',
+    logoAlt: 'American Museum of Natural History',
+    role: 'Contract Experience Designer',
+    company: 'American Museum of Natural History',
+    period: `May 2026 – Present${EM}|${EM}New York, NY`,
+    bullets: [
+      'Partnered with curatorial leadership to rebrand the Arachnology Lab / Scorpion Systematics Research Group and rearchitect their entire online presence.',
+      'Engineered a custom, searchable directory system to organize deep historical records and academic profiles.',
+      'Devised distinct sub-branding and interface guardrails to establish an independent identity from the primary museum site.',
+    ],
+  },
+  {
+    logo: '/images/logo-korn-ferry.jpg',
+    logoAlt: 'Korn Ferry',
+    role: 'Experience Design Manager',
+    company: 'Korn Ferry',
+    period: `January 2026 – June 2026${EM}|${EM}New York, NY`,
+    bullets: [
+      'Led and supported a distributed team of 8 experience designers across diverse career tracks.',
+      'Secured a singular creative vision for high-visibility data layouts across a large, decentralized group of internal executive stakeholders.',
+      'Scaled core design system components to support emerging generative AI features, including AI Talent Search agents.',
+    ],
+  },
+  {
+    logo: '/images/logo-verizon.jpg',
+    logoAlt: 'Verizon',
+    role: 'Contract Experience Designer',
+    company: 'Verizon',
+    period: `October 2025 – January 2026${EM}|${EM}New York, NY`,
+    bullets: [
+      'Contributed modular Figma components to the Verizon Design System engineered for advanced conversational prototyping.',
+      'Designed interactive customer pathways showing responsive workflows between automated AI and live support.',
+    ],
+  },
+  {
+    logo: '/images/logo-ubs.jpg',
+    logoAlt: 'UBS',
+    role: 'UX Design Lead',
+    company: 'UBS',
+    period: `April 2024 – September 2025${EM}|${EM}New York, NY`,
+    bullets: [
+      'Collaborated with cross-functional global leads to scale the core enterprise design system across recruiting and logistics ecosystems.',
+      'Managed a distributed team of 9 experience designers across AMER, EMEA, and APAC regions.',
+    ],
+  },
+  {
+    logo: '/images/logo-aon.jpg',
+    logoAlt: 'Aon',
+    role: 'Principal UX Designer & UX Engineering Lead',
+    company: 'Aon',
+    period: `August 2019 – April 2024${EM}|${EM}New York, NY`,
+    bullets: [
+      'Refactored legacy talent assessments into a performant, mobile-first single-page application using Angular and TypeScript.',
+      'Coded robust, highly flexible components using design variables to allow automated, instant client sub-branding.',
+      'Redesigned a study materials microsite utilizing HTML/CSS/JS, directly driving $620K+ in revenue.',
+    ],
+  },
+  {
+    logo: '/images/logo-cii.jpg',
+    logoAlt: 'Cambridge Innovation Institute',
+    role: 'Senior Designer',
+    company: 'Cambridge Innovation Institute',
+    period: `February 2016 – August 2019${EM}|${EM}Boston, MA`,
+    bullets: [
+      'Orchestrated the comprehensive visual and environmental design ecosystem for over 60 annual international biotech and life sciences conferences.',
+      'Designed large-scale on-site entryway arches, wayfinding signage, and responsive web event prototypes.',
+      'Programmed automated workflow scripts using Adobe ExtendScript and InDesign APIs to stream live databases into print layouts.',
+    ],
+  },
+  {
+    logo: '/images/logo-inpa.jpg',
+    logoAlt: 'National Institute for Amazonian Research (INPA)',
+    role: 'Graphic Designer',
+    company: 'National Institute for Amazonian Research (INPA)',
+    period: `February 2013 – August 2016${EM}|${EM}Manaus, Brazil`,
+    bullets: [
+      'Developed website prototypes, visual brand identities, and staging layouts for an international ornithology congress.',
+      'Hand-rendered detailed scientific illustrations, taxonomy figures, and complex biogeographical maps for graduate publications.',
+    ],
+  },
+];
+
 /* ── Hero content ────────────────────────────────────────────────────── */
 
 const bioParagraphs = [
@@ -100,7 +193,7 @@ export default function Home() {
     <main className="flex-1">
 
       {/* ── Hero section ──────────────────────────────────────────────── */}
-      <section className="container-inner py-6 sm:py-9">
+      <section className="container-inner py-6 sm:py-9 grid grid-cols-12">
         {/*
           Layout:
             xs          → stacked column — full-width square photo, then text block
@@ -108,8 +201,11 @@ export default function Home() {
             lg (1024px) → flex row — 293×293 px photo left, text fills right
                           H1 / H6 sizes bump automatically via globals.css
                           responsive CSS variables (no extra classes needed)
+          Column placement:
+            xs–lg  → col-span-12  (full container width)
+            xl+    → col-start-2  col-span-10  (centered 10/12)
         */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start lg:gap-9 xl:w-10/12 xl:mx-auto 2xl:w-9/12 ">
+        <div className="col-span-12  xl:col-start-3 xl:col-span-9 flex flex-col gap-6 sm:flex-row sm:items-start lg:gap-9">
 
           {/* ── Profile photo ─────────────────────────────────────────── */}
           {/*
@@ -217,8 +313,13 @@ export default function Home() {
         Padding: 36px top/bottom xs–md, 48px lg+
       */}
       <div className="w-full bg-gray-00 py-9 lg:py-12">
-        <div className="container-inner">
-          <div className="xl:w-10/12 xl:mx-auto flex flex-col gap-9">
+        <div className="container-inner grid grid-cols-12">
+          {/*
+            Column placement mirrors hero:
+              xs–lg  → col-span-12
+              xl+    → col-start-2  col-span-10
+          */}
+          <div className="col-span-12 xl:col-start-3 xl:col-span-9 flex flex-col gap-9">
 
             {/* Section heading + accent divider */}
             <div className="flex flex-col gap-3">
@@ -250,6 +351,90 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* ── Work Experience Highlights ──────────────────────────────────── */}
+      {/*
+        White-background section, same container-inner + 10/12 strategy
+        as the hero. Each entry: 48×48 company logo beside a text block.
+        Date/location line uses text-secondary; all other text is primary.
+        Buttons at the bottom — outline variant, default size.
+      */}
+      <section className="container-inner py-9 lg:py-12 grid grid-cols-12">
+        {/*
+          Column placement narrows progressively:
+            xs–md  → col-span-12        (full width)
+            lg     → col-start-2  col-span-10  (1-col margin each side)
+            xl+    → col-start-3  col-span-8   (2-col margin each side)
+        */}
+        <div className="col-span-12 lg:col-span-10 xl:col-start-3 xl:col-span-8 flex flex-col gap-9">
+
+          {/* Section heading + accent divider */}
+          <div className="flex flex-col gap-3">
+            <h2 className="leading-none">Work Experience Highlights</h2>
+            <DividerShort />
+          </div>
+
+          {/* Experience entries */}
+          <div className="flex flex-col gap-6">
+            {workExperience.map(({ logo, logoAlt, role, company, period, bullets }) => (
+              <div key={`${company}-${role}`} className="flex gap-4 items-start">
+
+                {/* Company logo — fixed 48×48 px */}
+                <div className="relative w-12 h-12 shrink-0 rounded-sm overflow-hidden">
+                  <Image
+                    src={logo}
+                    alt={logoAlt}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Text block */}
+                <div className="flex flex-col gap-2 min-w-0 flex-1">
+                  {/* Title group: role → company → date/location */}
+                  <div className="flex flex-col gap-1">
+                    <h6>{role}</h6>
+                    <p className="font-body font-medium text-para-lg text-text-primary leading-normal">
+                      {company}
+                    </p>
+                    <p className="font-body text-para text-text-secondary leading-normal">
+                      {period}
+                    </p>
+                  </div>
+                  {/* Bullet points */}
+                  <ul className="list-disc pl-6 text-text-primary">
+                    {bullets.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+          {/* CTA buttons */}
+          <div className="flex gap-6 flex-wrap">
+            <Button
+              variant="outline"
+              icon="linkedin"
+              iconVariant="brands"
+              label="View LinkedIn"
+              href="https://www.linkedin.com/in/isadoracolmenares"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+            <Button
+              variant="outline"
+              icon="download"
+              label="Download Full CV"
+              href="#"
+            />
+          </div>
+
+        </div>
+      </section>
 
     </main>
   );

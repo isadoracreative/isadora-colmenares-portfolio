@@ -59,7 +59,7 @@ export default function RootLayout({
 
         <Footer />
 
-        {/* Font Awesome 7 Pro — sharp light style (fa-sharp fa-light) */}
+        {/* Font Awesome 7 Pro — sharp thin style (fa-sharp fa-thin), sharp light style (fa-sharp fa-light), brands style (fa-brands) */}
         <Script
           src="https://kit.fontawesome.com/b4676e0d67.js"
           crossOrigin="anonymous"
