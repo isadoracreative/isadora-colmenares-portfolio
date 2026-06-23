@@ -164,6 +164,25 @@ const workExperience = [
   },
 ];
 
+/* ── Key Accolades data ─────────────────────────────────────────────── */
+
+const accolades = [
+  {
+    icon: 'award',
+    title: 'Inhouse Design Award',
+    org: 'Graphic Design USA',
+    description:
+      "Awarded for data-dense infographic of Cambridge Innovation Institute's Discovery on Target pharmaceutical conference.",
+  },
+  {
+    icon: 'ranking-star',
+    title: 'Platinum Star Award',
+    org: 'Aon',
+    description:
+      'Recognized for delivering exceptional project work and exemplifying Aon United behavior in cross team support.',
+  },
+];
+
 /* ── Hero content ────────────────────────────────────────────────────── */
 
 const bioParagraphs = [
@@ -437,6 +456,51 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* ── Key Accolades ─────────────────────────────────────────────── */}
+      {/*
+        Fluid gray-00 band — same background and icon style as Core Skills.
+        Column placement:
+          xs–lg  → col-span-12        (full width)
+          xl+    → col-start-2  col-span-10
+        Card placement inside content container:
+          xs     → col-span-12  (stacked)
+          sm+    → col-span-6   (2 per row, equal halves)
+      */}
+      <div className="w-full bg-gray-00 py-9 lg:py-12">
+        <div className="container-inner grid grid-cols-12">
+          <div className="col-span-12 xl:col-start-3 xl:col-span-8 flex flex-col gap-9">
+
+            {/* Section heading + accent divider */}
+            <div className="flex flex-col gap-3">
+              <h2 className="leading-none">Key Accolades</h2>
+              <DividerShort />
+            </div>
+
+            {/* Award cards — col-span-6 each at sm+ */}
+            <div className="grid grid-cols-12 gap-x-9 gap-y-9">
+              {accolades.map(({ icon, title, org, description }) => (
+                <div key={title} className="col-span-12 sm:col-span-6 flex flex-col gap-3">
+                  <i
+                    className={`fa-sharp fa-thin fa-${icon} text-[40px] leading-none text-core-purple`}
+                    aria-hidden="true"
+                  />
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-1">
+                      <h6>{title}</h6>
+                      <p className="font-body font-medium text-para-lg text-text-secondary leading-normal">
+                        {org}
+                      </p>
+                    </div>
+                    <p className="text-text-primary">{description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     </main>
   );
