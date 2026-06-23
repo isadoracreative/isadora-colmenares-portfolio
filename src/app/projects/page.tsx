@@ -132,7 +132,7 @@ export default function ProjectsPage() {
         {projects.map((project, index) => (
           <div key={project.projectTitle} className="flex flex-col gap-8 md:gap-9">
             {index > 0 && <DividerFull />}
-            <ProjectPreview {...project} />
+            <ProjectPreview {...project} showButton={false} />
           </div>
         ))}
 

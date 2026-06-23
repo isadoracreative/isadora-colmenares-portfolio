@@ -15,6 +15,8 @@ interface ProjectPreviewProps {
   imageAlt?: string;
   /** When true, renders a 1px Core gray light border around the preview image */
   imageBorder?: boolean;
+  /** When false, hides the "View Project" button. Defaults to true. */
+  showButton?: boolean;
   className?: string;
 }
 
@@ -43,6 +45,7 @@ export default function ProjectPreview({
   imageSrc,
   imageAlt = '',
   imageBorder = false,
+  showButton = true,
   className = '',
 }: ProjectPreviewProps) {
   return (
@@ -82,14 +85,16 @@ export default function ProjectPreview({
         )}
 
         {/* CTA */}
-        <div>
-          <Button
-            label="View Project"
-            variant="outline"
-            href={href ?? '#'}
-            aria-disabled={!href}
-          />
-        </div>
+        {showButton && (
+          <div>
+            <Button
+              label="View Project"
+              variant="outline"
+              href={href ?? '#'}
+              aria-disabled={!href}
+            />
+          </div>
+        )}
       </div>
 
       {/* ── Preview image ─────────────────────────────────────────────── */}
