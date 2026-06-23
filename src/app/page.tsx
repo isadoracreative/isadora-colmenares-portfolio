@@ -257,10 +257,19 @@ const recommendations = [
 
 export default function Home() {
   return (
-    <main className="flex-1">
+    /*
+      id="main-content" is the skip-to-content target defined in layout.tsx.
+      WCAG 2.4.1 (Level A).
+    */
+    <main id="main-content" className="flex-1">
 
       {/* ── Hero section ──────────────────────────────────────────────── */}
-      <section className="container-inner py-6 sm:py-9 grid grid-cols-12">
+      {/*
+        aria-labelledby ties this landmark to the page's H1 so screen reader
+        users navigating by region/landmark can identify it.
+        WCAG 1.3.1 / 2.4.6 (Level AA).
+      */}
+      <section aria-labelledby="hero-heading" className="container-inner py-6 sm:py-9 grid grid-cols-12">
         {/*
           Layout:
             xs          → stacked column — full-width square photo, then text block
@@ -308,7 +317,7 @@ export default function Home() {
                     lg+     → 3.75rem (60px)
                   leading-none keeps it tight as per Figma lineHeight: 100
                 */}
-                <h1 className="leading-none">Isadora Colmenares</h1>
+                <h1 id="hero-heading" className="leading-none">Isadora Colmenares</h1>
 
                 {/* Accent divider — Figma "divider short" component (node 52:320) */}
                 <DividerShort />
@@ -379,18 +388,18 @@ export default function Home() {
         Gap: 36px column / 24px row (matches Figma gap-x/gap-y spec)
         Padding: 36px top/bottom xs–md, 48px lg+
       */}
-      <div className="w-full bg-gray-00 py-9 lg:py-12">
+      <section aria-labelledby="skills-heading" className="w-full bg-gray-00 py-9 lg:py-12">
         <div className="container-inner grid grid-cols-12">
           {/*
             Column placement mirrors hero:
               xs–lg  → col-span-12
-              xl+    → col-start-2  col-span-10
+              xl+    → col-start-3  col-span-9 (centered)
           */}
           <div className="col-span-12 xl:col-start-3 xl:col-span-9 flex flex-col gap-9">
 
             {/* Section heading + accent divider */}
             <div className="flex flex-col gap-3">
-              <h2 className="leading-none">Core Skills &amp; Expertise</h2>
+              <h2 id="skills-heading" className="leading-none">Core Skills &amp; Expertise</h2>
               <DividerShort />
             </div>
 
@@ -417,7 +426,7 @@ export default function Home() {
 
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ── Work Experience Highlights ──────────────────────────────────── */}
       {/*
@@ -426,25 +435,31 @@ export default function Home() {
         Date/location line uses text-secondary; all other text is primary.
         Buttons at the bottom — outline variant, default size.
       */}
-      <section className="container-inner py-9 lg:py-12 grid grid-cols-12">
+      <section aria-labelledby="work-exp-heading" className="container-inner py-9 lg:py-12 grid grid-cols-12">
         {/*
           Column placement narrows progressively:
-            xs–md  → col-span-12        (full width)
-            lg     → col-start-2  col-span-10  (1-col margin each side)
-            xl+    → col-start-3  col-span-8   (2-col margin each side)
+            xs–md  → col-span-12                    (full width)
+            lg     → col-start-2  col-span-10       (2-col margin right side)
+            xl+    → col-start-3  col-span-7        (5-col margin right side)
+          NOTE: lg:col-start-2 is required — without it, col-span-10 starts
+          at column 1 and is left-aligned rather than centred.
         */}
-        <div className="col-span-12 lg:col-span-10 xl:col-start-3 xl:col-span-8 flex flex-col gap-9">
+        <div className="col-span-12 lg:col-span-10 xl:col-start-3 xl:col-span-7 flex flex-col gap-9">
 
           {/* Section heading + accent divider */}
           <div className="flex flex-col gap-3">
-            <h2 className="leading-none">Work Experience Highlights</h2>
+            <h2 id="work-exp-heading" className="leading-none">Work Experience Highlights</h2>
             <DividerShort />
           </div>
 
-          {/* Experience entries */}
-          <div className="flex flex-col gap-6">
+          {/*
+            Experience entries — <ul>/<li> communicates list cardinality to
+            screen readers ("7 items"). list-none removes default bullets.
+            WCAG 1.3.1 (Level A): Info and Relationships.
+          */}
+          <ul className="flex flex-col gap-6 list-none">
             {workExperience.map(({ logo, logoAlt, role, company, period, bullets }) => (
-              <div key={`${company}-${role}`} className="flex gap-4 items-start">
+              <li key={`${company}-${role}`} className="flex gap-4 items-start">
 
                 {/* Company logo — fixed 48×48 px */}
                 <div className="relative w-12 h-12 shrink-0 rounded-sm overflow-hidden">
@@ -477,9 +492,9 @@ export default function Home() {
                   </ul>
                 </div>
 
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
 
           {/* CTA buttons */}
           <div className="flex gap-6 flex-wrap">
@@ -515,13 +530,13 @@ export default function Home() {
           xs     → col-span-12  (stacked)
           sm+    → col-span-6   (2 per row, equal halves)
       */}
-      <div className="w-full bg-gray-00 py-9 lg:py-12">
+      <section aria-labelledby="accolades-heading" className="w-full bg-gray-00 py-9 lg:py-12">
         <div className="container-inner grid grid-cols-12">
           <div className="col-span-12 xl:col-start-3 xl:col-span-8 flex flex-col gap-9">
 
             {/* Section heading + accent divider */}
             <div className="flex flex-col gap-3">
-              <h2 className="leading-none">Key Accolades</h2>
+              <h2 id="accolades-heading" className="leading-none">Key Accolades</h2>
               <DividerShort />
             </div>
 
@@ -548,7 +563,7 @@ export default function Home() {
 
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ── Recommendations ───────────────────────────────────────────────── */}
       {/*
@@ -566,35 +581,41 @@ export default function Home() {
         The opening " is embedded in the quote string; the utility handles
         its typographic position without a separate DOM element.
       */}
-      <section className="container-inner py-9 lg:py-12 grid grid-cols-12">
+      <section aria-labelledby="recommendations-heading" className="container-inner py-9 lg:py-12 grid grid-cols-12">
         <div className="col-span-12 xl:col-start-3 xl:col-span-8 flex flex-col gap-9">
 
           {/* Section heading + accent divider */}
           <div className="flex flex-col gap-3">
-            <h2 className="leading-none">Recommendations</h2>
+            <h2 id="recommendations-heading" className="leading-none">Recommendations</h2>
             <DividerShort />
           </div>
 
-          {/* Quote grid — 1 col xs, 2 cols sm–lg, 3 cols xl+ */}
+          {/*
+            Quote grid — 1 col xs, 2 cols sm+.
+            Each card is a <blockquote> with a <footer> for attribution.
+            WCAG 1.3.1 (Level A): <blockquote>/<footer> conveys the quoted
+            content structure to AT correctly.
+
+            Avatar is marked decorative because the source <p> already names
+            the person — avoids AT reading the name twice.
+
+            hanging-open-quote: the " at the start hangs outside the text box.
+            pl-[0.4em] on <footer> aligns the avatar's left edge with the quote
+            body text (matches the padding-inline-start offset).
+            See globals.css for the full cross-browser strategy.
+          */}
           <div className="grid grid-cols-12 gap-x-9 gap-y-9">
             {recommendations.map(({ quote, source, avatar, avatarAlt }) => (
-              <div key={source} className="col-span-12 sm:col-span-6 flex flex-col gap-3">
-                {/*
-                  hanging-open-quote: the " at the start of the string hangs
-                  outside the text box. See globals.css for cross-browser logic.
-                */}
+              <blockquote
+                key={source}
+                className="col-span-12 sm:col-span-6 flex flex-col gap-3"
+              >
                 <p className="hanging-open-quote text-text-primary">{quote}</p>
-
-                {/*
-                  pl-[0.5em] matches the padding-inline-start from hanging-open-quote,
-                  so the avatar's left edge aligns with the quote body text,
-                  not with the hanging punctuation.
-                */}
-                <div className="flex gap-2 items-center pl-[0.4em]">
-                  <Avatar src={avatar} alt={avatarAlt} size={67} />
+                <footer className="flex gap-2 items-center pl-[0.4em]">
+                  <Avatar src={avatar} alt={avatarAlt} size={67} decorative />
                   <p className="flex-1 min-w-0 text-text-secondary">{source}</p>
-                </div>
-              </div>
+                </footer>
+              </blockquote>
             ))}
           </div>
 

@@ -2,16 +2,36 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/projects', label: 'Projects' },
 ];
 
+/*
+  Focus ring shared class — applied to all interactive nav elements via
+  focus-visible: so the ring only appears on keyboard navigation, not mouse.
+  WCAG 2.4.11 / 2.4.7 (Level AA): Focus Visible.
+*/
+const FOCUS_RING = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-green focus-visible:ring-inset';
+
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  /*
+    Mobile menu focus management — WCAG 2.4.3 (Level A): Focus Order.
+    When the menu opens, move focus to the first item so keyboard/AT users
+    know new content is available.
+  */
+  const firstMobileItemRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (menuOpen && firstMobileItemRef.current) {
+      firstMobileItemRef.current.focus();
+    }
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-20">
@@ -20,16 +40,17 @@ export default function Header() {
       <div className="flex h-12 items-center justify-between pl-4 sm:pl-6 pr-3 lg:hidden">
         <Link
           href="/"
-          className="font-heading font-semibold text-para-sm text-text-primary leading-none"
+          className={`font-heading font-semibold text-para-sm text-text-primary leading-none rounded ${FOCUS_RING}`}
         >
           Isadora Colmenares
         </Link>
 
         <button
           type="button"
-          className="flex h-full w-8 items-center justify-center text-text-primary"
+          className={`flex h-full w-8 items-center justify-center text-text-primary rounded ${FOCUS_RING}`}
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         >
           <i
@@ -41,16 +62,18 @@ export default function Header() {
 
       {/* ── Mobile dropdown menu ──────────────────────────────────────── */}
       {menuOpen && (
-        <nav aria-label="Mobile navigation" className="lg:hidden border-t border-gray-10 bg-white">
-          {navLinks.map(({ href, label }) => {
+        <nav id="mobile-nav" aria-label="Mobile navigation" className="lg:hidden border-t border-gray-10 bg-white">
+          {navLinks.map(({ href, label }, index) => {
             const isActive = pathname.startsWith(href);
             return (
               <Link
                 key={href}
                 href={href}
+                ref={index === 0 ? firstMobileItemRef : undefined}
                 onClick={() => setMenuOpen(false)}
+                aria-current={isActive ? 'page' : undefined}
                 className={[
-                  'flex items-center px-6 py-4 text-para-sm font-body text-text-primary transition-colors',
+                  `flex items-center px-6 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
                   isActive
                     ? 'border-l-[3px] border-core-green'
                     : 'hover:bg-core-green-light',
@@ -68,7 +91,7 @@ export default function Header() {
         <div className="flex flex-1 items-center justify-between max-w-[1440px] mx-auto">
           <Link
             href="/"
-            className="font-heading font-semibold text-para text-text-primary leading-none"
+            className={`font-heading font-semibold text-para text-text-primary leading-none rounded ${FOCUS_RING}`}
           >
             Isadora Colmenares
           </Link>
@@ -80,8 +103,9 @@ export default function Header() {
                 <Link
                   key={href}
                   href={href}
+                  aria-current={isActive ? 'page' : undefined}
                   className={[
-                    'flex items-center px-4 py-4 text-para-sm font-body text-text-primary transition-colors',
+                    `flex items-center px-4 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
                     isActive
                       ? 'border-b-[3px] border-core-green'
                       : 'hover:bg-core-green-light',

@@ -8,6 +8,9 @@
  *
  * Solid:   dark fill (--color-interactive), white text.
  * Outline: transparent bg, green border (--color-core-green), dark text.
+ *
+ * Security: when rendered as <a> with target="_blank", rel="noopener noreferrer"
+ * is applied automatically if the caller does not provide a rel string.
  */
 
 type ButtonSize    = 'xs' | 'sm' | 'default' | 'lg';
@@ -60,6 +63,14 @@ const VARIANT_CLASS: Record<ButtonVariant, string> = {
     'border border-core-green bg-transparent hover:bg-gray-00 active:bg-gray-10 text-interactive',
 };
 
+/*
+  Focus ring — WCAG 2.4.11 / 2.4.7 (Level AA): Focus Visible.
+  Uses focus-visible: so the ring only appears for keyboard navigation.
+  ring-offset-2 provides a gap on coloured backgrounds.
+*/
+const FOCUS_RING =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-green focus-visible:ring-offset-2';
+
 /* ── Component ────────────────────────────────────────────────────────── */
 
 export default function Button({
@@ -86,6 +97,7 @@ export default function Button({
   const rootClass = [
     'inline-flex items-center justify-center gap-2',
     'rounded-sm cursor-pointer transition-colors',
+    FOCUS_RING,
     PADDING[size],
     VARIANT_CLASS[variant],
     className,
@@ -103,8 +115,15 @@ export default function Button({
   );
 
   if (href) {
+    /*
+      Auto-apply rel="noopener noreferrer" for _blank links that don't already
+      carry a rel — prevents the opened tab from accessing window.opener.
+    */
+    const resolvedRel =
+      target === '_blank' && !rel ? 'noopener noreferrer' : rel;
+
     return (
-      <a href={href} target={target} rel={rel} className={rootClass}>
+      <a href={href} target={target} rel={resolvedRel} className={rootClass}>
         {content}
       </a>
     );

@@ -51,6 +51,18 @@ export default function RootLayout({
                       or go edge-to-edge for full-bleed sections.
             <Footer>  green band, always at the bottom
         */}
+        {/*
+          Skip-to-content — invisible until focused; allows keyboard users to
+          bypass the sticky header and jump straight to page content.
+          WCAG 2.4.1 (Level A): Bypass Blocks.
+        */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:rounded focus:px-4 focus:py-2 focus:bg-white focus:text-text-primary focus:ring-2 focus:ring-core-green focus:outline-none"
+        >
+          Skip to main content
+        </a>
+
         <Header />
 
         <div className="flex-1 flex flex-col w-full">
@@ -59,11 +71,17 @@ export default function RootLayout({
 
         <Footer />
 
-        {/* Font Awesome 7 Pro — sharp thin style (fa-sharp fa-thin), sharp light style (fa-sharp fa-light), brands style (fa-brands) */}
+        {/*
+          Font Awesome 7 Pro — sharp thin (fa-sharp fa-thin), sharp light
+          (fa-sharp fa-light), brands (fa-brands).
+          `afterInteractive` loads the kit after React hydration; icons are
+          decorative or have aria-hidden so a brief pre-load flash is acceptable
+          and does not block TTI.
+        */}
         <Script
           src="https://kit.fontawesome.com/b4676e0d67.js"
           crossOrigin="anonymous"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
       </body>
     </html>

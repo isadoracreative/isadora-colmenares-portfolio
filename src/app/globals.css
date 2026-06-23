@@ -241,9 +241,10 @@
 
   Strategy (layered for cross-browser support):
   1. Chrome / Firefox / others: no native `hanging-punctuation` support.
-     `text-indent: -0.5em` pulls the first line (with the ") 0.5 em to the left;
-     `padding-inline-start: 0.5em` restores the gutter so subsequent lines
+     `text-indent: -0.4em` pulls the first line (with the ") 0.4 em to the left;
+     `padding-inline-start: 0.4em` restores the gutter so subsequent lines
      align with the container edge — visually identical to hanging punctuation.
+     (0.4em is a close approximation of the curly " width in Karla at 16px.)
 
   2. Safari (10+): `hanging-punctuation: first` is supported natively.
      The @supports block enables it and zeroes out the fallback offsets so
