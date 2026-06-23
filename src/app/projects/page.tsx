@@ -5,8 +5,8 @@ import ProjectPreview from "@/components/ProjectPreview";
 /* ─────────────────────────────────────────────────────────────────────────────
    Projects data
    Tag content sourced from Figma (node 224:8904 / 224:8955 / 224:9046 / 224:9077).
-   Add `imageSrc` and `href` for each project once screenshots and case-study
-   pages are available.
+   Projects 1–3 have no thumbnail yet (gray placeholder shown).
+   Add `href` for each project once case-study pages are available.
    ───────────────────────────────────────────────────────────────────────────── */
 
 const projects = [
@@ -35,6 +35,64 @@ const projects = [
       "Architectural planning",
       "Public-private infrastructure",
     ],
+  },
+  {
+    clientName: "American Museum of Natural History (AMNH)",
+    projectTitle: "Arachnology Research Lab",
+    projectDescription:
+      "Rebranded a research lab and engineered a custom academic directory system to establish a distinct institutional identity and accessible web presence.",
+    tags: [
+      "Information architecture",
+      "Front-end development",
+      "Brand identity",
+      "Design systems",
+      "UX engineering",
+    ],
+  },
+  {
+    clientName: "Cambridge Innovation Institute",
+    projectTitle: "Global Conference Experiences",
+    projectDescription:
+      "Collaborated on a highly flexible multi-brand design system by engineering the core templating framework and data automation for cross-medium layouts and styles, enforcing strict visual governance from screen viewports to physical venue environments.",
+    tags: [
+      "Exhibition design",
+      "Wayfinding",
+      "Omni-channel design",
+      "Layout automation",
+      "Front-end development",
+    ],
+    imageSrc: "/images/project-global-conference.jpg",
+    imageAlt: "Discovery on Target conference signage and environmental graphics",
+  },
+  {
+    clientName: "Aon",
+    projectTitle: "Immersive Assessment Platforms",
+    projectDescription:
+      "Led enterprise product strategy and frontend engineering frameworks to consolidate legacy assessment tools, scaling strict visual token governance and accessibility across immersive mobile simulations to high-density admin dashboards.",
+    tags: [
+      "Design systems",
+      "SaaS product strategy",
+      "UX engineering",
+      "Front-end development",
+      "Data visualization",
+    ],
+    imageSrc: "/images/project-immersive-assessment.jpg",
+    imageAlt: "Aon immersive assessment platform on mobile and desktop screens",
+  },
+  {
+    clientName: "National Institute for Amazonian Research (INPA)",
+    projectTitle: "International Ornithology Congress",
+    projectDescription:
+      "Architected a unified, scientifically resonant design system to honor a historic joint congress in the Brazilian Amazon, scaling organic identity assets from digital research publications to physical environmental installations.",
+    tags: [
+      "Exhibition design",
+      "Spatial storytelling",
+      "Identity systems",
+      "Visual governance",
+      "Omni-channel design",
+    ],
+    imageSrc: "/images/project-ornithology-congress.jpg",
+    imageAlt: "International Ornithology Congress banner at the Manaus 2015 joint congress venue",
   },
 ];
 
