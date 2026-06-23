@@ -23,6 +23,7 @@ const projects = [
     ],
     imageSrc: "/images/project-conversational-design-system.png",
     imageAlt: "Figma component library and interaction specification screens for Verizon conversational AI",
+    imageBorder: true,
   },
   {
     clientName: "Burton Cooperative Residence",
@@ -39,6 +40,7 @@ const projects = [
     ],
     imageSrc: "/images/project-botanical-landscape.png",
     imageAlt: "3D render of the Burton Cooperative Residence botanical landscape frontage",
+    imageBorder: true,
   },
   {
     clientName: "American Museum of Natural History (AMNH)",
@@ -70,6 +72,7 @@ const projects = [
     ],
     imageSrc: "/images/project-global-conference.jpg",
     imageAlt: "Discovery on Target conference signage and environmental graphics at a CII life sciences event",
+    imageBorder: true,
   },
   {
     clientName: "Aon",
@@ -86,6 +89,7 @@ const projects = [
     ],
     imageSrc: "/images/project-immersive-assessment.jpg",
     imageAlt: "Aon immersive assessment platform displayed on mobile and desktop screens",
+    imageBorder: true,
   },
   {
     clientName: "National Institute for Amazonian Research (INPA)",
@@ -102,6 +106,7 @@ const projects = [
     ],
     imageSrc: "/images/project-ornithology-congress.jpg",
     imageAlt: "International Ornithology Congress banner at the Manaus 2015 joint NOC/CBO congress venue",
+    imageBorder: true,
   },
 ];
 
