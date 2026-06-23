@@ -48,7 +48,7 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <main id="main-content" className="flex-1">
-      <div className="container-inner py-9 lg:py-12 flex flex-col gap-6 lg:gap-9">
+      <div className="container-inner py-9 lg:py-12 flex flex-col gap-9">
 
         {/* ── Page heading ──────────────────────────────────────────────── */}
         <div className="flex flex-col gap-3">
@@ -58,7 +58,7 @@ export default function ProjectsPage() {
 
         {/* ── Project list — first 2 entries ────────────────────────────── */}
         {projects.map((project, index) => (
-          <div key={project.projectTitle} className="flex flex-col gap-6 lg:gap-9">
+          <div key={project.projectTitle} className="flex flex-col gap-8 md:gap-9">
             {index > 0 && <DividerFull />}
             <ProjectPreview {...project} />
           </div>
