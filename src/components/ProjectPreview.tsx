@@ -13,6 +13,8 @@ interface ProjectPreviewProps {
   /** Path to the project preview image (16:9) */
   imageSrc?: string;
   imageAlt?: string;
+  /** When true, renders a 1px Core gray light border around the preview image */
+  imageBorder?: boolean;
   className?: string;
 }
 
@@ -40,6 +42,7 @@ export default function ProjectPreview({
   href,
   imageSrc,
   imageAlt = '',
+  imageBorder = false,
   className = '',
 }: ProjectPreviewProps) {
   return (
@@ -91,7 +94,7 @@ export default function ProjectPreview({
 
       {/* ── Preview image ─────────────────────────────────────────────── */}
       {imageSrc ? (
-        <div className="relative w-full aspect-video rounded-sm overflow-hidden sm:flex-1 sm:w-auto sm:min-w-0">
+        <div className={`relative w-full aspect-video rounded-sm overflow-hidden sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}>
           <Image
             src={imageSrc}
             alt={imageAlt}
@@ -107,7 +110,7 @@ export default function ProjectPreview({
         */
         <div
           aria-hidden="true"
-          className="w-full aspect-video rounded-sm bg-gray-10 sm:flex-1 sm:w-auto sm:min-w-0"
+          className={`w-full aspect-video rounded-sm bg-gray-10 sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}
         />
       )}
     </article>

@@ -30,7 +30,7 @@ interface TagProps {
 
 const SIZE_WRAP: Record<TagSize, string> = {
   small: 'px-2 py-0.5 gap-1 rounded',          /* 8px/2px pad, 4px radius, 4px gap */
-  large: 'px-2 py-1   gap-2   rounded-[6px]',     /* 8px/4px pad, 6px radius, 8px gap */
+  large: 'px-2 py-1   gap-2 rounded-[6px]',     /* 8px/4px pad, 6px radius, 8px gap */
 };
 
 const SIZE_TEXT: Record<TagSize, string> = {
