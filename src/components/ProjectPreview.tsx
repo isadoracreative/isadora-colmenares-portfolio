@@ -24,10 +24,16 @@ interface ProjectPreviewProps {
   ProjectPreview — responsive project card component.
 
   Layout (Figma spec: node-id=52-1269):
-  ┌──────────────────────────────────────────────┐
-  │ xs  (<640px): text stacked above image        │
-  │ sm+ (≥640px): text left (flex-1) | image right (flex-1) │
-  └──────────────────────────────────────────────┘
+  ┌─────────────────────────────────────────────────────┐
+  │ clientName — full width row                         │
+  ├──────────────────────────┬──────────────────────────┤
+  │ xs  (<640px):            │ sm+ (≥640px):            │
+  │   title/desc/tags/btn    │   title/desc/tags/btn    │
+  │   image below            │   image right (flex-1)   │
+  └──────────────────────────┴──────────────────────────┘
+
+  clientName sits in its own full-width row so the image top-aligns
+  with the project title rather than with the client label.
 
   The 50/50 flex split matches Figma's fixed widths at every container
   size (sm: 284+24+284=592, lg: 458+36+458=952, xl: 574+48+574=1196≈1208).
@@ -51,73 +57,78 @@ export default function ProjectPreview({
   return (
     <article
       aria-labelledby={`project-${projectTitle.replace(/\s+/g, '-').toLowerCase()}`}
-      className={`flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-6 lg:gap-9 xl:gap-12 ${className}`.trim()}
+      className={`flex flex-col gap-3 ${className}`.trim()}
     >
-      {/* ── Text column ───────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-4 sm:flex-1 min-w-0">
-        <div className="flex flex-col gap-3">
-          {/* Client / organisation */}
-          <p className="font-body text-para-sm text-text-secondary">
-            {clientName}
-          </p>
+      {/* ── Client name — full-width row ──────────────────────────────── */}
+      <p className="font-body text-para-sm text-text-secondary">
+        {clientName}
+      </p>
 
-          {/* Project title — h2 scales with the global responsive type scale */}
-          <h2
-            id={`project-${projectTitle.replace(/\s+/g, '-').toLowerCase()}`}
-            className="leading-none"
-          >
-            {projectTitle}
-          </h2>
+      {/* ── Content row: title/desc/tags/btn + image ──────────────────── */}
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-6 lg:gap-9 xl:gap-12">
 
-          {/* Description */}
-          <p className="font-body font-medium text-para-lg text-text-primary leading-snug">
-            {projectDescription}
-          </p>
+        {/* Text column */}
+        <div className="flex flex-col gap-4 sm:flex-1 min-w-0">
+          <div className="flex flex-col gap-3">
+            {/* Project title */}
+            <h2
+              id={`project-${projectTitle.replace(/\s+/g, '-').toLowerCase()}`}
+              className="leading-none"
+            >
+              {projectTitle}
+            </h2>
+
+            {/* Description */}
+            <p className="font-body font-medium text-para-lg text-text-primary leading-snug">
+              {projectDescription}
+            </p>
+          </div>
+
+          {/* Tags */}
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-1 sm:mb-3" aria-label="Project tags">
+              {tags.map((tag) => (
+                <Tag key={tag} label={tag} />
+              ))}
+            </div>
+          )}
+
+          {/* CTA */}
+          {showButton && (
+            <div>
+              <Button
+                label="View Project"
+                variant="outline"
+                href={href ?? '#'}
+                aria-disabled={!href}
+              />
+            </div>
+          )}
         </div>
 
-        {/* Tags */}
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-1 sm:mb-3" aria-label="Project tags">
-            {tags.map((tag) => (
-              <Tag key={tag} label={tag} />
-            ))}
-          </div>
-        )}
-
-        {/* CTA */}
-        {showButton && (
-          <div>
-            <Button
-              label="View Project"
-              variant="outline"
-              href={href ?? '#'}
-              aria-disabled={!href}
+        {/* ── Preview image ───────────────────────────────────────────── */}
+        {imageSrc ? (
+          <div className={`relative w-full aspect-video rounded-sm overflow-hidden sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}>
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              fill
+              className="object-cover"
+              sizes="(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw"
             />
           </div>
-        )}
-      </div>
-
-      {/* ── Preview image ─────────────────────────────────────────────── */}
-      {imageSrc ? (
-        <div className={`relative w-full aspect-video rounded-sm overflow-hidden sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}>
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            fill
-            className="object-cover"
-            sizes="(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw"
+        ) : (
+          /*
+            Gray placeholder — shown when no project screenshot is available yet.
+            `aria-hidden` keeps screen readers from announcing an empty image region.
+          */
+          <div
+            aria-hidden="true"
+            className={`w-full aspect-video rounded-sm bg-gray-10 sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}
           />
-        </div>
-      ) : (
-        /*
-          Gray placeholder — shown when no project screenshot is available yet.
-          `aria-hidden` keeps screen readers from announcing an empty image region.
-        */
-        <div
-          aria-hidden="true"
-          className={`w-full aspect-video rounded-sm bg-gray-10 sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}
-        />
-      )}
+        )}
+
+      </div>
     </article>
   );
 }
