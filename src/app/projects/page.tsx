@@ -3,9 +3,7 @@ import DividerFull from "@/components/DividerFull";
 import ProjectPreview from "@/components/ProjectPreview";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Projects data
-   Tag content sourced from Figma (node 224:8904 / 224:8955 / 224:9046 / 224:9077).
-   Projects 1–3 have no thumbnail yet (gray placeholder shown).
+   Projects data — synced from Figma (nodes 224:8904 / 224:8955 / 224:9046 / 224:9077).
    Add `href` for each project once case-study pages are available.
    ───────────────────────────────────────────────────────────────────────────── */
 
@@ -19,9 +17,12 @@ const projects = [
       "Interaction design",
       "Design systems",
       "Conversational AI",
-      "Component documentation",
+      "Component libraries",
+      "Technical documentation",
       "UX engineering",
     ],
+    imageSrc: "/images/project-conversational-design-system.png",
+    imageAlt: "Figma component library and interaction specification screens for Verizon conversational AI",
   },
   {
     clientName: "Burton Cooperative Residence",
@@ -33,8 +34,11 @@ const projects = [
       "Environmental design",
       "Experience design",
       "Architectural planning",
-      "Public-private infrastructure",
+      "Public-private Infrastructure",
+      "Project management",
     ],
+    imageSrc: "/images/project-botanical-landscape.png",
+    imageAlt: "3D render of the Burton Cooperative Residence botanical landscape frontage",
   },
   {
     clientName: "American Museum of Natural History (AMNH)",
@@ -48,6 +52,8 @@ const projects = [
       "Design systems",
       "UX engineering",
     ],
+    imageSrc: "/images/project-arachnology-lab.png",
+    imageAlt: "Arachnology Research Lab website showing the custom academic directory and researcher profiles",
   },
   {
     clientName: "Cambridge Innovation Institute",
@@ -60,9 +66,10 @@ const projects = [
       "Omni-channel design",
       "Layout automation",
       "Front-end development",
+      "Publication design",
     ],
     imageSrc: "/images/project-global-conference.jpg",
-    imageAlt: "Discovery on Target conference signage and environmental graphics",
+    imageAlt: "Discovery on Target conference signage and environmental graphics at a CII life sciences event",
   },
   {
     clientName: "Aon",
@@ -75,9 +82,10 @@ const projects = [
       "UX engineering",
       "Front-end development",
       "Data visualization",
+      "Design operations",
     ],
     imageSrc: "/images/project-immersive-assessment.jpg",
-    imageAlt: "Aon immersive assessment platform on mobile and desktop screens",
+    imageAlt: "Aon immersive assessment platform displayed on mobile and desktop screens",
   },
   {
     clientName: "National Institute for Amazonian Research (INPA)",
@@ -87,12 +95,13 @@ const projects = [
     tags: [
       "Exhibition design",
       "Spatial storytelling",
-      "Identity systems",
       "Visual governance",
+      "Identity systems",
       "Omni-channel design",
+      "Publication design",
     ],
     imageSrc: "/images/project-ornithology-congress.jpg",
-    imageAlt: "International Ornithology Congress banner at the Manaus 2015 joint congress venue",
+    imageAlt: "International Ornithology Congress banner at the Manaus 2015 joint NOC/CBO congress venue",
   },
 ];
 

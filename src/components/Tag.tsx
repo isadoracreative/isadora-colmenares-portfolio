@@ -2,8 +2,8 @@
   Tag — Figma component node 200:895 (Tags section).
   
   Two sizes:
-    small  — 4px/2px padding, 4px radius, 10px text  (used in ProjectPreview)
-    large  — 8px/4px padding, 6px radius, 12px text
+    small  — 4px/2px padding, 4px radius, 12px text  (used in ProjectPreview)
+    large  — 8px/4px padding, 6px radius, 16px text
 
   Seven color variants: gray (default), blue, green, yellow, orange, red, purple.
   Each has a default (light background) and active (core color fill) state.
@@ -34,8 +34,8 @@ const SIZE_WRAP: Record<TagSize, string> = {
 };
 
 const SIZE_TEXT: Record<TagSize, string> = {
-  small: 'text-para-xs',
-  large: 'text-para',   /* 12px via --text-para-xs */
+  small: 'text-para-xs', /* 12px via --text-para-xs */
+  large: 'text-para',   /* 16px via --text-para */
 };
 
 /* ── Color tokens ─────────────────────────────────────────────────────────── */
