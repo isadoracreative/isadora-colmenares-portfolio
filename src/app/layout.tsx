@@ -63,7 +63,7 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        <Header />
+        {/* <Header /> */}
 
         <div className="flex-1 flex flex-col w-full">
           {children}

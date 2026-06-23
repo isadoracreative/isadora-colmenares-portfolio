@@ -22,7 +22,7 @@ export default function Footer() {
 
           {/* ── xs / sm / md — stacked ─────────────────────────────── */}
           <div className="flex flex-col gap-6 lg:hidden">
-            <nav aria-label="Footer navigation" className="flex flex-col gap-3">
+            {/* <nav aria-label="Footer navigation" className="flex flex-col gap-3">
               {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}
@@ -32,15 +32,15 @@ export default function Footer() {
                   {label}
                 </Link>
               ))}
-            </nav>
-            <p className="text-para-sm font-body text-text-primary">
+            </nav> */}
+            <p className="text-para-sm font-body text-text-primary text-center w-full">
               &copy; Isadora Colmenares 2026. All rights reserved.
             </p>
           </div>
 
           {/* ── lg+ — row ──────────────────────────────────────────── */}
           <div className="hidden lg:flex items-center justify-between">
-            <nav aria-label="Footer navigation" className="flex items-center gap-6">
+            {/* <nav aria-label="Footer navigation" className="flex items-center gap-6">
               {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}
@@ -50,8 +50,8 @@ export default function Footer() {
                   {label}
                 </Link>
               ))}
-            </nav>
-            <p className="text-para-sm font-body text-text-primary">
+            </nav> */}
+            <p className="text-para-sm font-body text-text-primary text-center w-full">
               &copy; Isadora Colmenares 2026. All rights reserved.
             </p>
           </div>
