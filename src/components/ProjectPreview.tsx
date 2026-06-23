@@ -71,7 +71,7 @@ export default function ProjectPreview({
 
         {/* Tags */}
         {tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 mb-1 sm:mb-3" aria-label="Project tags">
+          <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-1 sm:mb-3" aria-label="Project tags">
             {tags.map((tag) => (
               <Tag key={tag} label={tag} />
             ))}
