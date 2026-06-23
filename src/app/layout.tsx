@@ -80,7 +80,6 @@ export default function RootLayout({
         */}
         <Script
           src="https://kit.fontawesome.com/b4676e0d67.js"
-          crossOrigin="anonymous"
           strategy="afterInteractive"
         />
       </body>
