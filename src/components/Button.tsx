@@ -25,6 +25,8 @@ interface ButtonProps {
   icon?:        string;
   /** Defaults to 'sharp-light'; pass 'brands' for FA7 Brands icons */
   iconVariant?: IconVariant;
+  /** When true, stretches the button to fill its container's full width. */
+  fullWidth?:   boolean;
   href?:        string;
   target?:      string;
   rel?:         string;
@@ -79,6 +81,7 @@ export default function Button({
   size        = 'default',
   icon,
   iconVariant = 'sharp-light',
+  fullWidth   = false,
   href,
   target,
   rel,
@@ -100,8 +103,10 @@ export default function Button({
     FOCUS_RING,
     PADDING[size],
     VARIANT_CLASS[variant],
+    fullWidth ? 'w-full' : '',
     className,
   ]
+    .filter(Boolean)
     .join(' ')
     .trim();
 

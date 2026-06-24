@@ -498,7 +498,7 @@ export default function Home() {
           </ul>
 
           {/* CTA buttons */}
-          <div className="flex gap-6 flex-wrap">
+          <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 sm:flex-wrap">
             <Button
               variant="outline"
               icon="linkedin"
@@ -507,6 +507,8 @@ export default function Home() {
               href="https://www.linkedin.com/in/isadoracolmenares"
               target="_blank"
               rel="noopener noreferrer"
+              fullWidth
+              className="sm:w-auto"
             />
             <Button
               variant="outline"
@@ -515,6 +517,8 @@ export default function Home() {
               href="https://www.dropbox.com/scl/fi/v8etkykw5q286jeq4wgr0/isadora-colmenares-cv.pdf?dl=1"
               target="_blank"
               rel="noopener noreferrer"
+              fullWidth
+              className="sm:w-auto"
             />
           </div>
 
