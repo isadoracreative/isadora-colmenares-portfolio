@@ -262,7 +262,7 @@ export default function Home() {
       id="main-content" is the skip-to-content target defined in layout.tsx.
       WCAG 2.4.1 (Level A).
     */
-    <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+    <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
 
       {/* ── Hero section ──────────────────────────────────────────────── */}
       {/*
