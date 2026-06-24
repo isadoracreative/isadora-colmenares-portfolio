@@ -120,7 +120,7 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <main id="main-content" className="flex-1">
-      <div className="container-inner py-9 lg:py-12 flex flex-col gap-9">
+      <div className="container-inner py-6 sm:py-9 flex flex-col gap-9">
 
         {/* ── Page heading ──────────────────────────────────────────────── */}
         <div className="flex flex-col gap-3">

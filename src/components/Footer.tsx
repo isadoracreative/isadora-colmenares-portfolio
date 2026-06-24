@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const navLinks = [
-  { href: '/about', label: 'About' },
+  { href: '/', label: 'About' },
   { href: '/projects', label: 'Projects' },
 ];
 
@@ -18,43 +18,23 @@ export default function Footer() {
         which matches the Figma max-w-1440 constraint at 2xl.
       */}
       <div className="w-full px-4 sm:px-6 lg:px-9 py-9">
-        <div className="w-full max-w-[1440px] mx-auto">
+        <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
 
-          {/* ── xs / sm / md — stacked ─────────────────────────────── */}
-          <div className="flex flex-col gap-6 lg:hidden">
-            {/* <nav aria-label="Footer navigation" className="flex flex-col gap-3">
-              {navLinks.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="text-para-sm font-body text-text-primary underline underline-offset-2"
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav> */}
-            <p className="text-para-sm font-body text-text-primary text-center w-full">
-              &copy; Isadora Colmenares 2026. All rights reserved.
-            </p>
-          </div>
+          <nav aria-label="Footer navigation" className="flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-6">
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-para-sm font-body text-text-primary underline underline-offset-2 hover:no-underline transition-all"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
 
-          {/* ── lg+ — row ──────────────────────────────────────────── */}
-          <div className="hidden lg:flex items-center justify-between">
-            {/* <nav aria-label="Footer navigation" className="flex items-center gap-6">
-              {navLinks.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="text-para-sm font-body text-text-primary underline underline-offset-2"
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav> */}
-            <p className="text-para-sm font-body text-text-primary text-center w-full">
-              &copy; Isadora Colmenares 2026. All rights reserved.
-            </p>
-          </div>
+          <p className="text-para-sm font-body text-text-primary">
+            &copy; Isadora Colmenares 2026. All rights reserved.
+          </p>
 
         </div>
       </div>

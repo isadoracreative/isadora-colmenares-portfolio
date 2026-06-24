@@ -541,10 +541,10 @@ export default function Home() {
               <DividerShort />
             </div>
 
-            {/* Award cards — col-span-6 each at sm+ */}
-            <div className="grid grid-cols-12 gap-x-9 gap-y-9">
+            {/* Award cards — 1-up xs, 2-up sm+ */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-9 gap-y-9">
               {accolades.map(({ icon, title, org, description }) => (
-                <div key={title} className="col-span-12 sm:col-span-6 flex flex-col gap-3">
+                <div key={title} className="flex flex-col gap-3">
                   <i
                     className={`fa-sharp fa-thin fa-${icon} text-[40px] leading-none text-core-purple`}
                     aria-hidden="true"
@@ -592,7 +592,11 @@ export default function Home() {
           </div>
 
           {/*
-            Quote grid — 1 col xs, 2 cols sm+.
+            Quote grid — 1-up xs, 2-up sm+, 3-up 2xl.
+            Using explicit column-count grids (not grid-cols-12) avoids the
+            11 × 36px gap overhead that would force the grid wider than xs
+            viewports and cause horizontal overflow.
+
             Each card is a <blockquote> with a <footer> for attribution.
             WCAG 1.3.1 (Level A): <blockquote>/<footer> conveys the quoted
             content structure to AT correctly.
@@ -605,11 +609,11 @@ export default function Home() {
             body text (matches the padding-inline-start offset).
             See globals.css for the full cross-browser strategy.
           */}
-          <div className="grid grid-cols-12 gap-x-9 gap-y-9">
+          <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-x-9 gap-y-9">
             {recommendations.map(({ quote, source, avatar, avatarAlt }) => (
               <blockquote
                 key={source}
-                className="col-span-12 sm:col-span-6 2xl:col-span-4 flex flex-col gap-3"
+                className="flex flex-col gap-3"
               >
                 <p className="hanging-open-quote text-text-primary">{quote}</p>
                 <footer className="flex gap-2 items-center pl-[0.4em]">

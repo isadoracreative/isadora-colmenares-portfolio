@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 
 const navLinks = [
-  { href: '/about', label: 'About' },
+  { href: '/', label: 'About' },
   { href: '/projects', label: 'Projects' },
 ];
 
@@ -37,7 +37,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-20">
 
       {/* ── Mobile bar (xs → md, hidden at lg+) ──────────────────────── */}
-      <div className="flex h-12 items-center justify-between pl-4 sm:pl-6 pr-3 lg:hidden">
+      <div className="relative flex h-12 items-center justify-between pl-4 sm:pl-6 pr-3 lg:hidden">
         <Link
           href="/"
           className={`font-heading font-semibold text-para-sm text-text-primary leading-none rounded ${FOCUS_RING}`}
@@ -58,33 +58,43 @@ export default function Header() {
             aria-hidden="true"
           />
         </button>
-      </div>
 
-      {/* ── Mobile dropdown menu ──────────────────────────────────────── */}
-      {menuOpen && (
-        <nav id="mobile-nav" aria-label="Mobile navigation" className="lg:hidden border-t border-gray-10 bg-white">
-          {navLinks.map(({ href, label }, index) => {
-            const isActive = pathname.startsWith(href);
-            return (
-              <Link
-                key={href}
-                href={href}
-                ref={index === 0 ? firstMobileItemRef : undefined}
-                onClick={() => setMenuOpen(false)}
-                aria-current={isActive ? 'page' : undefined}
-                className={[
-                  `flex items-center px-6 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
-                  isActive
-                    ? 'border-l-[3px] border-core-green'
-                    : 'hover:bg-core-green-light',
-                ].join(' ')}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
-      )}
+        {/*
+          Mobile menu overlay — absolutely positioned so it drops over page content
+          rather than pushing it down. Aligns to the right edge of the mobile bar,
+          flush with the hamburger button. Width matches the Figma "menu container"
+          spec (100px). Border on left, right, and bottom only (top is flush with
+          the header bar which already has its own bottom border).
+        */}
+        {menuOpen && (
+          <nav
+            id="mobile-nav"
+            aria-label="Mobile navigation"
+            className={`absolute top-full right-0 w-[100px] bg-white border-l border-r border-b border-gray-20 py-3 z-50 ${FOCUS_RING}`}
+          >
+            {navLinks.map(({ href, label }, index) => {
+              const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  ref={index === 0 ? firstMobileItemRef : undefined}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={[
+                    `flex items-center px-6 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
+                    isActive
+                      ? 'border-l-[3px] border-core-green'
+                      : 'hover:bg-core-green-light',
+                  ].join(' ')}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
+        )}
+      </div>
 
       {/* ── Desktop bar (lg+, hidden below lg) ───────────────────────── */}
       <div className="hidden lg:flex items-center w-full pl-9 pr-6">
@@ -97,9 +107,9 @@ export default function Header() {
           </Link>
 
           <nav aria-label="Main navigation" className="flex items-stretch">
-            {navLinks.map(({ href, label }) => {
-              const isActive = pathname.startsWith(href);
-              return (
+          {navLinks.map(({ href, label }) => {
+            const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
+            return (
                 <Link
                   key={href}
                   href={href}
