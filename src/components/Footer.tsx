@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { href: '/', label: 'About' },
@@ -6,6 +9,8 @@ const navLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="w-full bg-core-green">
       {/*
@@ -21,15 +26,19 @@ export default function Footer() {
         <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
 
           <nav aria-label="Footer navigation" className="flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-6">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-para-sm font-body text-text-primary underline underline-offset-2 hover:no-underline transition-all"
-              >
-                {label}
-              </Link>
-            ))}
+            {navLinks.map(({ href, label }) => {
+              const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className="text-para-sm font-body text-text-primary underline underline-offset-2 hover:no-underline transition-all"
+                >
+                  {label}
+                </Link>
+              );
+            })}
           </nav>
 
           <p className="text-para-sm font-body text-text-primary">

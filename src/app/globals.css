@@ -295,3 +295,20 @@
     text-wrap: pretty;
   }
 }
+
+/*
+  Respect users who prefer less motion — SC 2.3.3 (AAA) / user preference.
+  Strips all CSS transitions and animations site-wide when the OS reduced-motion
+  setting is enabled. This covers the transition-colors / transition-all classes
+  used on nav links, buttons, and the footer.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+}

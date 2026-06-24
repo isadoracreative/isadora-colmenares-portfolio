@@ -22,15 +22,33 @@ export default function Header() {
 
   /*
     Mobile menu focus management — WCAG 2.4.3 (Level A): Focus Order.
-    When the menu opens, move focus to the first item so keyboard/AT users
-    know new content is available.
+    • On open  → focus the first nav item so keyboard/AT users know new
+                 content is available.
+    • On close → return focus to the hamburger button so the keyboard user
+                 lands back where they were (APG Disclosure Navigation pattern).
+    The `wasOpen` ref prevents the close-focus from firing on initial mount.
   */
   const firstMobileItemRef = useRef<HTMLAnchorElement>(null);
+  const menuButtonRef      = useRef<HTMLButtonElement>(null);
+  const wasOpen            = useRef(false);
 
   useEffect(() => {
-    if (menuOpen && firstMobileItemRef.current) {
-      firstMobileItemRef.current.focus();
+    if (menuOpen) {
+      wasOpen.current = true;
+      firstMobileItemRef.current?.focus();
+    } else if (wasOpen.current) {
+      menuButtonRef.current?.focus();
     }
+  }, [menuOpen]);
+
+  /* Escape key closes the menu — WCAG 2.1.2 No Keyboard Trap. */
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
   }, [menuOpen]);
 
   return (
@@ -46,11 +64,12 @@ export default function Header() {
         </Link>
 
         <button
+          ref={menuButtonRef}
           type="button"
           className={`flex h-full w-8 items-center justify-center text-text-primary rounded ${FOCUS_RING}`}
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-expanded={menuOpen}
-          aria-controls="mobile-nav"
+          aria-controls={menuOpen ? 'mobile-nav' : undefined}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         >
           <i

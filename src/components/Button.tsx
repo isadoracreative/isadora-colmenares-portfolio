@@ -27,6 +27,11 @@ interface ButtonProps {
   iconVariant?: IconVariant;
   /** When true, stretches the button to fill its container's full width. */
   fullWidth?:   boolean;
+  /**
+   * Set to true when target="_blank" — appends a visually-hidden
+   * "(opens in new tab)" notice for screen-reader users (Technique G201).
+   */
+  opensInNewTab?: boolean;
   href?:        string;
   target?:      string;
   rel?:         string;
@@ -77,15 +82,16 @@ const FOCUS_RING =
 
 export default function Button({
   label,
-  variant     = 'solid',
-  size        = 'default',
+  variant       = 'solid',
+  size          = 'default',
   icon,
-  iconVariant = 'sharp-light',
-  fullWidth   = false,
+  iconVariant   = 'sharp-light',
+  fullWidth     = false,
+  opensInNewTab = false,
   href,
   target,
   rel,
-  className   = '',
+  className     = '',
 }: ButtonProps) {
   const iconClass = icon
     ? [
@@ -115,6 +121,9 @@ export default function Button({
       {icon && <i className={iconClass} aria-hidden="true" />}
       <span className={`font-body font-normal ${LABEL_SIZE[size]} whitespace-nowrap leading-normal`}>
         {label}
+        {opensInNewTab && (
+          <span className="sr-only"> (opens in new tab)</span>
+        )}
       </span>
     </>
   );

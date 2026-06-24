@@ -262,7 +262,7 @@ export default function Home() {
       id="main-content" is the skip-to-content target defined in layout.tsx.
       WCAG 2.4.1 (Level A).
     */
-    <main id="main-content" className="flex-1">
+    <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
 
       {/* ── Hero section ──────────────────────────────────────────────── */}
       {/*
@@ -507,6 +507,7 @@ export default function Home() {
               href="https://www.linkedin.com/in/isadoracolmenares"
               target="_blank"
               rel="noopener noreferrer"
+              opensInNewTab
               fullWidth
               className="sm:w-auto"
             />
@@ -517,6 +518,7 @@ export default function Home() {
               href="https://www.dropbox.com/scl/fi/v8etkykw5q286jeq4wgr0/isadora-colmenares-cv.pdf?dl=1"
               target="_blank"
               rel="noopener noreferrer"
+              opensInNewTab
               fullWidth
               className="sm:w-auto"
             />
@@ -556,7 +558,7 @@ export default function Home() {
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col gap-1">
                       <h6>{title}</h6>
-                      <p className="font-body font-medium text-para-lg text-text-secondary leading-normal">
+                      <p className="font-body font-medium text-para-lg text-gray-70 leading-normal">
                         {org}
                       </p>
                     </div>

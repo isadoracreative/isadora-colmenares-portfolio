@@ -119,7 +119,7 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <main id="main-content" className="flex-1">
+    <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
       <div className="container-inner py-6 sm:py-9 flex flex-col gap-9">
 
         {/* ── Page heading ──────────────────────────────────────────────── */}
