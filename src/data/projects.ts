@@ -4,6 +4,13 @@
    projects listing (ProjectPreview) and individual project pages (ProjectHeader).
    ----------------------------------------------------------------------------- */
 
+export interface ProjectOverviewImage {
+  src: string;
+  alt: string;
+  caption: string;
+  border?: boolean;
+}
+
 export interface Project {
   /** Route segment when a case-study page exists (e.g. cambridge-innovation-institute) */
   slug?: string;
@@ -14,6 +21,8 @@ export interface Project {
   imageSrc: string;
   imageAlt: string;
   imageBorder?: boolean;
+  /** Overview images from the project page — used for preview rotation when present */
+  overviewImages?: readonly ProjectOverviewImage[];
 }
 
 export const projects: readonly Project[] = [
@@ -83,6 +92,29 @@ export const projects: readonly Project[] = [
     imageAlt:
       'Discovery on Target conference signage and environmental graphics at a CII life sciences event',
     imageBorder: true,
+    overviewImages: [
+      {
+        src: '/images/cii-overview-master-templates.png',
+        alt: 'Design system master templates and tokens for conference branding',
+        caption:
+          'Master templates and design tokens establishing unified design system rules across 60+ annual events',
+        border: true,
+      },
+      {
+        src: '/images/cii-overview-data-flow.png',
+        alt: 'Data flow architecture diagram for automated layout and text styles',
+        caption:
+          'Data flow architecture automating layout and text styles for web and print output',
+        border: false,
+      },
+      {
+        src: '/images/cii-overview-signage.png',
+        alt: 'Environmental signage mockup on three-dimensional venue architecture',
+        caption:
+          'Translation of cross-channel identity design into environmental signage rendering on three dimensional venue architecture',
+        border: true,
+      },
+    ],
   },
   {
     clientName: 'Aon',

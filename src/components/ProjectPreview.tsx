@@ -2,6 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import Tag from '@/components/Tag';
+import ProjectPreviewImageRotator, {
+  type PreviewImage,
+} from '@/components/ProjectPreviewImageRotator';
 
 interface ProjectPreviewProps {
   /** Displayed above the project title in secondary text color */
@@ -14,6 +17,8 @@ interface ProjectPreviewProps {
   /** Path to the project preview image (16:9) */
   imageSrc?: string;
   imageAlt?: string;
+  /** Overview images — when three or more are provided, the preview crossfades between them */
+  overviewImages?: readonly PreviewImage[];
   /** When true, renders a 1px Core gray light border around the preview image */
   imageBorder?: boolean;
   /** When false, hides the "View Project" button. Defaults to false. */
@@ -51,10 +56,14 @@ export default function ProjectPreview({
   href,
   imageSrc,
   imageAlt = '',
+  overviewImages,
   imageBorder = false,
   showButton = false,
   className = '',
 }: ProjectPreviewProps) {
+  const rotatingImages =
+    overviewImages && overviewImages.length >= 3 ? overviewImages : undefined;
+  const hasPreviewImage = Boolean(rotatingImages?.length || imageSrc);
   const imageFrameBase = [
     'w-full aspect-video rounded-sm overflow-hidden',
     'sm:flex-1 sm:w-auto sm:min-w-0',
@@ -65,7 +74,9 @@ export default function ProjectPreview({
 
   const imageFrameClass = `relative ${imageFrameBase}`;
 
-  const previewImage = imageSrc ? (
+  const previewImage = rotatingImages ? (
+    <ProjectPreviewImageRotator images={rotatingImages} />
+  ) : imageSrc ? (
     <Image
       src={imageSrc}
       alt={imageAlt}
@@ -139,7 +150,7 @@ export default function ProjectPreview({
           )
         )}
 
-        {!imageSrc && (
+        {!hasPreviewImage && (
           /*
             Gray placeholder — shown when no project screenshot is available yet.
             `aria-hidden` keeps screen readers from announcing an empty image region.

@@ -20,31 +20,13 @@ function ThreeUpRow({ images }: { images: readonly CaptionedImageProps[] }) {
   );
 }
 
-const overviewImages = {
-  masterTemplates: {
-    src: '/images/cii-overview-master-templates.png',
-    alt: 'Design system master templates and tokens for conference branding',
-    caption:
-      'Master templates and design tokens establishing unified design system rules across 60+ annual events',
-    border: true,
-  },
-  dataFlow: {
-    src: '/images/cii-overview-data-flow.png',
-    alt: 'Data flow architecture diagram for automated layout and text styles',
-    caption:
-      'Data flow architecture automating layout and text styles for web and print output',
-    border: false,
-  },
-  signage: {
-    src: '/images/cii-overview-signage.png',
-    alt: 'Environmental signage mockup on three-dimensional venue architecture',
-    caption:
-      'Translation of cross-channel identity design into environmental signage rendering on three dimensional venue architecture',
-    border: true,
-  },
-} as const;
-
 const project = requireProjectBySlug('cambridge-innovation-institute');
+
+if (!project.overviewImages || project.overviewImages.length < 3) {
+  throw new Error('Missing overview images for cambridge-innovation-institute');
+}
+
+const [masterTemplates, dataFlow, signage] = project.overviewImages;
 
 // -- Section 01 -------------------------------------------------------------
 
@@ -410,27 +392,27 @@ export default function CIIPage() {
             <figure className="flex flex-col gap-2">
               <div
                 className={`relative w-full aspect-video overflow-hidden${
-                  overviewImages.masterTemplates.border
+                  masterTemplates.border
                     ? ' border border-gray-20'
                     : ''
                 }`}
               >
                 <Image
-                  src={overviewImages.masterTemplates.src}
-                  alt={overviewImages.masterTemplates.alt}
+                  src={masterTemplates.src}
+                  alt={masterTemplates.alt}
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 1000px, 100vw"
                 />
               </div>
               <figcaption className="font-body text-para-xs text-text-primary text-pretty">
-                {overviewImages.masterTemplates.caption}
+                {masterTemplates.caption}
               </figcaption>
             </figure>
 
             {/* Two-up image row */}
             <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
-              {[overviewImages.dataFlow, overviewImages.signage].map(
+              {[dataFlow, signage].map(
                 ({ src, alt, caption, border }) => (
                   <figure key={caption} className="flex flex-col gap-2 flex-1 min-w-0">
                     <div

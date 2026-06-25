@@ -28,6 +28,7 @@ export default function ProjectsPage() {
             <ProjectPreview
               {...project}
               tags={[...project.tags]}
+              overviewImages={project.overviewImages?.map(({ src, alt }) => ({ src, alt }))}
               href={projectHref(project)}
               showButton={Boolean(project.slug)}
             />
