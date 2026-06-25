@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Button from '@/components/Button';
 import Tag from '@/components/Tag';
 
@@ -54,6 +55,26 @@ export default function ProjectPreview({
   showButton = false,
   className = '',
 }: ProjectPreviewProps) {
+  const imageFrameBase = [
+    'w-full aspect-video rounded-sm overflow-hidden',
+    'sm:flex-1 sm:w-auto sm:min-w-0',
+    imageBorder ? 'border border-gray-20' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const imageFrameClass = `relative ${imageFrameBase}`;
+
+  const previewImage = imageSrc ? (
+    <Image
+      src={imageSrc}
+      alt={imageAlt}
+      fill
+      className="object-cover"
+      sizes="(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw"
+    />
+  ) : null;
+
   return (
     <article
       aria-labelledby={`project-${projectTitle.replace(/\s+/g, '-').toLowerCase()}`}
@@ -106,24 +127,26 @@ export default function ProjectPreview({
         </div>
 
         {/* -- Preview image --------------------------------------------- */}
-        {imageSrc ? (
-          <div className={`relative w-full aspect-video rounded-sm overflow-hidden sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-gray-20' : ''}`}>
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              fill
-              className="object-cover"
-              sizes="(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw"
-            />
-          </div>
-        ) : (
+        {previewImage && (
+          href ? (
+            <Link href={href} className={`block ${imageFrameClass}`}>
+              {previewImage}
+            </Link>
+          ) : (
+            <div className={imageFrameClass}>
+              {previewImage}
+            </div>
+          )
+        )}
+
+        {!imageSrc && (
           /*
             Gray placeholder — shown when no project screenshot is available yet.
             `aria-hidden` keeps screen readers from announcing an empty image region.
           */
           <div
             aria-hidden="true"
-            className={`w-full aspect-video rounded-sm bg-gray-10 sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-gray-20' : ''}`}
+            className={`${imageFrameBase} bg-gray-10`}
           />
         )}
 
