@@ -7,7 +7,7 @@
  *     correct for a 1:1 element and produces an identical result.
  *   - Width and height set explicitly and equally (not via aspect-ratio CSS)
  *     for universal support across all browsers.
- *   - 1px border in Core gray light (--color-core-gray-light).
+ *   - 1px border in Gray 20 (--color-gray-20).
  *
  * Background image:
  *   - `background-size: cover` fills the circle without letterboxing.
@@ -52,7 +52,7 @@ export default function Avatar({
       role={decorative ? undefined : 'img'}
       aria-label={decorative ? undefined : alt}
       aria-hidden={decorative ? true : undefined}
-      className={`shrink-0 border border-core-gray-light bg-cover bg-center ${className}`.trim()}
+      className={`shrink-0 border border-gray-20 bg-cover bg-center ${className}`.trim()}
       style={{
         width: dimension,
         height: dimension,

@@ -4,15 +4,9 @@ export interface CaptionedImageProps {
   src:      string;
   alt:      string;
   caption:  string;
-  /** `'gray-light'` → core-gray-light (default). `'gray'` → core-gray. */
-  border?:  false | 'gray-light' | 'gray';
+  border?:  boolean;
   sizes?:   string;
 }
-
-const BORDER_CLASS = {
-  'gray-light': ' border border-core-gray-light',
-  gray:         ' border border-core-gray',
-} as const;
 
 export default function ProjectCaptionedImage({
   src,
@@ -25,7 +19,7 @@ export default function ProjectCaptionedImage({
     <figure className="flex flex-col gap-2 flex-1 min-w-0">
       <div
         className={`relative w-full aspect-video overflow-hidden${
-          border ? BORDER_CLASS[border] : ''
+          border ? ' border border-gray-20' : ''
         }`}
       >
         <Image

@@ -25,7 +25,7 @@ const overviewImages = {
     alt: 'Design system master templates and tokens for conference branding',
     caption:
       'Master templates and design tokens establishing unified design system rules across 60+ annual events',
-    border: 'gray-light',
+    border: true,
   },
   dataFlow: {
     src: '/images/cii-overview-data-flow.png',
@@ -39,7 +39,7 @@ const overviewImages = {
     alt: 'Environmental signage mockup on three-dimensional venue architecture',
     caption:
       'Translation of cross-channel identity design into environmental signage rendering on three dimensional venue architecture',
-    border: 'gray-light',
+    border: true,
   },
 } as const;
 
@@ -111,20 +111,20 @@ const section02Images: CaptionedImageProps[] = [
     src: '/images/cii-section-02-ux-research.png',
     alt: 'Conference registration UX research plan and user flow logic diagram',
     caption: 'Conference registration UX research plan and user flow logic',
-    border: 'gray',
+    border: true,
   },
   {
     src: '/images/cii-section-02-wireframes.png',
     alt: 'Wireframe sketches for improved registration experience',
     caption: 'Ideation and wireframe sketches for improved registration experience',
-    border: 'gray',
+    border: true,
   },
   {
     src: '/images/cii-section-02-registration-ui.png',
     alt: 'Initial wireframe and final registration interface for complex transaction pathways',
     caption:
       'Initial wireframe and final registration interface optimized for complex transaction pathways',
-    border: 'gray',
+    border: true,
   },
 ];
 
@@ -183,33 +183,33 @@ const section04Images: CaptionedImageProps[] = [
     alt: 'Discovery on Target cross-channel design with responsive website and sponsorship brochure',
     caption:
       'Discovery on Target cross-channel design, featuring responsive website and sponsorship brochure with exhibition floor plan',
-    border: 'gray-light',
+    border: true,
   },
   {
     src: '/images/cii-section-04-dot-infographic.png',
     alt: 'GDUSA award-winning infographic poster for Discovery on Target',
     caption: 'GDUSA award-winning infographic poster for Discovery on Target',
-    border: 'gray-light',
+    border: true,
   },
   {
     src: '/images/cii-section-04-aabc-regional.png',
     alt: 'Advanced Automotive Battery Conference regional sub-branding on signage and infographic poster',
     caption:
       'Advanced Automotive Battery Conference regional sub-branding featured on promotional signage and an infographic poster',
-    border: 'gray-light',
+    border: true,
   },
   {
     src: '/images/cii-section-04-aabc-asia.png',
     alt: 'AABC Asia regional branding with multi-language print announcement and web banners',
     caption:
       'Expansion of regional branding to Asia, featuring a multi-language print announcement and web banner advertising suite',
-    border: 'gray-light',
+    border: true,
   },
   {
     src: '/images/cii-section-04-wayfinding-booklet.png',
     alt: 'Design system applied to wayfinding signage and onsite tutorial booklet',
     caption: 'Design system application to wayfinding signage and onsite tutorial booklet',
-    border: 'gray-light',
+    border: true,
   },
 ];
 
@@ -244,7 +244,7 @@ const section05Images = {
     alt: 'Architectural scaling for the Discovery on Target entrance portal from flat layout to 3D rendering',
     caption:
       'Architectural scaling for the Discovery on Target entrance portal, demonstrating the workflow from flat production layout to 3D rendering',
-    border: 'gray-light',
+    border: true,
   },
   threeUpRowOne: [
     {
@@ -273,7 +273,7 @@ const section05Images = {
       src: '/images/cii-section-05-exhibit-hall.png',
       alt: 'Exhibit hall and raffle table with conference branding',
       caption: 'Exhibit hall and raffle table',
-      border: 'gray-light',
+      border: true,
     },
     {
       src: '/images/cii-section-05-registration-desk.png',
@@ -286,7 +286,7 @@ const section05Images = {
     alt: 'Symbol and color-coded wayfinding signage at High Content Analysis and 3D Screening',
     caption:
       'Symbol and color-coded wayfinding across environmental signage suite at High Content Analysis + 3D Screening',
-    border: 'gray-light',
+    border: true,
   },
 } as const;
 
@@ -415,7 +415,7 @@ export default function CIIPage() {
               <div
                 className={`relative w-full aspect-video overflow-hidden${
                   overviewImages.masterTemplates.border
-                    ? ' border border-core-gray-light'
+                    ? ' border border-gray-20'
                     : ''
                 }`}
               >
@@ -439,7 +439,7 @@ export default function CIIPage() {
                   <figure key={caption} className="flex flex-col gap-2 flex-1 min-w-0">
                     <div
                       className={`relative w-full aspect-video overflow-hidden${
-                        border ? ' border border-core-gray-light' : ''
+                        border ? ' border border-gray-20' : ''
                       }`}
                     >
                       <Image
@@ -513,7 +513,7 @@ export default function CIIPage() {
                     <figure key={caption} className="flex flex-col gap-2 flex-1 min-w-0">
                       <div
                         className={`relative w-full aspect-video overflow-hidden${
-                          border ? ' border border-core-gray-light' : ''
+                          border ? ' border border-gray-20' : ''
                         }`}
                       >
                         <Image
@@ -536,7 +536,7 @@ export default function CIIPage() {
                 <div
                   className={`relative w-full aspect-video overflow-hidden${
                     section01Images.signageTemplates.border
-                      ? ' border border-core-gray-light'
+                      ? ' border border-gray-20'
                       : ''
                   }`}
                 >

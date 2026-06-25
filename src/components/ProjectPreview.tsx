@@ -107,7 +107,7 @@ export default function ProjectPreview({
 
         {/* -- Preview image --------------------------------------------- */}
         {imageSrc ? (
-          <div className={`relative w-full aspect-video rounded-sm overflow-hidden sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}>
+          <div className={`relative w-full aspect-video rounded-sm overflow-hidden sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-gray-20' : ''}`}>
             <Image
               src={imageSrc}
               alt={imageAlt}
@@ -123,7 +123,7 @@ export default function ProjectPreview({
           */
           <div
             aria-hidden="true"
-            className={`w-full aspect-video rounded-sm bg-gray-10 sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}
+            className={`w-full aspect-video rounded-sm bg-gray-10 sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-gray-20' : ''}`}
           />
         )}
 
