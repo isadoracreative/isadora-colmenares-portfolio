@@ -4,7 +4,7 @@ import ProjectPreview from "@/components/ProjectPreview";
 
 /* -----------------------------------------------------------------------------
    Projects data — synced from Figma (nodes 224:8904 / 224:8955 / 224:9046 / 224:9077).
-   Add `href` for each project once case-study pages are available.
+   Add `href` and `showButton: true` per project when a case-study page is available.
    ----------------------------------------------------------------------------- */
 
 const projects = [
@@ -73,6 +73,8 @@ const projects = [
     imageSrc: "/images/project-global-conference.jpg",
     imageAlt: "Discovery on Target conference signage and environmental graphics at a CII life sciences event",
     imageBorder: true,
+    href: "/projects/cambridge-innovation-institute",
+    showButton: true,
   },
   {
     clientName: "Aon",
@@ -128,11 +130,11 @@ export default function ProjectsPage() {
           <DividerShort />
         </div>
 
-        {/* -- Project list — first 2 entries ------------------------------ */}
+        {/* -- Project list ------------------------------ */}
         {projects.map((project, index) => (
           <div key={project.projectTitle} className="flex flex-col gap-8 md:gap-9">
             {index > 0 && <DividerFull />}
-            <ProjectPreview {...project} showButton={false} />
+            <ProjectPreview {...project} />
           </div>
         ))}
 

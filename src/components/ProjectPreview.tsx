@@ -15,7 +15,7 @@ interface ProjectPreviewProps {
   imageAlt?: string;
   /** When true, renders a 1px Core gray light border around the preview image */
   imageBorder?: boolean;
-  /** When false, hides the "View Project" button. Defaults to true. */
+  /** When false, hides the "View Project" button. Defaults to false. */
   showButton?: boolean;
   className?: string;
 }
@@ -51,7 +51,7 @@ export default function ProjectPreview({
   imageSrc,
   imageAlt = '',
   imageBorder = false,
-  showButton = true,
+  showButton = false,
   className = '',
 }: ProjectPreviewProps) {
   return (
