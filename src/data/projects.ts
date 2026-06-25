@@ -1,0 +1,136 @@
+/* -----------------------------------------------------------------------------
+   Projects data — synced from Figma (nodes 224:8904 / 224:8955 / 224:9046 / 224:9077).
+   clientName, projectTitle, and tags are the canonical source for both the
+   projects listing (ProjectPreview) and individual project pages (ProjectHeader).
+   ----------------------------------------------------------------------------- */
+
+export interface Project {
+  /** Route segment when a case-study page exists (e.g. cambridge-innovation-institute) */
+  slug?: string;
+  clientName: string;
+  projectTitle: string;
+  tags: readonly string[];
+  projectDescription: string;
+  imageSrc: string;
+  imageAlt: string;
+  imageBorder?: boolean;
+}
+
+export const projects: readonly Project[] = [
+  {
+    clientName: 'Verizon',
+    projectTitle: 'Conversational Design System',
+    projectDescription:
+      'Designed modular Figma components, interaction rules, and development specifications for responsive AI-to-human support pathways.',
+    tags: [
+      'Interaction design',
+      'Design systems',
+      'Conversational AI',
+      'Component documentation',
+      'UX engineering',
+    ],
+    imageSrc: '/images/project-conversational-design-system.png',
+    imageAlt:
+      'Figma component library and interaction specification screens for Verizon conversational AI',
+    imageBorder: true,
+  },
+  {
+    clientName: 'Burton Cooperative Residence',
+    projectTitle: 'Botanical Landscape 3D Modeling',
+    projectDescription:
+      'Modeled a steep variable-grade frontage to engineer on-site stormwater mitigation, balancing structural masonry and botanical retention zoning to capture precipitation, nourish native flora, and comply with pedestrian corridor drainage code.',
+    tags: [
+      '3D spatial modeling',
+      'Environmental design',
+      'Experience design',
+      'Architectural planning',
+      'Public-private Infrastructure',
+    ],
+    imageSrc: '/images/project-botanical-landscape.png',
+    imageAlt: '3D render of the Burton Cooperative Residence botanical landscape frontage',
+    imageBorder: true,
+  },
+  {
+    clientName: 'American Museum of Natural History (AMNH)',
+    projectTitle: 'Arachnology Research Lab',
+    projectDescription:
+      'Rebranded a research lab and engineered a custom academic directory system to establish a distinct institutional identity and accessible web presence.',
+    tags: [
+      'Information architecture',
+      'Front-end development',
+      'Brand identity',
+      'Design systems',
+      'UX engineering',
+    ],
+    imageSrc: '/images/project-arachnology-lab.png',
+    imageAlt:
+      'Arachnology Research Lab website showing the custom academic directory and researcher profiles',
+  },
+  {
+    slug: 'cambridge-innovation-institute',
+    clientName: 'Cambridge Innovation Institute',
+    projectTitle: 'Global Conference Experiences',
+    projectDescription:
+      'Collaborated on a highly flexible multi-brand design system by engineering the core templating framework and data automation for cross-medium layouts and styles, enforcing strict visual governance from screen viewports to physical venue environments.',
+    tags: [
+      'Exhibition design',
+      'Wayfinding',
+      'Omni-channel design',
+      'Layout automation',
+      'Front-end development',
+    ],
+    imageSrc: '/images/project-global-conference.jpg',
+    imageAlt:
+      'Discovery on Target conference signage and environmental graphics at a CII life sciences event',
+    imageBorder: true,
+  },
+  {
+    clientName: 'Aon',
+    projectTitle: 'Immersive Assessment Platforms',
+    projectDescription:
+      'Led enterprise product strategy and frontend engineering frameworks to consolidate legacy assessment tools, scaling strict visual token governance and accessibility across immersive mobile simulations to high-density admin dashboards.',
+    tags: [
+      'Design systems',
+      'SaaS product strategy',
+      'UX engineering',
+      'Front-end development',
+      'Data visualization',
+    ],
+    imageSrc: '/images/project-immersive-assessment.jpg',
+    imageAlt: 'Aon immersive assessment platform displayed on mobile and desktop screens',
+    imageBorder: true,
+  },
+  {
+    clientName: 'National Institute for Amazonian Research (INPA)',
+    projectTitle: 'International Ornithology Congress',
+    projectDescription:
+      'Architected a unified, scientifically resonant design system to honor a historic joint congress in the Brazilian Amazon, scaling organic identity assets from digital research publications to physical environmental installations.',
+    tags: [
+      'Exhibition design',
+      'Spatial storytelling',
+      'Visual governance',
+      'Identity systems',
+      'Omni-channel design',
+    ],
+    imageSrc: '/images/project-ornithology-congress.jpg',
+    imageAlt:
+      'International Ornithology Congress banner at the Manaus 2015 joint NOC/CBO congress venue',
+    imageBorder: true,
+  },
+];
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((project) => project.slug === slug);
+}
+
+export function requireProjectBySlug(slug: string): Project {
+  const project = getProjectBySlug(slug);
+  if (!project) {
+    throw new Error(`Missing project data for slug: ${slug}`);
+  }
+  return project;
+}
+
+export function projectHref(project: Project): string | undefined {
+  return project.slug ? `/projects/${project.slug}` : undefined;
+}

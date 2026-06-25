@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import ProjectHeader from '@/components/ProjectHeader';
+import { requireProjectBySlug } from '@/data/projects';
 import ProjectSectionHeading from '@/components/ProjectSectionHeading';
 import ProjectContentSection from '@/components/ProjectContentSection';
 import ProjectCaptionedImage, { type CaptionedImageProps } from '@/components/ProjectCaptionedImage';
@@ -42,6 +43,8 @@ const overviewImages = {
     border: true,
   },
 } as const;
+
+const project = requireProjectBySlug('cambridge-innovation-institute');
 
 // -- Section 01 -------------------------------------------------------------
 
@@ -333,16 +336,9 @@ export default function CIIPage() {
       <div className="px-4 sm:px-6 lg:px-9 pt-6 sm:pt-9 pb-12">
         <div className="max-w-[1440px] mx-auto">
           <ProjectHeader
-            clientName="Cambridge Innovation Institute"
-            projectTitle="Global Conference Experiences"
-            tags={[
-              'Exhibition design',
-              'Wayfinding',
-              'Omni-channel design',
-              'Layout automation',
-              'Front-end development',
-              'Publication design',
-            ]}
+            clientName={project.clientName}
+            projectTitle={project.projectTitle}
+            tags={[...project.tags]}
           />
         </div>
       </div>
