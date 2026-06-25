@@ -34,8 +34,9 @@ interface ProjectPreviewProps {
   │ clientName — full width row                         │
   ├--------------------------┬--------------------------┤
   │ xs  (<640px):            │ sm+ (≥640px):            │
-  │   title/desc/tags/btn    │   title/desc/tags/btn    │
-  │   image below            │   image right (flex-1)   │
+  │   title/desc/tags       │   title/desc/tags/btn    │
+  │   image                 │   image right (flex-1)   │
+  │   full-width btn        │                          │
   └--------------------------┴--------------------------┘
 
   clientName sits in its own full-width row so the image top-aligns
@@ -47,6 +48,9 @@ interface ProjectPreviewProps {
   Image: 16:9 aspect ratio via `aspect-video`. When `imageSrc` is not
   provided a gray placeholder is rendered — suitable while project
   screenshots are not yet available.
+
+  xs  (<640px): title/desc/tags → image → full-width "View Project" button
+  sm+ (≥640px): title/desc/tags/btn left, image right (flex-1)
 */
 export default function ProjectPreview({
   clientName,
@@ -86,6 +90,15 @@ export default function ProjectPreview({
     />
   ) : null;
 
+  const viewProjectButton = showButton ? (
+    <Button
+      label="View Project"
+      variant="outline"
+      href={href ?? '#'}
+      aria-disabled={!href}
+    />
+  ) : null;
+
   return (
     <article
       aria-labelledby={`project-${projectTitle.replace(/\s+/g, '-').toLowerCase()}`}
@@ -117,22 +130,17 @@ export default function ProjectPreview({
 
           {/* Tags */}
           {tags.length > 0 && (
-            <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-1 sm:mb-3" aria-label="Project tags">
+            <div className="flex flex-wrap gap-1 sm:gap-1.5 sm:mb-3" aria-label="Project tags">
               {tags.map((tag) => (
                 <Tag key={tag} label={tag} />
               ))}
             </div>
           )}
 
-          {/* CTA */}
-          {showButton && (
-            <div>
-              <Button
-                label="View Project"
-                variant="outline"
-                href={href ?? '#'}
-                aria-disabled={!href}
-              />
+          {/* CTA — sm+ only; xs button sits below the preview image */}
+          {viewProjectButton && (
+            <div className="hidden sm:block">
+              {viewProjectButton}
             </div>
           )}
         </div>
@@ -159,6 +167,19 @@ export default function ProjectPreview({
             aria-hidden="true"
             className={`${imageFrameBase} bg-gray-10`}
           />
+        )}
+
+        {/* CTA — xs only, full width below preview image (Figma node 224:8904) */}
+        {viewProjectButton && (
+          <div className="w-full sm:hidden">
+            <Button
+              label="View Project"
+              variant="outline"
+              href={href ?? '#'}
+              aria-disabled={!href}
+              fullWidth
+            />
+          </div>
         )}
 
       </div>
