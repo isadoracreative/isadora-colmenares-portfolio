@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import ProjectHeader from '@/components/ProjectHeader';
+import ProjectSectionHeading from '@/components/ProjectSectionHeading';
 import DividerShort  from '@/components/DividerShort';
 
 const overviewImages = {
@@ -25,6 +26,47 @@ const overviewImages = {
     border: true,
   },
 } as const;
+
+const section01Images = {
+  websiteTemplate: {
+    src: '/images/cii-section-01-website-template.png',
+    alt: 'Global responsive website template for conference events',
+    caption: 'Global responsive website template',
+    border: false,
+  },
+  webBanners: {
+    src: '/images/cii-section-01-web-banners.png',
+    alt: 'Web banner templates for advertising and social media aspect ratios',
+    caption:
+      'Web banner templates for all advertising aspect ratios and social media dimensions',
+    border: false,
+  },
+  signageTemplates: {
+    src: '/images/cii-section-01-signage-templates.png',
+    alt: 'Environmental signage templates with typography slots and 2D elevations',
+    caption:
+      'Environmental signage templates with standardized typography slots and 2D elevations for 3D rendering',
+    border: false,
+  },
+} as const;
+
+const section01Highlights = [
+  {
+    title: 'Systemic Governance',
+    body:
+      'Standardized layout grids, typographic hierarchy, and shared component types to allow a lean team to deploy diverse digital and print designs with streamlined architectural alignment.',
+  },
+  {
+    title: 'Responsive Logic',
+    body:
+      'Developed multi-device web prototypes optimized to cleanly structure event agenda, speaker abstracts, sponsor engagement, and attendee registration.',
+  },
+  {
+    title: 'Cross-Medium Constraints',
+    body:
+      'Pre-calculated dimensions across a unified template pack for online ads and event signage, ensuring visual stability from mobile screens up to large-format onsite wayfinding.',
+  },
+] as const;
 
 /*
   CII Project Page — Global Conference Experiences
@@ -95,11 +137,11 @@ export default function CIIPage() {
         */}
         <section
           aria-labelledby="overview-heading"
-          className="col-span-12 grid grid-cols-12 gap-y-9"
+          className="col-span-12 grid grid-cols-12 gap-y-8"
         >
 
           {/* Text block — narrows at lg+ */}
-          <div className="col-span-12 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-7 flex flex-col gap-6">
+          <div className="col-span-12 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6 flex flex-col gap-6">
 
           {/* Section heading + accent divider + lead */}
           <div className="flex flex-col gap-4">
@@ -199,6 +241,100 @@ export default function CIIPage() {
 
         </section>
         {/* -- End overview ------------------------------------------------- */}
+
+        {/* -- 01 / Scale & Design System Governance ------------------------ */}
+        <section
+          aria-labelledby="section-01-heading"
+          className="col-span-12 grid grid-cols-12 gap-y-8"
+        >
+
+          {/* Text block — narrows at lg+ */}
+          <div className="col-span-12 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6 flex flex-col gap-6">
+
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
+                <ProjectSectionHeading
+                  id="section-01-heading"
+                  number="01"
+                  title="Scale & Design System Governance"
+                />
+                <DividerShort />
+              </div>
+
+              <p className="font-body font-medium text-para-lg text-text-primary leading-tight text-pretty">
+                Engineered a centralized system of multi-medium master templates
+                to programmatically scale consistent layouts and structural
+                guardrails across more than 60 annual conferences.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {section01Highlights.map(({ title, body }) => (
+                <div key={title} className="flex flex-col gap-1">
+                  <p className="font-body font-bold text-text-primary text-pretty">
+                    {title}
+                  </p>
+                  <p className="text-text-primary text-pretty">{body}</p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
+          {/* Image group — two-up row, then full-width image */}
+          <div className="col-span-12">
+            <div className="w-full mx-auto lg:max-w-[1000px] flex flex-col gap-6 lg:gap-9">
+
+              <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
+                {[section01Images.websiteTemplate, section01Images.webBanners].map(
+                  ({ src, alt, caption, border }) => (
+                    <figure key={caption} className="flex flex-col gap-2 flex-1 min-w-0">
+                      <div
+                        className={`relative w-full aspect-video overflow-hidden${
+                          border ? ' border border-core-gray-light' : ''
+                        }`}
+                      >
+                        <Image
+                          src={src}
+                          alt={alt}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 640px) 482px, 100vw"
+                        />
+                      </div>
+                      <figcaption className="font-body text-para-xs text-text-primary text-pretty">
+                        {caption}
+                      </figcaption>
+                    </figure>
+                  ),
+                )}
+              </div>
+
+              <figure className="flex flex-col gap-2">
+                <div
+                  className={`relative w-full aspect-video overflow-hidden${
+                    section01Images.signageTemplates.border
+                      ? ' border border-core-gray-light'
+                      : ''
+                  }`}
+                >
+                  <Image
+                    src={section01Images.signageTemplates.src}
+                    alt={section01Images.signageTemplates.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 1000px, 100vw"
+                  />
+                </div>
+                <figcaption className="font-body text-para-xs text-text-primary text-pretty">
+                  {section01Images.signageTemplates.caption}
+                </figcaption>
+              </figure>
+
+            </div>
+          </div>
+
+        </section>
 
       </div>
 
