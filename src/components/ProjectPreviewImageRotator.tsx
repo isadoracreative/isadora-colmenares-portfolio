@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import ProgressiveImage from '@/components/ProgressiveImage';
+import { resolveImageSrc } from '@/data/image-assets';
 
 export interface PreviewImage {
   src: string;
@@ -22,6 +23,7 @@ export default function ProjectPreviewImageRotator({
 }: ProjectPreviewImageRotatorProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [mountedIndices, setMountedIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -42,30 +44,71 @@ export default function ProjectPreviewImageRotator({
     return () => window.clearInterval(intervalId);
   }, [images.length, reduceMotion]);
 
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    let cancelled = false;
+    let nextIndex = 1;
+
+    const preloadNext = () => {
+      if (cancelled || nextIndex >= images.length) return;
+
+      const indexToLoad = nextIndex;
+      nextIndex += 1;
+
+      const img = new window.Image();
+      img.src = resolveImageSrc(images[indexToLoad].src);
+      img.onload = () => {
+        if (cancelled) return;
+        setMountedIndices((current) =>
+          current.includes(indexToLoad) ? current : [...current, indexToLoad],
+        );
+        preloadNext();
+      };
+      img.onerror = () => {
+        if (!cancelled) preloadNext();
+      };
+    };
+
+    const schedulePreload = window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 300));
+    const idleId = schedulePreload(preloadNext);
+
+    return () => {
+      cancelled = true;
+      if (window.cancelIdleCallback) {
+        window.cancelIdleCallback(idleId);
+      } else {
+        window.clearTimeout(idleId);
+      }
+    };
+  }, [images]);
+
   const visibleIndex = reduceMotion ? 0 : activeIndex;
 
   return (
     <div
       role="img"
       aria-label={images[visibleIndex]?.alt ?? ''}
-      className="absolute inset-0"
+      className="absolute inset-0 bg-gray-10"
     >
-      {images.map((image, index) => (
-        <Image
-          key={image.src}
-          src={image.src}
-          alt=""
-          aria-hidden
-          fill
-          className="object-cover transition-opacity ease-in-out"
-          style={{
-            opacity: index === visibleIndex ? 1 : 0,
-            transitionDuration: `${FADE_MS}ms`,
-          }}
-          sizes={sizes}
-          priority={index === 0}
-        />
-      ))}
+      {images.map((image, index) =>
+        mountedIndices.includes(index) ? (
+          <ProgressiveImage
+            key={image.src}
+            src={image.src}
+            alt=""
+            aria-hidden
+            fill
+            className="object-cover transition-opacity ease-in-out"
+            style={{
+              opacity: index === visibleIndex ? 1 : 0,
+              transitionDuration: `${FADE_MS}ms`,
+            }}
+            sizes={sizes}
+            priority={index === 0}
+          />
+        ) : null,
+      )}
     </div>
   );
 }

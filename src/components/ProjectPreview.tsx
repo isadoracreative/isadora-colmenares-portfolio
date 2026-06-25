@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import Tag from '@/components/Tag';
+import ProgressiveImage from '@/components/ProgressiveImage';
 import ProjectPreviewImageRotator, {
   type PreviewImage,
 } from '@/components/ProjectPreviewImageRotator';
@@ -77,7 +77,7 @@ export default function ProjectPreview({
   const previewImage = rotatingImages ? (
     <ProjectPreviewImageRotator images={rotatingImages} />
   ) : imageSrc ? (
-    <Image
+    <ProgressiveImage
       src={imageSrc}
       alt={imageAlt}
       fill

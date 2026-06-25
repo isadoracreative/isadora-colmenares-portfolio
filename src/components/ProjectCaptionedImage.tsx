@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import ProgressiveImage from '@/components/ProgressiveImage';
 
 export interface CaptionedImageProps {
   src:      string;
@@ -22,7 +22,7 @@ export default function ProjectCaptionedImage({
           border ? ' border border-gray-20' : ''
         }`}
       >
-        <Image
+        <ProgressiveImage
           src={src}
           alt={alt}
           fill

@@ -24,6 +24,8 @@
  *     aria-hidden="true" so AT skips the redundant image description.
  */
 
+import { resolveImageSrc } from '@/data/image-assets';
+
 interface AvatarProps {
   src: string;
   /** Accessible label for the portrait (ignored when decorative=true). */
@@ -57,7 +59,7 @@ export default function Avatar({
         width: dimension,
         height: dimension,
         borderRadius: '50%',
-        backgroundImage: `url('${src}')`,
+        backgroundImage: `url('${resolveImageSrc(src)}')`,
       }}
     />
   );

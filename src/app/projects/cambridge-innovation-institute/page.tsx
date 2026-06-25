@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import ProgressiveImage from '@/components/ProgressiveImage';
 import ProjectHeader from '@/components/ProjectHeader';
 import { requireProjectBySlug } from '@/data/projects';
 import ProjectSectionHeading from '@/components/ProjectSectionHeading';
@@ -48,7 +48,7 @@ const section01Highlights = [
   },
 ] as const;
 
-const section01Images = {
+const section01ProgressiveImages = {
   websiteTemplate: {
     src: '/images/cii-section-01-website-template.png',
     alt: 'Global responsive website template for conference events',
@@ -384,7 +384,7 @@ export default function CIIPage() {
 
           </div>
 
-          {/* Image group — wider than text column; centred at lg+ */}
+          {/* ProgressiveImage group — wider than text column; centred at lg+ */}
           <div className="col-span-12">
             <div className="w-full mx-auto lg:max-w-[1000px] flex flex-col gap-6 lg:gap-9">
 
@@ -397,7 +397,7 @@ export default function CIIPage() {
                     : ''
                 }`}
               >
-                <Image
+                <ProgressiveImage
                   src={masterTemplates.src}
                   alt={masterTemplates.alt}
                   fill
@@ -420,7 +420,7 @@ export default function CIIPage() {
                         border ? ' border border-gray-20' : ''
                       }`}
                     >
-                      <Image
+                      <ProgressiveImage
                         src={src}
                         alt={alt}
                         fill
@@ -481,12 +481,12 @@ export default function CIIPage() {
 
           </div>
 
-          {/* Image group — two-up row, then full-width image */}
+          {/* ProgressiveImage group — two-up row, then full-width image */}
           <div className="col-span-12">
             <div className="w-full mx-auto lg:max-w-[1000px] flex flex-col gap-6 lg:gap-9">
 
               <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
-                {[section01Images.websiteTemplate, section01Images.webBanners].map(
+                {[section01ProgressiveImages.websiteTemplate, section01ProgressiveImages.webBanners].map(
                   ({ src, alt, caption, border }) => (
                     <figure key={caption} className="flex flex-col gap-2 flex-1 min-w-0">
                       <div
@@ -494,7 +494,7 @@ export default function CIIPage() {
                           border ? ' border border-gray-20' : ''
                         }`}
                       >
-                        <Image
+                        <ProgressiveImage
                           src={src}
                           alt={alt}
                           fill
@@ -513,21 +513,21 @@ export default function CIIPage() {
               <figure className="flex flex-col gap-2">
                 <div
                   className={`relative w-full aspect-video overflow-hidden${
-                    section01Images.signageTemplates.border
+                    section01ProgressiveImages.signageTemplates.border
                       ? ' border border-gray-20'
                       : ''
                   }`}
                 >
-                  <Image
-                    src={section01Images.signageTemplates.src}
-                    alt={section01Images.signageTemplates.alt}
+                  <ProgressiveImage
+                    src={section01ProgressiveImages.signageTemplates.src}
+                    alt={section01ProgressiveImages.signageTemplates.alt}
                     fill
                     className="object-cover"
                     sizes="(min-width: 1024px) 1000px, 100vw"
                   />
                 </div>
                 <figcaption className="font-body text-para-xs text-text-primary text-pretty">
-                  {section01Images.signageTemplates.caption}
+                  {section01ProgressiveImages.signageTemplates.caption}
                 </figcaption>
               </figure>
 

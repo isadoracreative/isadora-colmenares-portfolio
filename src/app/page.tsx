@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import ProgressiveImage from '@/components/ProgressiveImage';
 import DividerShort from '@/components/DividerShort';
 import Button from '@/components/Button';
 import Avatar from '@/components/Avatar';
@@ -291,7 +291,7 @@ export default function Home() {
             lg: fixed 293 px square
           */}
           <div className="relative w-full aspect-square sm:w-[130px] lg:w-[293px] sm:shrink-0 rounded-sm overflow-hidden">
-            <Image
+            <ProgressiveImage
               src="/images/isa-profile.jpg"
               alt="Isadora Colmenares"
               fill
@@ -361,7 +361,7 @@ export default function Home() {
                   key={src}
                   className="relative aspect-square rounded-sm overflow-hidden"
                 >
-                  <Image
+                  <ProgressiveImage
                     src={src}
                     alt={alt}
                     fill
@@ -464,7 +464,7 @@ export default function Home() {
 
                 {/* Company logo — fixed 48×48 px */}
                 <div className="relative w-12 h-12 shrink-0 rounded-sm overflow-hidden">
-                  <Image
+                  <ProgressiveImage
                     src={logo}
                     alt={logoAlt}
                     fill
