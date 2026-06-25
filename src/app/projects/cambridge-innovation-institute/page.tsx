@@ -1,5 +1,30 @@
+import Image from 'next/image';
 import ProjectHeader from '@/components/ProjectHeader';
 import DividerShort  from '@/components/DividerShort';
+
+const overviewImages = {
+  masterTemplates: {
+    src: '/images/cii-overview-master-templates.png',
+    alt: 'Design system master templates and tokens for conference branding',
+    caption:
+      'Master templates and design tokens establishing unified design system rules across 60+ annual events',
+    border: true,
+  },
+  dataFlow: {
+    src: '/images/cii-overview-data-flow.png',
+    alt: 'Data flow architecture diagram for automated layout and text styles',
+    caption:
+      'Data flow architecture automating layout and text styles for web and print output',
+    border: false,
+  },
+  signage: {
+    src: '/images/cii-overview-signage.png',
+    alt: 'Environmental signage mockup on three-dimensional venue architecture',
+    caption:
+      'Translation of cross-channel identity design into environmental signage rendering on three dimensional venue architecture',
+    border: true,
+  },
+} as const;
 
 /*
   CII Project Page — Global Conference Experiences
@@ -70,8 +95,11 @@ export default function CIIPage() {
         */}
         <section
           aria-labelledby="overview-heading"
-          className="col-span-12 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6 flex flex-col gap-6"
+          className="col-span-12 grid grid-cols-12 gap-y-9"
         >
+
+          {/* Text block — narrows at lg+ */}
+          <div className="col-span-12 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-7 flex flex-col gap-6">
 
           {/* Section heading + accent divider + lead */}
           <div className="flex flex-col gap-4">
@@ -112,8 +140,65 @@ export default function CIIPage() {
 
           </div>
 
+          </div>
+
+          {/* Image group — wider than text column; centred at lg+ */}
+          <div className="col-span-12">
+            <div className="w-full mx-auto lg:max-w-[1000px] flex flex-col gap-6 lg:gap-9">
+
+            {/* Full-width hero image */}
+            <figure className="flex flex-col gap-2">
+              <div
+                className={`relative w-full aspect-video overflow-hidden${
+                  overviewImages.masterTemplates.border
+                    ? ' border border-core-gray-light'
+                    : ''
+                }`}
+              >
+                <Image
+                  src={overviewImages.masterTemplates.src}
+                  alt={overviewImages.masterTemplates.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 1000px, 100vw"
+                />
+              </div>
+              <figcaption className="font-body text-para-xs text-text-primary text-pretty">
+                {overviewImages.masterTemplates.caption}
+              </figcaption>
+            </figure>
+
+            {/* Two-up image row */}
+            <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
+              {[overviewImages.dataFlow, overviewImages.signage].map(
+                ({ src, alt, caption, border }) => (
+                  <figure key={caption} className="flex flex-col gap-2 flex-1 min-w-0">
+                    <div
+                      className={`relative w-full aspect-video overflow-hidden${
+                        border ? ' border border-core-gray-light' : ''
+                      }`}
+                    >
+                      <Image
+                        src={src}
+                        alt={alt}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 640px) 482px, 100vw"
+                      />
+                    </div>
+                    <figcaption className="font-body text-para-xs text-text-primary text-pretty">
+                      {caption}
+                    </figcaption>
+                  </figure>
+                ),
+              )}
+            </div>
+
+            </div>
+          </div>
+
         </section>
-        {/* -- End overview — stop here for review -------------------------- */}
+        {/* -- End overview ------------------------------------------------- */}
 
       </div>
 
