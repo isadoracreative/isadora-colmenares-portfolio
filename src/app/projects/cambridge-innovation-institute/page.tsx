@@ -1,7 +1,23 @@
 import Image from 'next/image';
 import ProjectHeader from '@/components/ProjectHeader';
 import ProjectSectionHeading from '@/components/ProjectSectionHeading';
+import ProjectContentSection from '@/components/ProjectContentSection';
+import ProjectCaptionedImage, { type CaptionedImageProps } from '@/components/ProjectCaptionedImage';
 import DividerShort  from '@/components/DividerShort';
+
+function ThreeUpRow({ images }: { images: readonly CaptionedImageProps[] }) {
+  return (
+    <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
+      {images.map((image) => (
+        <ProjectCaptionedImage
+          key={image.caption}
+          {...image}
+          sizes="(min-width: 640px) 310px, 100vw"
+        />
+      ))}
+    </div>
+  );
+}
 
 const overviewImages = {
   masterTemplates: {
@@ -9,7 +25,7 @@ const overviewImages = {
     alt: 'Design system master templates and tokens for conference branding',
     caption:
       'Master templates and design tokens establishing unified design system rules across 60+ annual events',
-    border: true,
+    border: 'gray-light',
   },
   dataFlow: {
     src: '/images/cii-overview-data-flow.png',
@@ -23,9 +39,29 @@ const overviewImages = {
     alt: 'Environmental signage mockup on three-dimensional venue architecture',
     caption:
       'Translation of cross-channel identity design into environmental signage rendering on three dimensional venue architecture',
-    border: true,
+    border: 'gray-light',
   },
 } as const;
+
+// -- Section 01 -------------------------------------------------------------
+
+const section01Highlights = [
+  {
+    title: 'Systemic Governance',
+    body:
+      'Standardized layout grids, typographic hierarchy, and shared component types to allow a lean team to deploy diverse digital and print designs with streamlined architectural alignment.',
+  },
+  {
+    title: 'Responsive Logic',
+    body:
+      'Developed multi-device web prototypes optimized to cleanly structure event agenda, speaker abstracts, sponsor engagement, and attendee registration.',
+  },
+  {
+    title: 'Cross-Medium Constraints',
+    body:
+      'Pre-calculated dimensions across a unified template pack for online ads and event signage, ensuring visual stability from mobile screens up to large-format onsite wayfinding.',
+  },
+] as const;
 
 const section01Images = {
   websiteTemplate: {
@@ -50,23 +86,209 @@ const section01Images = {
   },
 } as const;
 
-const section01Highlights = [
+// -- Section 02 -------------------------------------------------------------
+
+const section02Highlights = [
   {
-    title: 'Systemic Governance',
+    title: 'Friction Elimination',
     body:
-      'Standardized layout grids, typographic hierarchy, and shared component types to allow a lean team to deploy diverse digital and print designs with streamlined architectural alignment.',
+      'Transformed complex, multi-tiered registration pricing matrices into intuitive eCommerce experiences.',
   },
   {
-    title: 'Responsive Logic',
+    title: 'User Flow Mapping',
     body:
-      'Developed multi-device web prototypes optimized to cleanly structure event agenda, speaker abstracts, sponsor engagement, and attendee registration.',
+      'Engineered comprehensive behavioral logic pathways and checkout workflows to optimize registration steps for conference packages and a la carte selections.',
   },
   {
-    title: 'Cross-Medium Constraints',
+    title: 'Wireframe Ideation',
     body:
-      'Pre-calculated dimensions across a unified template pack for online ads and event signage, ensuring visual stability from mobile screens up to large-format onsite wayfinding.',
+      'Sketched modular checkout interfaces to manage heavy content density with minimal cognitive load.',
   },
 ] as const;
+
+const section02Images: CaptionedImageProps[] = [
+  {
+    src: '/images/cii-section-02-ux-research.png',
+    alt: 'Conference registration UX research plan and user flow logic diagram',
+    caption: 'Conference registration UX research plan and user flow logic',
+    border: 'gray',
+  },
+  {
+    src: '/images/cii-section-02-wireframes.png',
+    alt: 'Wireframe sketches for improved registration experience',
+    caption: 'Ideation and wireframe sketches for improved registration experience',
+    border: 'gray',
+  },
+  {
+    src: '/images/cii-section-02-registration-ui.png',
+    alt: 'Initial wireframe and final registration interface for complex transaction pathways',
+    caption:
+      'Initial wireframe and final registration interface optimized for complex transaction pathways',
+    border: 'gray',
+  },
+];
+
+// -- Section 03 -------------------------------------------------------------
+
+const section03Highlights = [
+  {
+    title: 'Programmatic Publishing',
+    body:
+      'Replaced manual text placement by coding scripts that parse live speaker portal APIs and place content directly into complex multi-page editorial layouts using the InDesign DOM.',
+  },
+  {
+    title: 'Algorithmic Typography Rules',
+    body:
+      'Implemented advanced GREP style parameters that programmatically clean, format, and apply typographic styling hierarchies.',
+  },
+  {
+    title: 'Improved Collaboration Ecosystem',
+    body:
+      'Refined workflows for conference production assistants, graphic designers, and front-end developers by eliminating daily manual edits triggered by frequent, high volume speaker updates.',
+  },
+] as const;
+
+const section03Images: CaptionedImageProps[] = [
+  {
+    src: '/images/cii-section-03-data-flow.png',
+    alt: 'Data flow architecture using JavaScript API streams for automated layout and text styles',
+    caption:
+      'Data flow architecture using JavaScript API streams to automate layout and text styles for web and print output',
+  },
+];
+
+// -- Section 04 -------------------------------------------------------------
+
+const section04Highlights = [
+  {
+    title: 'Token Governance',
+    body:
+      'Maintained consistency across digital applications, print publications, infographic posters, and large-format signage, proving token durability across mediums.',
+  },
+  {
+    title: 'Sub-Branding Architecture',
+    body:
+      'Created sub-brand to represent additional region in a multi-regional brand (Advance Automotive Battery Conference US, Europe, and Asia), dynamically bending color tokens and localized photography while preserving core brand framework.',
+  },
+  {
+    title: 'Responsive Layout Real Estate',
+    body:
+      'Systematized asset composition across multi-size digital advertising banner packs, ensuring immediate visual pattern recognition across varied standard display dimensions and aspect ratios.',
+  },
+] as const;
+
+const section04Images: CaptionedImageProps[] = [
+  {
+    src: '/images/cii-section-04-discovery-cross-channel.png',
+    alt: 'Discovery on Target cross-channel design with responsive website and sponsorship brochure',
+    caption:
+      'Discovery on Target cross-channel design, featuring responsive website and sponsorship brochure with exhibition floor plan',
+    border: 'gray-light',
+  },
+  {
+    src: '/images/cii-section-04-dot-infographic.png',
+    alt: 'GDUSA award-winning infographic poster for Discovery on Target',
+    caption: 'GDUSA award-winning infographic poster for Discovery on Target',
+    border: 'gray-light',
+  },
+  {
+    src: '/images/cii-section-04-aabc-regional.png',
+    alt: 'Advanced Automotive Battery Conference regional sub-branding on signage and infographic poster',
+    caption:
+      'Advanced Automotive Battery Conference regional sub-branding featured on promotional signage and an infographic poster',
+    border: 'gray-light',
+  },
+  {
+    src: '/images/cii-section-04-aabc-asia.png',
+    alt: 'AABC Asia regional branding with multi-language print announcement and web banners',
+    caption:
+      'Expansion of regional branding to Asia, featuring a multi-language print announcement and web banner advertising suite',
+    border: 'gray-light',
+  },
+  {
+    src: '/images/cii-section-04-wayfinding-booklet.png',
+    alt: 'Design system applied to wayfinding signage and onsite tutorial booklet',
+    caption: 'Design system application to wayfinding signage and onsite tutorial booklet',
+    border: 'gray-light',
+  },
+];
+
+// -- Section 05 -------------------------------------------------------------
+
+const section05Highlights = [
+  {
+    title: 'Lifecycle Scaling & Fabrication',
+    body:
+      'Engineered large-format entryway assets by translating 2D designs into 3D digital mockups, ensuring absolute fidelity during final on-site venue construction.',
+  },
+  {
+    title: 'Wayfinding Architecture',
+    body:
+      'Structured high-density tower signage with floor plans and information matrices to manage traffic flow and reduce attendee navigation friction.',
+  },
+  {
+    title: 'Micro-Staging Interaction',
+    body:
+      'Maintained branding discipline across local podium plaques and track-specific session markers, framing key presentation stages for media capture and professional visibility.',
+  },
+  {
+    title: 'Color-Coding',
+    body:
+      'Managed multi-track conference routing by architecting distinct symbol and color-coding across key session topics (e.g. High-Content Analysis vs. Phenotypic Screening).',
+  },
+] as const;
+
+const section05Images = {
+  hero: {
+    src: '/images/cii-section-05-entrance-portal.png',
+    alt: 'Architectural scaling for the Discovery on Target entrance portal from flat layout to 3D rendering',
+    caption:
+      'Architectural scaling for the Discovery on Target entrance portal, demonstrating the workflow from flat production layout to 3D rendering',
+    border: 'gray-light',
+  },
+  threeUpRowOne: [
+    {
+      src: '/images/cii-section-05-entrance-built.png',
+      alt: 'Fully constructed entrance portal at conference venue',
+      caption: 'Fully constructed entrance portal',
+    },
+    {
+      src: '/images/cii-section-05-exit-signage.png',
+      alt: 'Exit signage unit at conference venue',
+      caption: 'Exit signage unit',
+    },
+    {
+      src: '/images/cii-section-05-podium-plaque.png',
+      alt: 'Presentation podium plaque with conference branding',
+      caption: 'Presentation podium plaque',
+    },
+  ],
+  threeUpRowTwo: [
+    {
+      src: '/images/cii-section-05-session-marker.png',
+      alt: 'Session room marker with conference branding',
+      caption: 'Session room marker',
+    },
+    {
+      src: '/images/cii-section-05-exhibit-hall.png',
+      alt: 'Exhibit hall and raffle table with conference branding',
+      caption: 'Exhibit hall and raffle table',
+      border: 'gray-light',
+    },
+    {
+      src: '/images/cii-section-05-registration-desk.png',
+      alt: 'Registration and welcome desk at conference venue',
+      caption: 'Registration and welcome desk',
+    },
+  ],
+  closing: {
+    src: '/images/cii-section-05-wayfinding-signage.png',
+    alt: 'Symbol and color-coded wayfinding signage at High Content Analysis and 3D Screening',
+    caption:
+      'Symbol and color-coded wayfinding across environmental signage suite at High Content Analysis + 3D Screening',
+    border: 'gray-light',
+  },
+} as const;
 
 /*
   CII Project Page — Global Conference Experiences
@@ -335,6 +557,62 @@ export default function CIIPage() {
           </div>
 
         </section>
+
+        {/* -- 02 / Digital Infrastructure & Registration Gateways ---------------- */}
+        <ProjectContentSection
+          id="section-02-heading"
+          number="02"
+          title="Digital Infrastructure & Registration Gateways"
+          lead="Refactored the core conference registration funnel through systematic user research and flow optimization, reducing transaction friction for academic and commercial audiences."
+          highlights={section02Highlights}
+        >
+          {section02Images.map((image) => (
+            <ProjectCaptionedImage key={image.caption} {...image} />
+          ))}
+        </ProjectContentSection>
+
+        {/* -- 03 / Workflow Engineering & Automation ------------------------- */}
+        <ProjectContentSection
+          id="section-03-heading"
+          number="03"
+          title="Workflow Engineering & Automation"
+          lead="Engineered automated layout scripts that accessed custom data pipelines using Adobe ExtendScript to eliminate human error and streamline InDesign publishing collaboration between conference producers and graphic designers."
+          highlights={section03Highlights}
+        >
+          {section03Images.map((image) => (
+            <ProjectCaptionedImage key={image.caption} {...image} />
+          ))}
+        </ProjectContentSection>
+
+        {/* -- 04 / Holistic Cross-Channel Ecosystems ------------------------- */}
+        <ProjectContentSection
+          id="section-04-heading"
+          number="04"
+          title="Holistic Cross-Channel Ecosystems"
+          lead="Deployed platform-agnostic design systems to scale cohesive brand identities across distinct physical and digital parameters, optimizing content for scale and application."
+          highlights={section04Highlights}
+        >
+          {section04Images.map((image) => (
+            <ProjectCaptionedImage key={image.caption} {...image} />
+          ))}
+        </ProjectContentSection>
+
+        {/* -- 05 / Experiential Spatial Extensions --------------------------- */}
+        <ProjectContentSection
+          id="section-05-heading"
+          number="05"
+          title="Experiential Spatial Extensions"
+          lead="Translated digital brand identities into large-scale environmental design artifacts and structural wayfinding networks, managing physical venue touchpoints and attendee routing systems for live conference environments."
+          highlights={section05Highlights}
+        >
+          <ProjectCaptionedImage {...section05Images.hero} />
+
+          <ThreeUpRow images={section05Images.threeUpRowOne} />
+
+          <ThreeUpRow images={section05Images.threeUpRowTwo} />
+
+          <ProjectCaptionedImage {...section05Images.closing} />
+        </ProjectContentSection>
 
       </div>
 
