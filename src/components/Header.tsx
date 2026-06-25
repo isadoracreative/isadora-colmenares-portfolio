@@ -54,7 +54,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-20">
 
-      {/* ── Mobile bar (xs → md, hidden at lg+) ──────────────────────── */}
+      {/* -- Mobile bar (xs → md, hidden at lg+) ------------------------ */}
       <div className="relative flex h-12 items-center justify-between pl-4 sm:pl-6 pr-3 lg:hidden">
         <Link
           href="/"
@@ -115,7 +115,7 @@ export default function Header() {
         )}
       </div>
 
-      {/* ── Desktop bar (lg+, hidden below lg) ───────────────────────── */}
+      {/* -- Desktop bar (lg+, hidden below lg) ------------------------- */}
       <div className="hidden lg:flex items-center w-full pl-9 pr-6">
         <div className="flex flex-1 items-center justify-between max-w-[1440px] mx-auto">
           <Link

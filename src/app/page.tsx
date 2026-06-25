@@ -3,7 +3,7 @@ import DividerShort from '@/components/DividerShort';
 import Button from '@/components/Button';
 import Avatar from '@/components/Avatar';
 
-/* ── Core Skills data ───────────────────────────────────────────────── */
+/* -- Core Skills data ------------------------------------------------- */
 
 const coreSkills = [
   {
@@ -74,7 +74,7 @@ const coreSkills = [
   },
 ];
 
-/* ── Work Experience data ───────────────────────────────────────────── */
+/* -- Work Experience data --------------------------------------------- */
 
 /*
   Em-space (U+2003) replaces the two regular spaces flanking " | " so the
@@ -166,7 +166,7 @@ const workExperience = [
   },
 ];
 
-/* ── Key Accolades data ─────────────────────────────────────────────── */
+/* -- Key Accolades data ----------------------------------------------- */
 
 const accolades = [
   {
@@ -185,7 +185,7 @@ const accolades = [
   },
 ];
 
-/* ── Hero content ────────────────────────────────────────────────────── */
+/* -- Hero content ------------------------------------------------------ */
 
 const bioParagraphs = [
   {
@@ -209,7 +209,7 @@ const smallPhotos = [
   { src: '/images/isa-crochet.jpg', alt: 'Crochet craft work' },
 ];
 
-/* ── Recommendations data ───────────────────────────────────────────── */
+/* -- Recommendations data --------------------------------------------- */
 
 const recommendations = [
   {
@@ -264,7 +264,7 @@ export default function Home() {
     */
     <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
 
-      {/* ── Hero section ──────────────────────────────────────────────── */}
+      {/* -- Hero section ------------------------------------------------ */}
       {/*
         aria-labelledby ties this landmark to the page's H1 so screen reader
         users navigating by region/landmark can identify it.
@@ -284,7 +284,7 @@ export default function Home() {
         */}
         <div className="col-span-12  xl:col-start-2 xl:col-span-10 2xl:col-start-3 2xl:col-span-9 flex flex-col gap-6 sm:flex-row sm:items-start lg:gap-9">
 
-          {/* ── Profile photo ─────────────────────────────────────────── */}
+          {/* -- Profile photo ------------------------------------------- */}
           {/*
             xs: w-full, aspect-square → fills container width, height = width
             sm: fixed 130 px square, shrink-0 so it doesn't flex-compress
@@ -301,7 +301,7 @@ export default function Home() {
             />
           </div>
 
-          {/* ── Text column ───────────────────────────────────────────── */}
+          {/* -- Text column --------------------------------------------- */}
           {/*
             gap-9 (36px) between the three content blocks matches
             Figma's gap-[var(--36,36px)] on the text column container.
@@ -318,7 +318,7 @@ export default function Home() {
                     lg+     → 3.75rem (60px)
                   leading-none keeps it tight as per Figma lineHeight: 100
                 */}
-                <h1 id="hero-heading" className="leading-none">Isadora Colmenares</h1>
+                <h1 id="hero-heading">Isadora Colmenares</h1>
 
                 {/* Accent divider — Figma "divider short" component (node 52:320) */}
                 <DividerShort />
@@ -376,7 +376,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Core Skills & Expertise ───────────────────────────────────── */}
+      {/* -- Core Skills & Expertise ------------------------------------- */}
       {/*
         Fluid section: full-viewport-width bg-gray-00 band.
         Content sits inside container-inner (responsive max-width),
@@ -400,7 +400,7 @@ export default function Home() {
 
             {/* Section heading + accent divider */}
             <div className="flex flex-col gap-3">
-              <h2 id="skills-heading" className="leading-none">Core Skills &amp; Expertise</h2>
+              <h2 id="skills-heading">Core Skills &amp; Expertise</h2>
               <DividerShort />
             </div>
 
@@ -429,7 +429,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Work Experience Highlights ──────────────────────────────────── */}
+      {/* -- Work Experience Highlights ------------------------------------ */}
       {/*
         White-background section, same container-inner + 10/12 strategy
         as the hero. Each entry: 48×48 company logo beside a text block.
@@ -449,7 +449,7 @@ export default function Home() {
 
           {/* Section heading + accent divider */}
           <div className="flex flex-col gap-3">
-            <h2 id="work-exp-heading" className="leading-none">Work Experience Highlights</h2>
+            <h2 id="work-exp-heading">Work Experience Highlights</h2>
             <DividerShort />
           </div>
 
@@ -527,7 +527,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Key Accolades ─────────────────────────────────────────────── */}
+      {/* -- Key Accolades ----------------------------------------------- */}
       {/*
         Fluid gray-00 band — same background and icon style as Core Skills.
         Column placement:
@@ -543,7 +543,7 @@ export default function Home() {
 
             {/* Section heading + accent divider */}
             <div className="flex flex-col gap-3">
-              <h2 id="accolades-heading" className="leading-none">Key Accolades</h2>
+              <h2 id="accolades-heading">Key Accolades</h2>
               <DividerShort />
             </div>
 
@@ -572,7 +572,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Recommendations ───────────────────────────────────────────────── */}
+      {/* -- Recommendations ------------------------------------------------- */}
       {/*
         White-background section — follows Key Accolades gray band.
         Column placement mirrors the hero / Core Skills pattern:
@@ -593,7 +593,7 @@ export default function Home() {
 
           {/* Section heading + accent divider */}
           <div className="flex flex-col gap-3">
-            <h2 id="recommendations-heading" className="leading-none">Recommendations</h2>
+            <h2 id="recommendations-heading">Recommendations</h2>
             <DividerShort />
           </div>
 

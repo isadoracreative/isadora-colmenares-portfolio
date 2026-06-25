@@ -7,7 +7,7 @@
  * config/variables.json (Figma export).
  */
 
-/* ── Token Data ─────────────────────────────────────────────────── */
+/* -- Token Data --------------------------------------------------- */
 
 const headingTokens = [
   { level: "H1", variable: "--text-h1", mobile: "2rem (32px)", desktop: "3.75rem (60px)" },
@@ -197,7 +197,7 @@ const interactiveColors: SemanticToken[] = [
   { name: "Active", variable: "--color-interactive-active", aliasTo: "Gray 100", hex: "#0a0b0b" },
 ];
 
-/* ── Helper: contrast text color ────────────────────────────────── */
+/* -- Helper: contrast text color ---------------------------------- */
 
 function contrastText(hex: string): string {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -207,7 +207,7 @@ function contrastText(hex: string): string {
   return luminance > 0.5 ? "#222526" : "#ffffff";
 }
 
-/* ── Components ─────────────────────────────────────────────────── */
+/* -- Components --------------------------------------------------- */
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
@@ -266,7 +266,7 @@ function SemanticColorRow({ token }: { token: SemanticToken }) {
   );
 }
 
-/* ── Page ────────────────────────────────────────────────────────── */
+/* -- Page ---------------------------------------------------------- */
 
 export default function DesignSystemPage() {
   return (
@@ -284,7 +284,7 @@ export default function DesignSystemPage() {
         </p>
       </div>
 
-      {/* ── TYPOGRAPHY ──────────────────────────────────────────── */}
+      {/* -- TYPOGRAPHY -------------------------------------------- */}
       <section className="mb-20" id="typography">
         <SectionTitle>Typography</SectionTitle>
 
@@ -347,7 +347,7 @@ export default function DesignSystemPage() {
         </div>
       </section>
 
-      {/* ── COLORS ──────────────────────────────────────────────── */}
+      {/* -- COLORS ------------------------------------------------ */}
       <section id="colors">
         <SectionTitle>Colors</SectionTitle>
 

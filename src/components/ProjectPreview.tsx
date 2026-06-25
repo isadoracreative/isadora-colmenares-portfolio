@@ -24,13 +24,13 @@ interface ProjectPreviewProps {
   ProjectPreview — responsive project card component.
 
   Layout (Figma spec: node-id=52-1269):
-  ┌─────────────────────────────────────────────────────┐
+  ┌-----------------------------------------------------┐
   │ clientName — full width row                         │
-  ├──────────────────────────┬──────────────────────────┤
+  ├--------------------------┬--------------------------┤
   │ xs  (<640px):            │ sm+ (≥640px):            │
   │   title/desc/tags/btn    │   title/desc/tags/btn    │
   │   image below            │   image right (flex-1)   │
-  └──────────────────────────┴──────────────────────────┘
+  └--------------------------┴--------------------------┘
 
   clientName sits in its own full-width row so the image top-aligns
   with the project title rather than with the client label.
@@ -59,12 +59,12 @@ export default function ProjectPreview({
       aria-labelledby={`project-${projectTitle.replace(/\s+/g, '-').toLowerCase()}`}
       className={`flex flex-col gap-3 ${className}`.trim()}
     >
-      {/* ── Client name — full-width row ──────────────────────────────── */}
+      {/* -- Client name — full-width row -------------------------------- */}
       <p className="font-body text-para-sm text-text-secondary">
         {clientName}
       </p>
 
-      {/* ── Content row: title/desc/tags/btn + image ──────────────────── */}
+      {/* -- Content row: title/desc/tags/btn + image -------------------- */}
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-6 lg:gap-9 xl:gap-12">
 
         {/* Text column */}
@@ -73,7 +73,6 @@ export default function ProjectPreview({
             {/* Project title */}
             <h2
               id={`project-${projectTitle.replace(/\s+/g, '-').toLowerCase()}`}
-              className="leading-none"
             >
               {projectTitle}
             </h2>
@@ -106,7 +105,7 @@ export default function ProjectPreview({
           )}
         </div>
 
-        {/* ── Preview image ───────────────────────────────────────────── */}
+        {/* -- Preview image --------------------------------------------- */}
         {imageSrc ? (
           <div className={`relative w-full aspect-video rounded-sm overflow-hidden sm:flex-1 sm:w-auto sm:min-w-0${imageBorder ? ' border border-core-gray-light' : ''}`}>
             <Image

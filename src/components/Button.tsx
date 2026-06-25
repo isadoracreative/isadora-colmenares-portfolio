@@ -38,7 +38,7 @@ interface ButtonProps {
   className?:   string;
 }
 
-/* ── Size tokens ──────────────────────────────────────────────────────── */
+/* -- Size tokens -------------------------------------------------------- */
 
 const PADDING: Record<ButtonSize, string> = {
   xs:      'px-2 py-1',
@@ -61,7 +61,7 @@ const LABEL_SIZE: Record<ButtonSize, string> = {
   lg:      'text-para',
 };
 
-/* ── Variant tokens ───────────────────────────────────────────────────── */
+/* -- Variant tokens ----------------------------------------------------- */
 
 const VARIANT_CLASS: Record<ButtonVariant, string> = {
   solid:
@@ -78,7 +78,7 @@ const VARIANT_CLASS: Record<ButtonVariant, string> = {
 const FOCUS_RING =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-green focus-visible:ring-offset-2';
 
-/* ── Component ────────────────────────────────────────────────────────── */
+/* -- Component ---------------------------------------------------------- */
 
 export default function Button({
   label,

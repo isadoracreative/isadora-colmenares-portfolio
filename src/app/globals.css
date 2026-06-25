@@ -270,7 +270,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-montserrat), sans-serif;
     font-weight: var(--font-weight-heading);
-    line-height: 1.2;
+    line-height: normal;
     color: var(--color-text-primary);
   }
 

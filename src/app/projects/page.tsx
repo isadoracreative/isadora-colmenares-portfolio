@@ -2,10 +2,10 @@ import DividerShort from "@/components/DividerShort";
 import DividerFull from "@/components/DividerFull";
 import ProjectPreview from "@/components/ProjectPreview";
 
-/* ─────────────────────────────────────────────────────────────────────────────
+/* -----------------------------------------------------------------------------
    Projects data — synced from Figma (nodes 224:8904 / 224:8955 / 224:9046 / 224:9077).
    Add `href` for each project once case-study pages are available.
-   ───────────────────────────────────────────────────────────────────────────── */
+   ----------------------------------------------------------------------------- */
 
 const projects = [
   {
@@ -110,25 +110,25 @@ const projects = [
   },
 ];
 
-/* ─────────────────────────────────────────────────────────────────────────────
+/* -----------------------------------------------------------------------------
    Page
    Layout (all breakpoints — Figma spec nodes 224:8904 → 224:9077):
      container-inner  full-width list of ProjectPreview entries,
                       each separated by a gray DividerFull.
-   ───────────────────────────────────────────────────────────────────────────── */
+   ----------------------------------------------------------------------------- */
 
 export default function ProjectsPage() {
   return (
     <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
       <div className="container-inner py-6 sm:py-9 flex flex-col gap-9">
 
-        {/* ── Page heading ──────────────────────────────────────────────── */}
+        {/* -- Page heading ------------------------------------------------ */}
         <div className="flex flex-col gap-3">
           <h1>Projects</h1>
           <DividerShort />
         </div>
 
-        {/* ── Project list — first 2 entries ────────────────────────────── */}
+        {/* -- Project list — first 2 entries ------------------------------ */}
         {projects.map((project, index) => (
           <div key={project.projectTitle} className="flex flex-col gap-8 md:gap-9">
             {index > 0 && <DividerFull />}

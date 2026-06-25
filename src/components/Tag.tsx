@@ -26,7 +26,7 @@ interface TagProps {
   className?:  string;
 }
 
-/* ── Size tokens ──────────────────────────────────────────────────────────── */
+/* -- Size tokens ------------------------------------------------------------ */
 
 const SIZE_WRAP: Record<TagSize, string> = {
   small: 'px-2 py-0.5 gap-1 rounded',          /* 8px/2px pad, 4px radius, 4px gap */
@@ -38,7 +38,7 @@ const SIZE_TEXT: Record<TagSize, string> = {
   large: 'text-para',   /* 16px via --text-para */
 };
 
-/* ── Color tokens ─────────────────────────────────────────────────────────── */
+/* -- Color tokens ----------------------------------------------------------- */
 
 const COLOR_BG: Record<TagColor, Record<TagState, string>> = {
   gray:   { default: 'bg-gray-10',           active: 'bg-gray-50' },
@@ -50,7 +50,7 @@ const COLOR_BG: Record<TagColor, Record<TagState, string>> = {
   purple: { default: 'bg-core-purple-light', active: 'bg-core-purple' },
 };
 
-/* ── Component ────────────────────────────────────────────────────────────── */
+/* -- Component -------------------------------------------------------------- */
 
 export default function Tag({
   label,
