@@ -270,6 +270,7 @@ function SemanticColorRow({ token }: { token: SemanticToken }) {
 
 export default function DesignSystemPage() {
   return (
+    <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
     <div className="container-inner py-12 sm:py-16">
       {/* Page header */}
       <div className="mb-16">
@@ -400,5 +401,6 @@ export default function DesignSystemPage() {
         </div>
       </section>
     </div>
+    </main>
   );
 }

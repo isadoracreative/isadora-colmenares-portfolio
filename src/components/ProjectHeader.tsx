@@ -16,7 +16,6 @@
  *   └- DividerFull separator (full-width gray rule, matches header container width)
  */
 
-import DividerFull  from '@/components/DividerFull';
 import DividerShort from '@/components/DividerShort';
 import Tag          from '@/components/Tag';
 
