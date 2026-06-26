@@ -8,7 +8,7 @@
  * Layout:
  *   layout (flex-col, gap-24px)
  *   ├- title + divider block (flex-col, gap-16px)
- *   │    ├- back button (xs only — borderless, chevron-left)
+ *   │    ├- back button (xs–md — borderless, chevron-left; hidden lg+)
  *   │    ├- client + project name (flex-col, gap-8px)
  *   │    │    ├- client name   → para, text-secondary
  *   │    │    └- project title → h1 (32px mobile → 60px lg+)
@@ -25,7 +25,7 @@ interface ProjectHeaderProps {
   projectTitle: string;
   /** Tags rendered below the DividerShort in small size. */
   tags?:        string[];
-  /** Destination for the xs-only back control. Defaults to the projects index. */
+  /** Destination for the back control on xs–md. Defaults to the projects index. */
   backHref?:    string;
   className?:   string;
 }
@@ -43,8 +43,8 @@ export default function ProjectHeader({
       {/* Title block + DividerShort — gap-4 (16px) between heading and bar */}
       <div className="flex flex-col gap-4">
 
-        {/* Back — xs only (Figma node 304:1522) */}
-        <div className="sm:hidden">
+        {/* Back — xs through md (Figma node 304:1522); hidden lg+ */}
+        <div className="lg:hidden">
           <Button
             variant="borderless"
             size="xs"
