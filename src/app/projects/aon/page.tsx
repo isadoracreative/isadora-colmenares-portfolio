@@ -84,7 +84,7 @@ const section02Images: CaptionedImageProps[] = [
     src: '/images/aon-section-02-token-architecture.png',
     alt: 'Token-based design system architecture mapping variables to client-branded components',
     caption:
-      'Extension of global design system to a token-based architecture mapping variables to client-branded components',
+      'Expansion of global design system to a token-based architecture mapping variables to client-branded components',
     border: true,
   },
   {
