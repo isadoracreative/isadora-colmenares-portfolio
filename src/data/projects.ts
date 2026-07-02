@@ -117,6 +117,7 @@ export const projects: readonly Project[] = [
     ],
   },
   {
+    slug: 'aon',
     clientName: 'Aon',
     projectTitle: 'Immersive Assessment Platforms',
     projectDescription:
@@ -131,6 +132,29 @@ export const projects: readonly Project[] = [
     imageSrc: '/images/project-immersive-assessment.jpg',
     imageAlt: 'Aon immersive assessment platform displayed on mobile and desktop screens',
     imageBorder: true,
+    overviewImages: [
+      {
+        src: '/images/aon-overview-dashboard.png',
+        alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
+        caption:
+          'Enterprise SaaS B2B admin dashboard and responsive, B2B2C client-branded reporting interface',
+        border: true,
+      },
+      {
+        src: '/images/aon-overview-mobile-simulation.png',
+        alt: 'Mobile-first interactive simulation interface with accessible Angular components',
+        caption:
+          'Mobile-first interactive simulation interface powered by refactored, accessible Angular component structures',
+        border: true,
+      },
+      {
+        src: '/images/aon-overview-triple-diamond.png',
+        alt: 'Modified Triple Diamond product development lifecycle diagram',
+        caption:
+          'Modified Triple Diamond product development lifecycle with templates for UX research and strategy facilitating stakeholder and backlog alignment',
+        border: true,
+      },
+    ],
   },
   {
     clientName: 'National Institute for Amazonian Research (INPA)',
