@@ -44,7 +44,7 @@ export default function ProjectPreviewImageRotator({
       setActiveIndex((currentIndex) => (currentIndex + 1) % images.length);
     };
 
-    let intervalId: ReturnType<typeof window.setInterval> | undefined;
+    let intervalId: number | undefined;
 
     const timeoutId = window.setTimeout(() => {
       intervalId = window.setInterval(advance, DISPLAY_MS);
