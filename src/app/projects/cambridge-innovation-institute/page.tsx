@@ -284,14 +284,10 @@ const section05Images = {
   --------------
   Two stacked regions inside <main>:
 
-  1. Project header — full-width fluid wrapper
-       • Spans the full viewport width at every breakpoint.
-       • Content is padded (px-4 → px-6 → px-9) and capped at max-w-[1440px],
-         which is the container-inner max-width at 2xl.
-       • Contrast with container-inner: that utility progressively narrows its
-         max-width at each step (288px → 592px → … → 1440px), making the
-         project header wider than container-inner at sm/md/lg/xl viewports.
-       • DividerFull is part of ProjectHeader so it matches the header width.
+  1. Project header — container-inner
+       • Uses the same responsive max-widths as the main content grid
+         (288px → 592px → … → 1440px), keeping the header centred with the
+         page rather than pinned to the viewport edge at lg/xl.
 
   2. Main content — container-inner (standard narrowing max-widths)
        • Uses a 12-col grid; text sections narrow further at lg+.
@@ -306,23 +302,13 @@ export default function CIIPage() {
   return (
     <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
 
-      {/* -- Project header — full-width, max-w-[1440px] -------------------- */}
-      {/*
-        padding-inline mirrors the layout-grid gutters site-wide:
-          xs / sm  → px-4  (16px)
-          sm / md  → px-6  (24px)
-          lg+      → px-9  (36px)
-        pt/pb maintain the same vertical rhythm as other pages (py-6 sm:py-9).
-        The inner max-w-[1440px] div centres the content on ultra-wide displays.
-      */}
-      <div className="px-4 sm:px-6 lg:px-9 pt-6 sm:pt-9 pb-12">
-        <div className="max-w-[1440px] mx-auto">
-          <ProjectHeader
-            clientName={project.clientName}
-            projectTitle={project.projectTitle}
-            tags={[...project.tags]}
-          />
-        </div>
+      {/* -- Project header — container-inner (matches main content grid) --- */}
+      <div className="container-inner pt-6 sm:pt-9 pb-12">
+        <ProjectHeader
+          clientName={project.clientName}
+          projectTitle={project.projectTitle}
+          tags={[...project.tags]}
+        />
       </div>
 
       {/* -- Main content — container-inner ----------------------- */}
@@ -386,7 +372,7 @@ export default function CIIPage() {
 
           {/* ProgressiveImage group — wider than text column; centred at lg+ */}
           <div className="col-span-12">
-            <div className="w-full mx-auto lg:max-w-[1000px] flex flex-col gap-6 lg:gap-9">
+            <div className="w-full flex flex-col gap-6 lg:gap-9">
 
             {/* Full-width hero image */}
             <figure className="flex flex-col gap-2">
@@ -483,7 +469,7 @@ export default function CIIPage() {
 
           {/* ProgressiveImage group — two-up row, then full-width image */}
           <div className="col-span-12">
-            <div className="w-full mx-auto lg:max-w-[1000px] flex flex-col gap-6 lg:gap-9">
+            <div className="w-full flex flex-col gap-6 lg:gap-9">
 
               <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
                 {[section01ProgressiveImages.websiteTemplate, section01ProgressiveImages.webBanners].map(

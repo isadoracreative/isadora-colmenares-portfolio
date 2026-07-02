@@ -54,7 +54,7 @@ export default function ProjectContentSection({
       </div>
 
       <div className="col-span-12">
-        <div className="w-full mx-auto lg:max-w-[1000px] flex flex-col gap-6 lg:gap-9">
+        <div className="w-full flex flex-col gap-6 lg:gap-9">
           {children}
         </div>
       </div>

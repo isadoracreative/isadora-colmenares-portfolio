@@ -256,15 +256,13 @@ export default function AonPage() {
   return (
     <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
 
-      {/* -- Project header — full-width, max-w-[1440px] -------------------- */}
-      <div className="px-4 sm:px-6 lg:px-9 pt-6 sm:pt-9 pb-12">
-        <div className="max-w-[1440px] mx-auto">
-          <ProjectHeader
-            clientName={project.clientName}
-            projectTitle={project.projectTitle}
-            tags={[...project.tags]}
-          />
-        </div>
+      {/* -- Project header — container-inner (matches main content grid) --- */}
+      <div className="container-inner pt-6 sm:pt-9 pb-12">
+        <ProjectHeader
+          clientName={project.clientName}
+          projectTitle={project.projectTitle}
+          tags={[...project.tags]}
+        />
       </div>
 
       {/* -- Main content — container-inner ----------------------- */}
@@ -322,7 +320,7 @@ export default function AonPage() {
 
           {/* Image group — wider than text column; centred at lg+ */}
           <div className="col-span-12">
-            <div className="w-full mx-auto lg:max-w-[1000px] flex flex-col gap-6 lg:gap-9">
+            <div className="w-full flex flex-col gap-6 lg:gap-9">
 
               <figure className="flex flex-col gap-2">
                 <div
