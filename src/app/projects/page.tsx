@@ -10,6 +10,9 @@ import { projects, projectHref } from "@/data/projects";
                       each separated by a gray DividerFull.
    ----------------------------------------------------------------------------- */
 
+/** Offset between preview rotators so fades do not happen in unison. */
+const PREVIEW_ROTATION_STAGGER_MS = 1200;
+
 export default function ProjectsPage() {
   return (
     <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
@@ -31,6 +34,7 @@ export default function ProjectsPage() {
               overviewImages={project.overviewImages?.map(({ src, alt }) => ({ src, alt }))}
               href={projectHref(project)}
               showButton={Boolean(project.slug)}
+              rotationOffsetMs={index * PREVIEW_ROTATION_STAGGER_MS}
             />
           </div>
         ))}

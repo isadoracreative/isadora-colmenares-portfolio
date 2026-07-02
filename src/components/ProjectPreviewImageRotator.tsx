@@ -12,6 +12,8 @@ export interface PreviewImage {
 interface ProjectPreviewImageRotatorProps {
   images: readonly PreviewImage[];
   sizes?: string;
+  /** Delays rotation start so multiple previews on one page do not fade in sync. */
+  rotationOffsetMs?: number;
 }
 
 const DISPLAY_MS = 4500;
@@ -20,6 +22,7 @@ const FADE_MS = 800;
 export default function ProjectPreviewImageRotator({
   images,
   sizes = '(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw',
+  rotationOffsetMs = 0,
 }: ProjectPreviewImageRotatorProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -37,12 +40,21 @@ export default function ProjectPreviewImageRotator({
   useEffect(() => {
     if (reduceMotion || images.length <= 1) return;
 
-    const intervalId = window.setInterval(() => {
+    const advance = () => {
       setActiveIndex((currentIndex) => (currentIndex + 1) % images.length);
-    }, DISPLAY_MS);
+    };
 
-    return () => window.clearInterval(intervalId);
-  }, [images.length, reduceMotion]);
+    let intervalId: ReturnType<typeof window.setInterval> | undefined;
+
+    const timeoutId = window.setTimeout(() => {
+      intervalId = window.setInterval(advance, DISPLAY_MS);
+    }, rotationOffsetMs);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (intervalId !== undefined) window.clearInterval(intervalId);
+    };
+  }, [images.length, reduceMotion, rotationOffsetMs]);
 
   useEffect(() => {
     if (images.length <= 1) return;

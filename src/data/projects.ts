@@ -134,17 +134,17 @@ export const projects: readonly Project[] = [
     imageBorder: true,
     overviewImages: [
       {
-        src: '/images/aon-overview-dashboard.png',
-        alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
-        caption:
-          'Enterprise SaaS B2B admin dashboard and responsive, B2B2C client-branded reporting interface',
-        border: true,
-      },
-      {
         src: '/images/aon-overview-mobile-simulation.png',
         alt: 'Mobile-first interactive simulation interface with accessible Angular components',
         caption:
           'Mobile-first interactive simulation interface powered by refactored, accessible Angular component structures',
+        border: true,
+      },
+      {
+        src: '/images/aon-overview-dashboard.png',
+        alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
+        caption:
+          'Enterprise SaaS B2B admin dashboard and responsive, B2B2C client-branded reporting interface',
         border: true,
       },
       {

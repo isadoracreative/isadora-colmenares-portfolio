@@ -23,6 +23,8 @@ interface ProjectPreviewProps {
   imageBorder?: boolean;
   /** When false, hides the "View Project" button. Defaults to false. */
   showButton?: boolean;
+  /** Delays image rotation so stacked previews fade on different beats. */
+  rotationOffsetMs?: number;
   className?: string;
 }
 
@@ -63,6 +65,7 @@ export default function ProjectPreview({
   overviewImages,
   imageBorder = false,
   showButton = false,
+  rotationOffsetMs = 0,
   className = '',
 }: ProjectPreviewProps) {
   const rotatingImages =
@@ -79,7 +82,10 @@ export default function ProjectPreview({
   const imageFrameClass = `relative ${imageFrameBase}`;
 
   const previewImage = rotatingImages ? (
-    <ProjectPreviewImageRotator images={rotatingImages} />
+    <ProjectPreviewImageRotator
+      images={rotatingImages}
+      rotationOffsetMs={rotationOffsetMs}
+    />
   ) : imageSrc ? (
     <ProgressiveImage
       src={imageSrc}
