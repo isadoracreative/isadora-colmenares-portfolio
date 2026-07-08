@@ -65,15 +65,10 @@ export default function HeaderNavDropdown({
               'flex px-6 py-4 transition-colors',
               FOCUS_RING,
               eyebrow ? 'flex-col gap-0.5' : 'items-center',
-              isDesktop ? 'whitespace-nowrap hover:bg-core-green-light' : '',
-              !isDesktop
-                ? 'text-para-sm font-body text-text-primary'
-                : '',
-              !isDesktop && isActive
+              isDesktop ? 'whitespace-nowrap' : 'text-para-sm font-body text-text-primary',
+              isActive
                 ? 'border-l-[3px] border-core-green'
-                : !isDesktop
-                  ? 'hover:bg-core-green-light'
-                  : '',
+                : 'hover:bg-core-green-light',
             ].join(' ')}
           >
             {eyebrow && (
