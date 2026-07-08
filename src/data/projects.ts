@@ -61,6 +61,13 @@ export const projects: readonly Project[] = [
     imageBorder: true,
     overviewImages: [
       {
+        src: '/images/burton-render-spatial.png',
+        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
+        caption:
+          'Polished spatial render detailing the relationship between private property lines, native flora canopies, and the public pedestrian corridor',
+        border: false,
+      },
+      {
         src: '/images/burton-plan-2d.png',
         alt: 'Baseline 2D vector top view layout drafted in AutoCAD',
         caption:
@@ -73,13 +80,6 @@ export const projects: readonly Project[] = [
         caption:
           '3D isometric SketchUp model to evaluate lawn slope gradients, structural stone dimensions, and visualize residential walkways',
         border: true,
-      },
-      {
-        src: '/images/burton-render-spatial.png',
-        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
-        caption:
-          'Polished spatial render detailing the relationship between private property lines, native flora canopies, and the public pedestrian corridor',
-        border: false,
       },
     ],
   },

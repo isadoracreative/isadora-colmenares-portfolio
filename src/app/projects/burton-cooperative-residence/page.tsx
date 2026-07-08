@@ -6,11 +6,13 @@ import DividerShort from '@/components/DividerShort';
 
 const project = requireProjectBySlug('burton-cooperative-residence');
 
-if (!project.overviewImages || project.overviewImages.length < 3) {
+const plan2d = project.overviewImages.find((img) => img.src.endsWith('burton-plan-2d.png'));
+const model3d = project.overviewImages.find((img) => img.src.endsWith('burton-model-3d-isometric.png'));
+const spatialRender = project.overviewImages.find((img) => img.src.endsWith('burton-render-spatial.png'));
+
+if (!plan2d || !model3d || !spatialRender) {
   throw new Error('Missing overview images for burton-cooperative-residence');
 }
-
-const [plan2d, model3d, spatialRender] = project.overviewImages;
 
 // -- Section 01 -------------------------------------------------------------
 
