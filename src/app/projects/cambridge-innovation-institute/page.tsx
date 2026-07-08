@@ -225,7 +225,7 @@ const section05Highlights = [
 
 const section05Images = {
   hero: {
-    src: '/images/cii-section-05-entrance-portal.png',
+    src: '/images/cii-section-05-entrance-portal.jpg',
     alt: 'Architectural scaling for the Discovery on Target entrance portal from flat layout to 3D rendering',
     caption:
       'Architectural scaling for the Discovery on Target entrance portal, demonstrating the workflow from flat production layout to 3D rendering',
@@ -233,41 +233,41 @@ const section05Images = {
   },
   threeUpRowOne: [
     {
-      src: '/images/cii-section-05-entrance-built.png',
+      src: '/images/cii-section-05-entrance-built.jpg',
       alt: 'Fully constructed entrance portal at conference venue',
       caption: 'Fully constructed entrance portal',
     },
     {
-      src: '/images/cii-section-05-exit-signage.png',
+      src: '/images/cii-section-05-exit-signage.jpg',
       alt: 'Exit signage unit at conference venue',
       caption: 'Exit signage unit',
     },
     {
-      src: '/images/cii-section-05-podium-plaque.png',
+      src: '/images/cii-section-05-podium-plaque.jpg',
       alt: 'Presentation podium plaque with conference branding',
       caption: 'Presentation podium plaque',
     },
   ],
   threeUpRowTwo: [
     {
-      src: '/images/cii-section-05-session-marker.png',
+      src: '/images/cii-section-05-session-marker.jpg',
       alt: 'Session room marker with conference branding',
       caption: 'Session room marker',
     },
     {
-      src: '/images/cii-section-05-exhibit-hall.png',
+      src: '/images/cii-section-05-exhibit-hall.jpg',
       alt: 'Exhibit hall and raffle table with conference branding',
       caption: 'Exhibit hall and raffle table',
       border: true,
     },
     {
-      src: '/images/cii-section-05-registration-desk.png',
+      src: '/images/cii-section-05-registration-desk.jpg',
       alt: 'Registration and welcome desk at conference venue',
       caption: 'Registration and welcome desk',
     },
   ],
   closing: {
-    src: '/images/cii-section-05-wayfinding-signage.png',
+    src: '/images/cii-section-05-wayfinding-signage.jpg',
     alt: 'Symbol and color-coded wayfinding signage at High Content Analysis and 3D Screening',
     caption:
       'Symbol and color-coded wayfinding across environmental signage suite at High Content Analysis + 3D Screening',

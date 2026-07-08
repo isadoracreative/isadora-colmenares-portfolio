@@ -1,10 +1,15 @@
 /**
- * Generates WebP derivatives and blur placeholders for raster assets in public/images.
+ * Generates optimized PNG/JPG derivatives and blur placeholders for raster assets.
  * Run: node scripts/optimize-images.mjs
  *
+ * Format rules (site-wide):
+ *   - Photos → JPG
+ *   - Vectors, 3D renders, sketches, UI screenshots, text → PNG
+ *   - Never WebP
+ *
  * Output:
- *   public/images/*.webp          — compressed, width-capped variants
- *   src/data/image-assets.ts      — src + blurDataURL lookup for ProgressiveImage
+ *   public/images/*.{png,jpg}  — width-capped display files
+ *   src/data/image-assets.ts   — src + blurDataURL lookup for ProgressiveImage
  */
 
 import fs from 'node:fs';
@@ -13,17 +18,42 @@ import sharp from 'sharp';
 
 const IMAGE_DIR = path.join(process.cwd(), 'public/images');
 const OUTPUT_FILE = path.join(process.cwd(), 'src/data/image-assets.ts');
-const MAX_WIDTH = 1600;
-const WEBP_QUALITY = 82;
+const MAX_WIDTH_PNG = 4800;
+const MAX_WIDTH_JPG = 3200;
+const JPG_QUALITY = 90;
 const BLUR_WIDTH = 16;
 
 const RASTER_EXT = new Set(['.png', '.jpg', '.jpeg']);
 
-/** Case-study assets served as original PNG (no WebP derivative). */
-const PNG_ONLY_BASENAME_PREFIX = 'aon-';
+/** Exact basenames (no extension) treated as photographs. */
+const PHOTO_BASENAMES = new Set([
+  'aon-section-01-persona-workshop',
+  'aon-section-03-closed-captioning',
+  'aon-section-03-mobile-sjt',
+  'burton-section-03-ideation-workshop',
+  'burton-section-04-drainage-pipe',
+  'burton-section-04-initial-planting',
+  'burton-section-04-storm-flooding',
+  'burton-section-05-mature-growth',
+  'project-arachnology-lab',
+  'project-global-conference',
+  'project-immersive-assessment',
+  'project-ornithology-congress',
+]);
 
-function isPngOnlyAsset(filePath) {
-  return path.basename(filePath).startsWith(PNG_ONLY_BASENAME_PREFIX);
+/** Basename prefixes treated as photographs. */
+const PHOTO_PREFIXES = [
+  'avatar-',
+  'isa-',
+  'burton-section-01-',
+  'cii-section-05-',
+];
+
+function isPhotoAsset(basename) {
+  if (PHOTO_BASENAMES.has(basename)) return true;
+  return PHOTO_PREFIXES.some(
+    (prefix) => basename === prefix || basename.startsWith(prefix),
+  );
 }
 
 function removeWebpSibling(filePath) {
@@ -34,76 +64,91 @@ function removeWebpSibling(filePath) {
 }
 
 function walkImages(dir) {
-  return fs.readdirSync(dir).flatMap((entry) => {
+  /** One source file per basename — prefer PNG when both PNG and JPG exist. */
+  const byBasename = new Map();
+
+  for (const entry of fs.readdirSync(dir)) {
     const fullPath = path.join(dir, entry);
     const ext = path.extname(entry).toLowerCase();
-    if (fs.statSync(fullPath).isFile() && RASTER_EXT.has(ext)) {
-      return [fullPath];
+    if (!fs.statSync(fullPath).isFile() || !RASTER_EXT.has(ext)) continue;
+
+    const basename = path.basename(entry, ext);
+    const existing = byBasename.get(basename);
+    if (!existing) {
+      byBasename.set(basename, fullPath);
+      continue;
     }
-    return [];
-  });
+
+    const existingExt = path.extname(existing).toLowerCase();
+    if (ext === '.png' && existingExt !== '.png') {
+      byBasename.set(basename, fullPath);
+    }
+  }
+
+  return [...byBasename.values()];
 }
 
-async function processPngOnlyImage(filePath) {
+function displayPathFor(filePath) {
+  const basename = path.basename(filePath, path.extname(filePath));
+  const ext = isPhotoAsset(basename) ? '.jpg' : '.png';
+  return path.join(IMAGE_DIR, `${basename}${ext}`);
+}
+
+function toPublicSrc(filePath) {
+  const relative = path.relative(path.join(process.cwd(), 'public'), filePath);
+  return `/${relative.replace(/\\/g, '/')}`;
+}
+
+async function processImage(filePath) {
   removeWebpSibling(filePath);
 
-  const relative = path.relative(path.join(process.cwd(), 'public'), filePath);
-  const originalSrc = `/${relative.replace(/\\/g, '/')}`;
+  const basename = path.basename(filePath, path.extname(filePath));
+  const displayPath = displayPathFor(filePath);
+  const photo = isPhotoAsset(basename);
+  const originalSize = fs.statSync(filePath).size;
+  const samePath = path.resolve(filePath) === path.resolve(displayPath);
+  const outputTarget = samePath
+    ? path.join(IMAGE_DIR, `.tmp-${basename}${photo ? '.jpg' : '.png'}`)
+    : displayPath;
 
-  const blurBuffer = await sharp(filePath)
-    .rotate()
+  const pipeline = sharp(filePath).rotate();
+  const metadata = await pipeline.metadata();
+  const maxWidth = photo ? MAX_WIDTH_JPG : MAX_WIDTH_PNG;
+  const needsResize = (metadata.width ?? 0) > maxWidth;
+
+  const resized = needsResize
+    ? pipeline.resize(maxWidth, null, { withoutEnlargement: true })
+    : pipeline;
+
+  if (photo) {
+    await resized.clone().jpeg({ quality: JPG_QUALITY, mozjpeg: true }).toFile(outputTarget);
+  } else {
+    await resized.clone().png({ compressionLevel: 9 }).toFile(outputTarget);
+  }
+
+  if (samePath) {
+    fs.renameSync(outputTarget, displayPath);
+  } else {
+    fs.renameSync(outputTarget, displayPath);
+    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+  }
+
+  const blurBuffer = await sharp(displayPath)
     .resize(BLUR_WIDTH, null, { fit: 'inside' })
     .png({ compressionLevel: 9, palette: true })
     .toBuffer();
 
+  const displaySrc = toPublicSrc(displayPath);
   const blurDataURL = `data:image/png;base64,${blurBuffer.toString('base64')}`;
-  const originalSize = fs.statSync(filePath).size;
+  const outputSize = fs.statSync(displayPath).size;
 
   return {
-    originalSrc,
-    displaySrc: originalSrc,
+    originalSrc: displaySrc,
+    displaySrc,
     blurDataURL,
     originalSize,
-    outputSize: originalSize,
-  };
-}
-
-async function processImage(filePath) {
-  if (isPngOnlyAsset(filePath)) {
-    return processPngOnlyImage(filePath);
-  }
-
-  removeWebpSibling(filePath);
-
-  const relative = path.relative(path.join(process.cwd(), 'public'), filePath);
-  const originalSrc = `/${relative.replace(/\\/g, '/')}`;
-  const webpRelative = relative.replace(/\.(png|jpe?g)$/i, '.webp');
-  const webpPath = path.join(process.cwd(), 'public', webpRelative);
-  const webpSrc = `/${webpRelative.replace(/\\/g, '/')}`;
-
-  const pipeline = sharp(filePath).rotate().resize(MAX_WIDTH, null, {
-    withoutEnlargement: true,
-  });
-
-  await pipeline.clone().webp({ quality: WEBP_QUALITY, effort: 4 }).toFile(webpPath);
-
-  const blurBuffer = await pipeline
-    .clone()
-    .resize(BLUR_WIDTH, null, { fit: 'inside' })
-    .webp({ quality: 25 })
-    .toBuffer();
-
-  const blurDataURL = `data:image/webp;base64,${blurBuffer.toString('base64')}`;
-
-  const originalSize = fs.statSync(filePath).size;
-  const webpSize = fs.statSync(webpPath).size;
-
-  return {
-    originalSrc,
-    displaySrc: webpSrc,
-    blurDataURL,
-    originalSize,
-    outputSize: webpSize,
+    outputSize,
+    format: photo ? 'JPG' : 'PNG',
   };
 }
 
@@ -129,11 +174,16 @@ async function main() {
     const result = await processImage(filePath);
     entries.push(result);
     savedBytes += Math.max(0, result.originalSize - result.outputSize);
-    const outputLabel = path.basename(result.displaySrc);
-    const pngOnly = isPngOnlyAsset(filePath);
     console.log(
-      `${path.basename(filePath)} → ${outputLabel}${pngOnly ? ' (PNG only)' : ''} (${formatBytes(result.originalSize)} → ${formatBytes(result.outputSize)})`,
+      `${path.basename(filePath)} → ${path.basename(result.displaySrc)} (${result.format}) (${formatBytes(result.originalSize)} → ${formatBytes(result.outputSize)})`,
     );
+  }
+
+  // Remove any leftover WebP files.
+  for (const entry of fs.readdirSync(IMAGE_DIR)) {
+    if (entry.endsWith('.webp')) {
+      fs.unlinkSync(path.join(IMAGE_DIR, entry));
+    }
   }
 
   writeAssetMap(entries);

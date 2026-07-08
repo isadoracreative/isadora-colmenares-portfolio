@@ -1,0 +1,28 @@
+---
+description: Site-wide image format rules — no WebP; PNG for graphics, JPG for photos
+globs: public/images/**,scripts/optimize-images.mjs,src/data/image-assets.ts,src/components/ProgressiveImage.tsx
+alwaysApply: true
+---
+
+# Image formats
+
+Never use WebP on this site — it makes images look blurry.
+
+## Format rules
+
+| Asset type | Format |
+|------------|--------|
+| Photographs (site photos, avatars, logos, personal photos) | **JPG** |
+| Vectors, 3D renders, sketches, UI screenshots, diagrams, text | **PNG** |
+
+## Workflow
+
+1. Export from Figma as PNG (frame nodes, not raw fills) so crops match the design.
+2. **Use the full-width frame node** at `@4x` scale — not the smaller thumbnail frame in a 3-up row. At 2xl (1440px container), full-width images need ~4800px source for retina sharpness.
+3. Save photos as `.jpg`, graphics as `.png` under `public/images/`.
+4. Run `node scripts/optimize-images.mjs` — PNG capped at 4800px wide, JPG at 3200px (never WebP).
+
+## Adding new assets
+
+- Update `PHOTO_BASENAMES` or `PHOTO_PREFIXES` in `scripts/optimize-images.mjs` when a new photo doesn't match existing patterns.
+- Do not add WebP conversion or `crop` fields in components — fix cropping at export time.

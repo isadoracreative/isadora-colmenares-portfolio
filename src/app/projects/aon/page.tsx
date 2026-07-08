@@ -42,7 +42,7 @@ const section01TwoUp: CaptionedImageProps[] = [
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/aon-section-01-persona-workshop.png',
+    src: '/images/aon-section-01-persona-workshop.jpg',
     alt: 'Collaborative workshop output defining user persona ecosystems',
     caption:
       'Collaborative workshop output redefining user persona ecosystem and interrelated problem statements',

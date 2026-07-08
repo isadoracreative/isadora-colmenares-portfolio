@@ -44,6 +44,7 @@ export const projects: readonly Project[] = [
     imageBorder: true,
   },
   {
+    slug: 'burton-cooperative-residence',
     clientName: 'Burton Cooperative Residence',
     projectTitle: 'Botanical Landscape 3D Modeling',
     projectDescription:
@@ -58,6 +59,29 @@ export const projects: readonly Project[] = [
     imageSrc: '/images/project-botanical-landscape.png',
     imageAlt: '3D render of the Burton Cooperative Residence botanical landscape frontage',
     imageBorder: true,
+    overviewImages: [
+      {
+        src: '/images/burton-plan-2d.png',
+        alt: 'Baseline 2D vector top view layout drafted in AutoCAD',
+        caption:
+          'Baseline 2D vector top view layout drafted in AutoCAD to establish legal boundaries and architectural elements',
+        border: true,
+      },
+      {
+        src: '/images/burton-model-3d-isometric.png',
+        alt: '3D isometric SketchUp model evaluating lawn slope gradients and structural stone dimensions',
+        caption:
+          '3D isometric SketchUp model to evaluate lawn slope gradients, structural stone dimensions, and visualize residential walkways',
+        border: true,
+      },
+      {
+        src: '/images/burton-render-spatial.png',
+        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
+        caption:
+          'Polished spatial render detailing the relationship between private property lines, native flora canopies, and the public pedestrian corridor',
+        border: false,
+      },
+    ],
   },
   {
     clientName: 'American Museum of Natural History (AMNH)',
@@ -71,7 +95,7 @@ export const projects: readonly Project[] = [
       'Design systems',
       'UX engineering',
     ],
-    imageSrc: '/images/project-arachnology-lab.png',
+    imageSrc: '/images/project-arachnology-lab.jpg',
     imageAlt:
       'Arachnology Research Lab website showing the custom academic directory and researcher profiles',
   },

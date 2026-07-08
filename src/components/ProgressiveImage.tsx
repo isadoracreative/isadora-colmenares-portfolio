@@ -4,7 +4,7 @@ import { resolveImageAsset, resolveImageSrc } from '@/data/image-assets';
 type ProgressiveImageProps = Omit<ImageProps, 'placeholder' | 'blurDataURL'>;
 
 /**
- * Serves WebP derivatives when available and shows a blur-up placeholder
+ * Serves optimized PNG/JPG assets when available and shows a blur-up placeholder
  * while the full image loads. Improves perceived performance on slow connections.
  */
 export default function ProgressiveImage({
