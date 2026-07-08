@@ -13,6 +13,11 @@ if (!project.overviewImages || project.overviewImages.length < 3) {
 
 const [dashboard, mobileSimulation, tripleDiamond] = project.overviewImages;
 
+// -- Overview: Role (replace placeholder with final copy) --------------------
+
+const overviewRole =
+  'At Aon I was a Principal Experience Designer and Lead UX Engineer, executing hands-on design work for business stakeholders, supporting clients and end users. I was a direct contributor on all my assignments and simultaneously managed others. I collaborated with leadership, product management, and engineering.';
+
 // -- Section 01 -------------------------------------------------------------
 
 const section01Highlights = [
@@ -313,6 +318,11 @@ export default function AonPage() {
                   client theme engine, and standardizing cross-functional design
                   templates to accelerate product delivery.
                 </p>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <h6>Role</h6>
+                <p className="text-text-primary text-pretty">{overviewRole}</p>
               </div>
             </div>
 

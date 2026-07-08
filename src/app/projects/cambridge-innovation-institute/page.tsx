@@ -28,6 +28,11 @@ if (!project.overviewImages || project.overviewImages.length < 3) {
 
 const [masterTemplates, dataFlow, signage] = project.overviewImages;
 
+// -- Overview: Role (replace placeholder with final copy) --------------------
+
+const overviewRole =
+  'At Cambridge Innovation Institute I was a Senior Designer supporting events and production company initiatives. I collaborated with marketers, engineers, meeting planners, and other individual contributors.';
+
 // -- Section 01 -------------------------------------------------------------
 
 const section01Highlights = [
@@ -343,7 +348,7 @@ export default function CIIPage() {
             </p>
           </div>
 
-          {/* Challenge + Solution */}
+          {/* Challenge + Solution + Role */}
           <div className="flex flex-col gap-6">
 
             <div className="flex flex-col gap-2">
@@ -364,6 +369,11 @@ export default function CIIPage() {
                 pipelines to enforce strict visual governance without
                 sacrificing operational velocity.
               </p>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <h6>Role</h6>
+              <p className="text-text-primary text-pretty">{overviewRole}</p>
             </div>
 
           </div>

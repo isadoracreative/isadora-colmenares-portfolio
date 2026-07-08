@@ -16,6 +16,11 @@ if (!plan2d || !model3d || !spatialRender) {
 
 const overviewImageTrio = [plan2d, model3d, spatialRender] as const;
 
+// -- Overview: Role (replace placeholder with final copy) --------------------
+
+const overviewRole =
+  'I was the sole designer on this project, supporting building management agents, co-op board leadership, and residential committee members. I collaborated with civil engineers, construction contractors, and landscaping crews.';
+
 // -- Section 01 -------------------------------------------------------------
 
 const section01Highlights = [
@@ -268,6 +273,11 @@ export default function BurtonPage() {
                   irrigation support that recycled diverted water runoff to
                   nourish the lower lawn plantings.
                 </p>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <h6>Role</h6>
+                <p className="text-text-primary text-pretty">{overviewRole}</p>
               </div>
             </div>
 
