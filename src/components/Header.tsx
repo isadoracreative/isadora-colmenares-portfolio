@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
+import HeaderNavDropdown from '@/components/HeaderNavDropdown';
 
 const navLinks = [
   { href: '/', label: 'About' },
@@ -86,32 +87,12 @@ export default function Header() {
           the header bar which already has its own bottom border).
         */}
         {menuOpen && (
-          <nav
-            id="mobile-nav"
-            aria-label="Mobile navigation"
-            className={`absolute top-full right-0 w-[100px] bg-white border-l border-r border-b border-gray-20 py-3 z-50 ${FOCUS_RING}`}
-          >
-            {navLinks.map(({ href, label }, index) => {
-              const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  ref={index === 0 ? firstMobileItemRef : undefined}
-                  onClick={() => setMenuOpen(false)}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={[
-                    `flex items-center px-6 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
-                    isActive
-                      ? 'border-l-[3px] border-core-green'
-                      : 'hover:bg-core-green-light',
-                  ].join(' ')}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-          </nav>
+          <HeaderNavDropdown
+            links={navLinks}
+            pathname={pathname}
+            onLinkClick={() => setMenuOpen(false)}
+            firstItemRef={firstMobileItemRef}
+          />
         )}
       </div>
 

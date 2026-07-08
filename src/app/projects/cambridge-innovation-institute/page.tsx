@@ -31,7 +31,7 @@ const [masterTemplates, dataFlow, signage] = project.overviewImages;
 // -- Overview: Role (replace placeholder with final copy) --------------------
 
 const overviewRole =
-  'At Cambridge Innovation Institute I was a Senior Designer supporting events and production company initiatives. I collaborated with marketers, engineers, meeting planners, and other individual contributors.';
+  'At Cambridge Innovation Institute I was a Senior Designer supporting events and production company initiatives. I collaborated with marketers, engineers, meeting planners, production assistants, and other individual contributors.';
 
 // -- Section 01 -------------------------------------------------------------
 
