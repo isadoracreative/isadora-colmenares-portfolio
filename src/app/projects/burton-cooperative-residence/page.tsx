@@ -6,13 +6,15 @@ import DividerShort from '@/components/DividerShort';
 
 const project = requireProjectBySlug('burton-cooperative-residence');
 
-const plan2d = project.overviewImages.find((img) => img.src.endsWith('burton-plan-2d.png'));
-const model3d = project.overviewImages.find((img) => img.src.endsWith('burton-model-3d-isometric.png'));
-const spatialRender = project.overviewImages.find((img) => img.src.endsWith('burton-render-spatial.png'));
+const plan2d = project.overviewImages?.find((img) => img.src.endsWith('burton-plan-2d.png'));
+const model3d = project.overviewImages?.find((img) => img.src.endsWith('burton-model-3d-isometric.png'));
+const spatialRender = project.overviewImages?.find((img) => img.src.endsWith('burton-render-spatial.png'));
 
 if (!plan2d || !model3d || !spatialRender) {
   throw new Error('Missing overview images for burton-cooperative-residence');
 }
+
+const overviewImageTrio = [plan2d, model3d, spatialRender] as const;
 
 // -- Section 01 -------------------------------------------------------------
 
@@ -274,7 +276,7 @@ export default function BurtonPage() {
           {/* Image group — three-up row; full width at every breakpoint */}
           <div className="col-span-12">
             <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
-              {[plan2d, model3d, spatialRender].map(({ src, alt, caption, border }) => (
+              {overviewImageTrio.map(({ src, alt, caption, border }) => (
                 <ProjectCaptionedImage
                   key={caption}
                   src={src}
