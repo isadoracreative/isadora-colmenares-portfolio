@@ -84,7 +84,7 @@ const EM = '\u2003';
 
 const workExperience = [
   {
-    logo: '/images/logo-amnh.jpg',
+    logo: '/images/logo-amnh.png',
     logoAlt: 'American Museum of Natural History',
     role: 'Contract Experience Designer',
     company: 'American Museum of Natural History',
@@ -96,7 +96,7 @@ const workExperience = [
     ],
   },
   {
-    logo: '/images/logo-korn-ferry.jpg',
+    logo: '/images/logo-korn-ferry.png',
     logoAlt: 'Korn Ferry',
     role: 'Experience Design Manager',
     company: 'Korn Ferry',
@@ -108,7 +108,7 @@ const workExperience = [
     ],
   },
   {
-    logo: '/images/logo-verizon.jpg',
+    logo: '/images/logo-verizon.png',
     logoAlt: 'Verizon',
     role: 'Contract Experience Designer',
     company: 'Verizon',
@@ -119,7 +119,7 @@ const workExperience = [
     ],
   },
   {
-    logo: '/images/logo-ubs.jpg',
+    logo: '/images/logo-ubs.png',
     logoAlt: 'UBS',
     role: 'UX Design Lead',
     company: 'UBS',
@@ -130,7 +130,7 @@ const workExperience = [
     ],
   },
   {
-    logo: '/images/logo-aon.jpg',
+    logo: '/images/logo-aon.png',
     logoAlt: 'Aon',
     role: 'Principal UX Designer & UX Engineering Lead',
     company: 'Aon',
@@ -142,7 +142,7 @@ const workExperience = [
     ],
   },
   {
-    logo: '/images/logo-cii.jpg',
+    logo: '/images/logo-cii.png',
     logoAlt: 'Cambridge Innovation Institute',
     role: 'Senior Designer',
     company: 'Cambridge Innovation Institute',
@@ -154,7 +154,7 @@ const workExperience = [
     ],
   },
   {
-    logo: '/images/logo-inpa.jpg',
+    logo: '/images/logo-inpa.png',
     logoAlt: 'National Institute for Amazonian Research (INPA)',
     role: 'Graphic Designer',
     company: 'National Institute for Amazonian Research (INPA)',

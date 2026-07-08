@@ -23,14 +23,14 @@ const section01Highlights = [
       'Recorded severity of slopes to identify primary runoff pathways and structural weak points prone to erosion or saturation.',
   },
   {
-    title: 'Regulatory Compliance Mapping',
+    title: 'Drainage Regulation Compliance',
     body:
       'Reviewed engineers\u2019 interpretation of municipal drainage codes to understand design constraints pertaining to on-site water retention and corridor diversion.',
   },
   {
     title: 'Public-Private Spatial Balancing',
     body:
-      'Managed the transition zone between secure private residential landscape architecture and accessible public infrastructure.',
+      'Managed the intersection of secure private residential landscape architecture and accessible public infrastructure.',
   },
 ] as const;
 
@@ -67,7 +67,7 @@ const section01Images: CaptionedImageProps[] = [
 
 const section02Highlights = [
   {
-    title: '2D Vector Foundation (AutoCAD)',
+    title: 'Flat Vector Foundation (AutoCAD)',
     body:
       'Drafted master top-view technical plans detailing exact property lines, public pedestrian right-of-ways, and core structural footprints to secure a precise baseline.',
   },
@@ -139,26 +139,26 @@ const section03Images: CaptionedImageProps[] = [
 
 const section04Highlights = [
   {
+    title: 'Erosion Stabilization',
+    body:
+      'Identified issue with plantings intended to support erosion control due to sparsity of installation and lack of root system maturity.',
+  },
+  {
+    title: 'Complex Runoff Patterns',
+    body:
+      'Documented water runoff across multiple on-site visits in inclement weather to capture evidence of storm effects.',
+  },
+  {
     title: 'Subsurface Hydrological Routing',
     body:
-      'Collaborated on a subterranean drainage network and piping infrastructure to channel run-off away from residential foundations and public walkways.',
-  },
-  {
-    title: 'Utility & Structural Retrofitting',
-    body:
-      'Coordinated layout vectors around critical underground gas lines to execute structural masonry repairs on compromised perimeter walls while maintaining continuous site safety.',
-  },
-  {
-    title: 'Mechanical Slope Stabilization',
-    body:
-      'Deployed high-performance environmental safeguards\u2014including temporary drainage bypass protocols, industrial seed blankets, and lower boundary safety netting\u2014to anchor vulnerable topsoil prior to root system maturity.',
+      'Collaborated on a subterranean drainage network and piping infrastructure to channel runoff away from residential foundations and public walkways.',
   },
 ] as const;
 
 const section04Hero: CaptionedImageProps = {
   src: '/images/burton-section-04-initial-planting.jpg',
-  alt: 'Initial planting installation including native Black Chokeberry supporting erosion control',
-  caption: 'Initial planting installation including native Black Chokeberry supporting erosion control',
+  alt: 'Initial planting installation including native Black Chokeberry intended to support erosion control',
+  caption: 'Initial planting installation including native Black Chokeberry intended to support erosion control',
 };
 
 const section04TwoUp: CaptionedImageProps[] = [
@@ -181,19 +181,19 @@ const section04TwoUp: CaptionedImageProps[] = [
 
 const section05Highlights = [
   {
-    title: 'Decoupled Multi-Tier Retention',
+    title: 'Resident-Requested Native Plantings',
     body:
-      'Created an elegant stepped landscape that divides major downpours into manageable containment cells.',
+      'Created an elegant stepped landscape that supports a wide variety of pollinator-attracting native plantings and offers an aesthetically pleasing experience for residents, visitors, and passers-by.',
   },
   {
     title: 'On-Site Precipitation Capture',
     body:
-      'Diverted 100% of critical-threshold surface runoff away from municipal sidewalks and back into native soil ecosystems.',
+      'Diverted 100% of surface runoff away from municipal sidewalks and back into native soil ecosystems.',
   },
   {
-    title: 'Visual-Technical Portfolio Delivery',
+    title: 'Visual-Technical Documentation',
     body:
-      'Compiled 2D technical drafts, 3D massing wireframes, and textured renders into a narrative that demonstrates both artistic vision and systemic execution to the FIT admissions committee.',
+      'AutoCAD drafting and SketchUp modeling serve as references for future planning and upgrades.',
   },
 ] as const;
 
@@ -244,12 +244,7 @@ export default function BurtonPage() {
               </div>
 
               <p className="font-body font-medium text-para-lg text-text-primary leading-tight text-pretty">
-                Translating community objectives into functional physical master
-                plans requires balancing qualitative human criteria with precise
-                site parameters. The central objective at the Burton Cooperative
-                was to synthesize resident feedback into a systemic landscape
-                design layout that anchors a topographically sensitive urban
-                incline while cultivating active pollinator habitats.
+              The Burton Cooperative’s goal was to synthesize resident feedback into a precise, functional landscape design that anchors a topographically sensitive urban incline while cultivating active pollinator habitats.
               </p>
             </div>
 
@@ -257,23 +252,16 @@ export default function BurtonPage() {
               <div className="flex flex-col gap-2">
                 <h6>Challenge</h6>
                 <p className="text-text-primary text-pretty">
-                  Cross-disciplinary project management exposed severe vendor
-                  liabilities: the primary civil engineering firm underestimated
-                  stormwater runoff, while the initial landscaping crew deployed
-                  inadequate stone barriers and immature flora. These compounding
-                  failures accelerated topsoil erosion and threatened the
-                  structural integrity of both the hillside and the residential
-                  foundation.
+                Following a retaining wall update, residents requested the removal of invasive plant species and favored native plantings for the front landscaping reconstruction. Cross-disciplinary project management exposed vendor issues: an engineering firm underestimated stormwater runoff, and a landscaping crew deployed inadequate stone barriers and immature flora. These failures accelerated topsoil erosion and threatened existing structures.
                 </p>
               </div>
 
               <div className="flex flex-col gap-2">
                 <h6>Solution</h6>
                 <p className="text-text-primary text-pretty">
-                  Designed a landscaping plan using AutoCAD drafting and SketchUp
-                  modeling to simulate placement of native pollinator-attracting
-                  plantings, coordinating an auxiliary contractor to engineer a
-                  subsurface drainage pipeline. This structural correction
+                  Designed a landscaping model to simulate placement of native
+                  pollinator-attracting plantings and coordinated an auxiliary contractor
+                  to engineer a subsurface drainage pipeline. This structural correction
                   mitigated the erosion problem while establishing natural
                   irrigation support that recycled diverted water runoff to
                   nourish the lower lawn plantings.
@@ -326,7 +314,7 @@ export default function BurtonPage() {
         <ProjectContentSection
           id="section-02-heading"
           number="02"
-          title="Technical Drafting & Hardscape Layout (AutoCAD & SketchUp)"
+          title="Technical Drafting & Hardscape Layout"
           lead="Translated site measurements into precise 2D AutoCAD vector blueprints to establish spatial boundaries and hardscape architecture. Used SketchUp environment to build out the volumetric hardscape profiles, visualizing 3D structures and multi-tiered lawn geometries required to determine planting zones."
           highlights={section02Highlights}
         >
@@ -339,7 +327,7 @@ export default function BurtonPage() {
         <ProjectContentSection
           id="section-03-heading"
           number="03"
-          title="Planting Simulation & 3D Spatial Modeling (SketchUp)"
+          title="Planting Simulation & 3D Spatial Modeling"
           lead="Translated qualitative co-op resident feedback into hand-drawn sketches and 3D models to establish planting zones, targeting native species to support local pollinator populations. Used SketchUp to model volumetric soil gradients and visualize plant canopies and lower floral tiers, ensuring sustainable growth and erosion control."
           highlights={section03Highlights}
         >
