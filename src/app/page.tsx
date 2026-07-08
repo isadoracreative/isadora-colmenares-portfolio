@@ -49,7 +49,7 @@ const coreSkills = [
       'Miro, FigJam',
       'VS Code, Cursor (Claude)',
       'Adobe Creative Cloud (Photoshop, Illustrator, InDesign, After Effects)',
-      'SketchUp (Basic)',
+      'AutoCAD, SketchUp (Basic)',
     ],
   },
   {
