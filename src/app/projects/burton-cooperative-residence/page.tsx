@@ -246,7 +246,7 @@ export default function BurtonPage() {
               </div>
 
               <p className="font-body font-medium text-para-lg text-text-primary leading-tight text-pretty">
-              The Burton Cooperative’s goal was to synthesize resident feedback into a precise, functional landscape design that anchors a topographically sensitive urban incline while cultivating active pollinator habitats.
+              The Burton Cooperative’s goal was to synthesizing resident feedback into a precise, functional landscape design that anchors a topographically sensitive urban incline while complying with city regulations and maintaining aesthetics in a high traffic area.
               </p>
             </div>
 
