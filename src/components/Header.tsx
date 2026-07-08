@@ -13,7 +13,8 @@ const navLinks: NavLink[] = [
 
 const projectNavLinks: NavLink[] = projects.map((project) => ({
   href: projectNavHref(project),
-  label: project.clientName,
+  eyebrow: project.clientName,
+  label: project.projectTitle,
 }));
 
 /*

@@ -9,6 +9,8 @@ const FOCUS_RING =
 export type NavLink = {
   href: string;
   label: string;
+  /** Optional eyebrow line rendered above the primary label. */
+  eyebrow?: string;
 };
 
 type HeaderNavDropdownProps = {
@@ -50,7 +52,7 @@ export default function HeaderNavDropdown({
           : 'right-0 w-[100px] border-l border-r border-b border-gray-20',
       ].join(' ')}
     >
-      {links.map(({ href, label }, index) => {
+      {links.map(({ href, label, eyebrow }, index) => {
         const isActive = isLinkActive(href, pathname);
         return (
           <Link
@@ -60,9 +62,13 @@ export default function HeaderNavDropdown({
             onClick={onLinkClick}
             aria-current={isActive ? 'page' : undefined}
             className={[
-              'flex items-center px-6 py-4 text-para-sm font-body text-text-primary transition-colors',
+              'flex px-6 py-4 transition-colors',
               FOCUS_RING,
+              eyebrow ? 'flex-col gap-0.5' : 'items-center',
               isDesktop ? 'whitespace-nowrap hover:bg-core-green-light' : '',
+              !isDesktop
+                ? 'text-para-sm font-body text-text-primary'
+                : '',
               !isDesktop && isActive
                 ? 'border-l-[3px] border-core-green'
                 : !isDesktop
@@ -70,7 +76,19 @@ export default function HeaderNavDropdown({
                   : '',
             ].join(' ')}
           >
-            {label}
+            {eyebrow && (
+              <span className="font-body text-para-xs text-text-secondary">
+                {eyebrow}
+              </span>
+            )}
+            <span
+              className={[
+                'font-body text-text-primary',
+                eyebrow ? 'text-para-sm font-medium' : 'text-para-sm',
+              ].join(' ')}
+            >
+              {label}
+            </span>
           </Link>
         );
       })}
