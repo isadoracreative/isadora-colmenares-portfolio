@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
-import HeaderNavDropdown, { type NavLink } from '@/components/HeaderNavDropdown';
+import HeaderNavDropdown, { type NavLink, isNavLinkActive } from '@/components/HeaderNavDropdown';
 import { projects, projectNavHref } from '@/data/projects';
 
 const navLinks: NavLink[] = [
@@ -31,8 +31,8 @@ export default function Header() {
 
   /*
     Mobile menu focus management — WCAG 2.4.3 (Level A): Focus Order.
-    • On open  → focus the first nav item so keyboard/AT users know new
-                 content is available.
+    • On open  → focus the active nav item (or the first item if none match) so
+                 keyboard/AT users land on the current page indicator.
     • On close → return focus to the hamburger button so the keyboard user
                  lands back where they were (APG Disclosure Navigation pattern).
     The `wasOpen` ref prevents the close-focus from firing on initial mount.
@@ -44,7 +44,9 @@ export default function Header() {
   useEffect(() => {
     if (menuOpen) {
       wasOpen.current = true;
-      firstMobileItemRef.current?.focus();
+      requestAnimationFrame(() => {
+        firstMobileItemRef.current?.focus();
+      });
     } else if (wasOpen.current) {
       menuButtonRef.current?.focus();
     }
@@ -100,8 +102,8 @@ export default function Header() {
           Mobile menu overlay — absolutely positioned so it drops over page content
           rather than pushing it down. Aligns to the right edge of the mobile bar,
           flush with the hamburger button. Width matches the Figma "menu container"
-          spec (100px). Border on left, right, and bottom only (top is flush with
-          the header bar which already has its own bottom border).
+          spec (100px). Offset 1px below the bar so the header bottom border
+          stays visible. Border on left, right, and bottom only.
         */}
         {menuOpen && (
           <HeaderNavDropdown
@@ -126,10 +128,10 @@ export default function Header() {
           <nav aria-label="Main navigation" className="flex items-stretch">
             <Link
               href="/"
-              aria-current={pathname === '/' ? 'page' : undefined}
+              aria-current={isNavLinkActive('/', pathname) ? 'page' : undefined}
               className={[
                 `flex items-center px-4 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
-                pathname === '/'
+                isNavLinkActive('/', pathname)
                   ? 'border-b-[3px] border-core-green'
                   : 'hover:bg-core-green-light',
               ].join(' ')}
@@ -150,12 +152,12 @@ export default function Header() {
             >
               <Link
                 href="/projects"
-                aria-current={pathname.startsWith('/projects') ? 'page' : undefined}
+                aria-current={isNavLinkActive('/projects', pathname) ? 'page' : undefined}
                 aria-expanded={projectsOpen}
                 aria-controls={projectsOpen ? 'projects-nav' : undefined}
                 className={[
                   `flex items-center px-4 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
-                  pathname.startsWith('/projects')
+                  isNavLinkActive('/projects', pathname)
                     ? 'border-b-[3px] border-core-green'
                     : 'hover:bg-core-green-light',
                 ].join(' ')}

@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import type { RefObject } from 'react';
 
-const FOCUS_RING =
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-green focus-visible:ring-inset';
+const LINK_FOCUS =
+  'focus-visible:outline-none focus-visible:ring-0 focus-visible:bg-core-green-light';
 
 export type NavLink = {
   href: string;
@@ -23,10 +23,26 @@ type HeaderNavDropdownProps = {
   ariaLabel?: string;
 };
 
-function isLinkActive(href: string, pathname: string): boolean {
-  if (href === '/') return pathname === '/';
-  if (href === '/projects') return pathname === '/projects';
-  return pathname.startsWith(href);
+function normalizePath(path: string): string {
+  if (!path || path === '/') return '/';
+  return path.replace(/\/$/, '');
+}
+
+export function isNavLinkActive(href: string, pathname: string): boolean {
+  const path = normalizePath(pathname);
+  const [hrefPath, hrefHash] = href.split('#');
+  const linkPath = normalizePath(hrefPath);
+
+  if (linkPath === '/') return path === '/';
+  if (linkPath === '/projects' && !hrefHash) return path === '/projects';
+  if (hrefHash) {
+    return (
+      path === linkPath &&
+      typeof window !== 'undefined' &&
+      window.location.hash.replace(/^#/, '') === hrefHash
+    );
+  }
+  return path === linkPath || path.startsWith(`${linkPath}/`);
 }
 
 export default function HeaderNavDropdown({
@@ -39,36 +55,36 @@ export default function HeaderNavDropdown({
   ariaLabel = 'Mobile navigation',
 }: HeaderNavDropdownProps) {
   const isDesktop = variant === 'desktop';
+  const focusIndex = links.findIndex(({ href }) => isNavLinkActive(href, pathname));
 
   return (
     <nav
       id={id}
       aria-label={ariaLabel}
       className={[
-        'absolute top-full z-50 bg-white py-3',
-        FOCUS_RING,
+        'absolute z-50 bg-white py-3',
         isDesktop
-          ? 'right-0 w-max min-w-full border border-gray-20'
-          : 'right-0 w-[100px] border-l border-r border-b border-gray-20',
+          ? 'top-full right-0 w-max min-w-full border border-gray-20'
+          : 'top-[calc(100%+1px)] right-0 w-[100px] border-l border-r border-b border-gray-20',
       ].join(' ')}
     >
       {links.map(({ href, label, eyebrow }, index) => {
-        const isActive = isLinkActive(href, pathname);
+        const isActive = isNavLinkActive(href, pathname);
         return (
           <Link
             key={href + label}
             href={href}
-            ref={index === 0 ? firstItemRef : undefined}
+            ref={index === (focusIndex >= 0 ? focusIndex : 0) ? firstItemRef : undefined}
             onClick={onLinkClick}
             aria-current={isActive ? 'page' : undefined}
             className={[
               'flex px-6 py-4 transition-colors',
-              FOCUS_RING,
+              !isActive ? LINK_FOCUS : 'focus-visible:outline-none focus-visible:ring-0',
               eyebrow ? 'flex-col gap-0.5' : 'items-center',
               isDesktop ? 'whitespace-nowrap' : 'text-para-sm font-body text-text-primary',
               isActive
                 ? 'border-l-[3px] border-core-green'
-                : 'hover:bg-core-green-light',
+                : 'border-l-[3px] border-transparent hover:bg-core-green-light',
             ].join(' ')}
           >
             {eyebrow && (
