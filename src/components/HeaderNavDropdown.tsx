@@ -14,13 +14,17 @@ export type NavLink = {
 type HeaderNavDropdownProps = {
   links: NavLink[];
   pathname: string;
-  onLinkClick: () => void;
+  onLinkClick?: () => void;
   firstItemRef?: RefObject<HTMLAnchorElement | null>;
   id?: string;
+  variant?: 'mobile' | 'desktop';
+  ariaLabel?: string;
 };
 
 function isLinkActive(href: string, pathname: string): boolean {
-  return href === '/' ? pathname === '/' : pathname.startsWith(href);
+  if (href === '/') return pathname === '/';
+  if (href === '/projects') return pathname === '/projects';
+  return pathname.startsWith(href);
 }
 
 export default function HeaderNavDropdown({
@@ -29,27 +33,41 @@ export default function HeaderNavDropdown({
   onLinkClick,
   firstItemRef,
   id = 'mobile-nav',
+  variant = 'mobile',
+  ariaLabel = 'Mobile navigation',
 }: HeaderNavDropdownProps) {
+  const isDesktop = variant === 'desktop';
+
   return (
     <nav
       id={id}
-      aria-label="Mobile navigation"
-      className={`absolute top-full right-0 w-[100px] bg-white border-l border-r border-b border-gray-20 py-3 z-50 ${FOCUS_RING}`}
+      aria-label={ariaLabel}
+      className={[
+        'absolute top-full z-50 bg-white py-3',
+        FOCUS_RING,
+        isDesktop
+          ? 'right-0 w-max min-w-full border border-gray-20'
+          : 'right-0 w-[100px] border-l border-r border-b border-gray-20',
+      ].join(' ')}
     >
       {links.map(({ href, label }, index) => {
         const isActive = isLinkActive(href, pathname);
         return (
           <Link
-            key={href}
+            key={href + label}
             href={href}
             ref={index === 0 ? firstItemRef : undefined}
             onClick={onLinkClick}
             aria-current={isActive ? 'page' : undefined}
             className={[
-              `flex items-center px-6 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
-              isActive
+              'flex items-center px-6 py-4 text-para-sm font-body text-text-primary transition-colors',
+              FOCUS_RING,
+              isDesktop ? 'whitespace-nowrap hover:bg-core-green-light' : '',
+              !isDesktop && isActive
                 ? 'border-l-[3px] border-core-green'
-                : 'hover:bg-core-green-light',
+                : !isDesktop
+                  ? 'hover:bg-core-green-light'
+                  : '',
             ].join(' ')}
           >
             {label}

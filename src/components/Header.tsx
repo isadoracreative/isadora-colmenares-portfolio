@@ -3,12 +3,18 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
-import HeaderNavDropdown from '@/components/HeaderNavDropdown';
+import HeaderNavDropdown, { type NavLink } from '@/components/HeaderNavDropdown';
+import { projects, projectHref } from '@/data/projects';
 
-const navLinks = [
+const navLinks: NavLink[] = [
   { href: '/', label: 'About' },
   { href: '/projects', label: 'Projects' },
 ];
+
+const projectNavLinks: NavLink[] = projects.map((project) => ({
+  href: projectHref(project) ?? '/projects',
+  label: project.clientName,
+}));
 
 /*
   Focus ring shared class — applied to all interactive nav elements via
@@ -20,6 +26,7 @@ const FOCUS_RING = 'focus-visible:outline-none focus-visible:ring-2 focus-visibl
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [projectsOpen, setProjectsOpen] = useState(false);
 
   /*
     Mobile menu focus management — WCAG 2.4.3 (Level A): Focus Order.
@@ -51,6 +58,15 @@ export default function Header() {
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [menuOpen]);
+
+  useEffect(() => {
+    if (!projectsOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setProjectsOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [projectsOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-20">
@@ -107,24 +123,56 @@ export default function Header() {
           </Link>
 
           <nav aria-label="Main navigation" className="flex items-stretch">
-          {navLinks.map(({ href, label }) => {
-            const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
-            return (
-                <Link
-                  key={href}
-                  href={href}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={[
-                    `flex items-center px-4 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
-                    isActive
-                      ? 'border-b-[3px] border-core-green'
-                      : 'hover:bg-core-green-light',
-                  ].join(' ')}
-                >
-                  {label}
-                </Link>
-              );
-            })}
+            <Link
+              href="/"
+              aria-current={pathname === '/' ? 'page' : undefined}
+              className={[
+                `flex items-center px-4 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
+                pathname === '/'
+                  ? 'border-b-[3px] border-core-green'
+                  : 'hover:bg-core-green-light',
+              ].join(' ')}
+            >
+              About
+            </Link>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setProjectsOpen(true)}
+              onMouseLeave={() => setProjectsOpen(false)}
+              onFocus={() => setProjectsOpen(true)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+                  setProjectsOpen(false);
+                }
+              }}
+            >
+              <Link
+                href="/projects"
+                aria-current={pathname.startsWith('/projects') ? 'page' : undefined}
+                aria-expanded={projectsOpen}
+                aria-controls={projectsOpen ? 'projects-nav' : undefined}
+                className={[
+                  `flex items-center px-4 py-4 text-para-sm font-body text-text-primary transition-colors ${FOCUS_RING}`,
+                  pathname.startsWith('/projects')
+                    ? 'border-b-[3px] border-core-green'
+                    : 'hover:bg-core-green-light',
+                ].join(' ')}
+              >
+                Projects
+              </Link>
+
+              {projectsOpen && (
+                <HeaderNavDropdown
+                  id="projects-nav"
+                  variant="desktop"
+                  ariaLabel="Projects"
+                  links={projectNavLinks}
+                  pathname={pathname}
+                  onLinkClick={() => setProjectsOpen(false)}
+                />
+              )}
+            </div>
           </nav>
         </div>
       </div>
