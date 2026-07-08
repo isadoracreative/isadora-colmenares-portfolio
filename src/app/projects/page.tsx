@@ -1,7 +1,8 @@
 import DividerShort from "@/components/DividerShort";
 import DividerFull from "@/components/DividerFull";
 import ProjectPreview from "@/components/ProjectPreview";
-import { projects, projectHref } from "@/data/projects";
+import { projects, projectHref, projectAnchorId } from "@/data/projects";
+import ProjectHashScroll from "@/components/ProjectHashScroll";
 
 /* -----------------------------------------------------------------------------
    Page
@@ -16,6 +17,7 @@ const PREVIEW_ROTATION_STAGGER_MS = 1200;
 export default function ProjectsPage() {
   return (
     <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
+      <ProjectHashScroll />
       <div className="container-inner py-6 sm:py-9 flex flex-col gap-9">
 
         {/* -- Page heading ------------------------------------------------ */}
@@ -30,6 +32,7 @@ export default function ProjectsPage() {
             {index > 0 && <DividerFull />}
             <ProjectPreview
               {...project}
+              anchorId={projectAnchorId(project)}
               tags={[...project.tags]}
               overviewImages={project.overviewImages?.map(({ src, alt }) => ({ src, alt }))}
               href={projectHref(project)}

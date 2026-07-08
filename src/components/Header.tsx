@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import HeaderNavDropdown, { type NavLink } from '@/components/HeaderNavDropdown';
-import { projects, projectHref } from '@/data/projects';
+import { projects, projectNavHref } from '@/data/projects';
 
 const navLinks: NavLink[] = [
   { href: '/', label: 'About' },
@@ -12,7 +12,7 @@ const navLinks: NavLink[] = [
 ];
 
 const projectNavLinks: NavLink[] = projects.map((project) => ({
-  href: projectHref(project) ?? '/projects',
+  href: projectNavHref(project),
   label: project.clientName,
 }));
 

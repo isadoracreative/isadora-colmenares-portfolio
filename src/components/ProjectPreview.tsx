@@ -25,6 +25,8 @@ interface ProjectPreviewProps {
   showButton?: boolean;
   /** Delays image rotation so stacked previews fade on different beats. */
   rotationOffsetMs?: number;
+  /** When set, applied to the client name for in-page anchor navigation. */
+  anchorId?: string;
   className?: string;
 }
 
@@ -66,6 +68,7 @@ export default function ProjectPreview({
   imageBorder = false,
   showButton = false,
   rotationOffsetMs = 0,
+  anchorId,
   className = '',
 }: ProjectPreviewProps) {
   const rotatingImages =
@@ -111,7 +114,13 @@ export default function ProjectPreview({
       className={`flex flex-col gap-3 ${className}`.trim()}
     >
       {/* -- Client name — full-width row -------------------------------- */}
-      <p className="font-body text-para-sm text-text-secondary">
+      <p
+        id={anchorId}
+        className={[
+          'font-body text-para-sm text-text-secondary',
+          anchorId ? 'scroll-mt-20' : '',
+        ].join(' ')}
+      >
         {clientName}
       </p>
 

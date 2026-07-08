@@ -214,3 +214,17 @@ export function requireProjectBySlug(slug: string): Project {
 export function projectHref(project: Project): string | undefined {
   return project.slug ? `/projects/${project.slug}` : undefined;
 }
+
+/** Stable in-page anchor id for the projects listing. */
+export function projectAnchorId(project: Project): string {
+  if (project.slug) return project.slug;
+  return project.clientName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/** Header nav target — case-study route when available, otherwise listing anchor. */
+export function projectNavHref(project: Project): string {
+  return projectHref(project) ?? `/projects#${projectAnchorId(project)}`;
+}
