@@ -181,6 +181,7 @@ export const projects: readonly Project[] = [
     ],
   },
   {
+    slug: 'inpa',
     clientName: 'National Institute for Amazonian Research (INPA)',
     projectTitle: 'International Ornithology Congress',
     projectDescription:
@@ -196,6 +197,26 @@ export const projects: readonly Project[] = [
     imageAlt:
       'International Ornithology Congress banner at the Manaus 2015 joint NOC/CBO congress venue',
     imageBorder: true,
+    overviewImages: [
+      {
+        src: '/images/inpa-overview-backdrop-signage.jpg',
+        alt: 'Large-scale environmental backdrop signage for stage presentations at the Manaus 2015 joint congress',
+        caption: 'Large-scale environmental backdrop signage for stage presentations',
+        border: true,
+      },
+      {
+        src: '/images/inpa-overview-keynote-staging.jpg',
+        alt: 'Keynote presentation staging and integrated environmental branding system',
+        caption: 'Keynote presentation staging and integrated environmental branding system',
+        border: true,
+      },
+      {
+        src: '/images/inpa-overview-event-program.jpg',
+        alt: 'Event program for self-guided navigation and detailed session information',
+        caption: 'Event program for self-guided navigation and detailed session information',
+        border: false,
+      },
+    ],
   },
 ];
 
