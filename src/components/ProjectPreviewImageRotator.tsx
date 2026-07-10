@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ProgressiveImage from '@/components/ProgressiveImage';
 import { resolveImageSrc } from '@/data/image-assets';
 
@@ -24,8 +24,10 @@ export default function ProjectPreviewImageRotator({
   sizes = '(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw',
   rotationOffsetMs = 0,
 }: ProjectPreviewImageRotatorProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [hasEnteredView, setHasEnteredView] = useState(false);
   const [mountedIndices, setMountedIndices] = useState<number[]>([0]);
 
   useEffect(() => {
@@ -38,7 +40,25 @@ export default function ProjectPreviewImageRotator({
   }, []);
 
   useEffect(() => {
-    if (reduceMotion || images.length <= 1) return;
+    const element = containerRef.current;
+    if (!element || hasEnteredView) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEnteredView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [hasEnteredView]);
+
+  useEffect(() => {
+    if (reduceMotion || images.length <= 1 || !hasEnteredView) return;
 
     const advance = () => {
       setActiveIndex((currentIndex) => (currentIndex + 1) % images.length);
@@ -54,7 +74,7 @@ export default function ProjectPreviewImageRotator({
       window.clearTimeout(timeoutId);
       if (intervalId !== undefined) window.clearInterval(intervalId);
     };
-  }, [images.length, reduceMotion, rotationOffsetMs]);
+  }, [images.length, reduceMotion, rotationOffsetMs, hasEnteredView]);
 
   useEffect(() => {
     if (images.length <= 1) return;
@@ -99,6 +119,7 @@ export default function ProjectPreviewImageRotator({
 
   return (
     <div
+      ref={containerRef}
       role="img"
       aria-label={images[visibleIndex]?.alt ?? ''}
       className="absolute inset-0 bg-gray-10"
