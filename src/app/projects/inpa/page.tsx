@@ -2,6 +2,7 @@ import ProjectHeader from '@/components/ProjectHeader';
 import { requireProjectBySlug } from '@/data/projects';
 import ProjectContentSection from '@/components/ProjectContentSection';
 import ProjectCaptionedImage, { type CaptionedImageProps } from '@/components/ProjectCaptionedImage';
+import ProgressiveImage from '@/components/ProgressiveImage';
 import DividerShort from '@/components/DividerShort';
 
 const project = requireProjectBySlug('inpa');
@@ -120,20 +121,21 @@ const section04Highlights = [
   },
 ] as const;
 
-const section04TwoUp: CaptionedImageProps[] = [
-  {
-    src: '/images/inpa-section-04-staff-apparel.jpg',
-    alt: 'Staff identity apparel and color-coded badge',
-    caption: 'Staff identity apparel and color-coded badge',
-    sizes: '(min-width: 640px) 482px, 100vw',
-  },
-  {
-    src: '/images/inpa-section-04-attendee-badges.jpg',
-    alt: 'Color-coded attendee identification badges for varying levels of event access',
-    caption: 'Color-coded attendee identification badges for varying levels of event access',
-    sizes: '(min-width: 640px) 482px, 100vw',
-  },
-];
+const section04StaffApparel = {
+  src: '/images/inpa-section-04-staff-apparel.jpg',
+  alt: 'Staff identity apparel and color-coded badge',
+  caption: 'Staff identity apparel and color-coded badge',
+  width: 1800,
+  height: 2800,
+} as const;
+
+const section04AttendeeBadges = {
+  src: '/images/inpa-section-04-attendee-badges.jpg',
+  alt: 'Color-coded attendee identification badges for varying levels of event access',
+  caption: 'Color-coded attendee identification badges for varying levels of event access',
+  width: 3008,
+  height: 2000,
+} as const;
 
 const section04Closing: CaptionedImageProps = {
   src: '/images/inpa-section-04-speaker-namecards.jpg',
@@ -305,10 +307,37 @@ export default function InpaPage() {
           lead="Deployed identity tokens as functional infrastructure used in venue access management, attendee routing, and panel speaker visibility."
           highlights={section04Highlights}
         >
-          <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
-            {section04TwoUp.map((image) => (
-              <ProjectCaptionedImage key={image.caption} {...image} />
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-x-6 lg:gap-x-9 gap-y-2">
+            <figure className="contents">
+              <div className="sm:col-span-4 sm:row-start-1">
+                <ProgressiveImage
+                  src={section04StaffApparel.src}
+                  alt={section04StaffApparel.alt}
+                  width={section04StaffApparel.width}
+                  height={section04StaffApparel.height}
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="block w-full h-auto"
+                />
+              </div>
+              <figcaption className="mb-4 sm:mb-0 sm:col-span-4 sm:row-start-2 font-body text-para-sm text-text-primary text-pretty">
+                {section04StaffApparel.caption}
+              </figcaption>
+            </figure>
+            <figure className="contents">
+              <div className="sm:col-span-8 sm:row-start-1 relative overflow-hidden">
+                <ProgressiveImage
+                  src={section04AttendeeBadges.src}
+                  alt={section04AttendeeBadges.alt}
+                  width={section04AttendeeBadges.width}
+                  height={section04AttendeeBadges.height}
+                  sizes="(min-width: 640px) 67vw, 100vw"
+                  className="block w-full h-auto sm:absolute sm:inset-0 sm:h-full sm:object-cover"
+                />
+              </div>
+              <figcaption className="sm:col-span-8 sm:row-start-2 font-body text-para-sm text-text-primary text-pretty">
+                {section04AttendeeBadges.caption}
+              </figcaption>
+            </figure>
           </div>
           <ProjectCaptionedImage {...section04Closing} />
         </ProjectContentSection>
