@@ -191,7 +191,7 @@ export default function VerizonPage() {
               <div className="flex flex-col gap-2">
                 <h6>Solution</h6>
                 <p className="text-text-primary text-pretty">
-                  Designed, specified, and deployed a robust conversational UI library, following established global design and documentation guidelines. By anchoring the library with an extensive component sticker sheet, explicit rule specifications, and a simulated message app flow environment, the extension successfully protected brand consistency and unified cross-functional design delivery.
+                  Designed, specified, and deployed a robust conversational UI library, following established global design and documentation guidelines. By anchoring the library with an extensive component sticker sheet, explicit rule specifications, and a simulated message app flow environment, the expansion successfully protected brand consistency and unified cross-functional design delivery.
                 </p>
               </div>
 
