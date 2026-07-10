@@ -7,6 +7,16 @@
  *   - Vectors, 3D renders, sketches, UI screenshots, text → PNG
  *   - Never WebP
  *
+ * Incremental processing:
+ *   Each file's mtime + size is cached in .image-optimize-cache.json (gitignored).
+ *   Unchanged files are skipped entirely — no resize, no re-encode, no blur
+ *   regeneration — so re-running the script only touches images that are new
+ *   or were actually replaced. This avoids silent re-compression drift (lossy
+ *   JPG re-encodes are not perfectly idempotent) and unrelated diff noise in
+ *   image-assets.ts. The cache is bootstrapped from the current
+ *   image-assets.ts on first sight of an already-committed file, so adopting
+ *   the cache doesn't force one big reprocessing pass.
+ *
  * Output:
  *   public/images/*.{png,jpg}  — width-capped display files
  *   src/data/image-assets.ts   — src + blurDataURL lookup for ProgressiveImage
@@ -18,6 +28,7 @@ import sharp from 'sharp';
 
 const IMAGE_DIR = path.join(process.cwd(), 'public/images');
 const OUTPUT_FILE = path.join(process.cwd(), 'src/data/image-assets.ts');
+const CACHE_FILE = path.join(process.cwd(), 'scripts/.image-optimize-cache.json');
 const MAX_WIDTH_PNG = 4800;
 const MAX_WIDTH_JPG = 3200;
 const JPG_QUALITY = 90;
@@ -107,14 +118,77 @@ function toPublicSrc(filePath) {
   return `/${relative.replace(/\\/g, '/')}`;
 }
 
-async function processImage(filePath) {
-  removeWebpSibling(filePath);
+function loadCache() {
+  if (!fs.existsSync(CACHE_FILE)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'));
+  } catch {
+    return {};
+  }
+}
 
+function saveCache(cache) {
+  fs.writeFileSync(CACHE_FILE, `${JSON.stringify(cache, null, 2)}\n`);
+}
+
+/** Parses the currently generated image-assets.ts so first-run caching can trust it. */
+function loadExistingAssetEntries() {
+  if (!fs.existsSync(OUTPUT_FILE)) return new Map();
+  const source = fs.readFileSync(OUTPUT_FILE, 'utf8');
+  const entries = new Map();
+  const re = /"(\/images\/[^"]+)":\s*\{\s*src:\s*"([^"]+)",\s*blurDataURL:\s*"([^"]+)",\s*\},/g;
+  let match;
+  while ((match = re.exec(source))) {
+    const [, key, src, blurDataURL] = match;
+    entries.set(key, { src, blurDataURL });
+  }
+  return entries;
+}
+
+async function processImage(filePath, cache, existingAssetEntries) {
   const basename = path.basename(filePath, path.extname(filePath));
   const displayPath = displayPathFor(filePath);
   const photo = isPhotoAsset(basename);
-  const originalSize = fs.statSync(filePath).size;
-  const samePath = path.resolve(filePath) === path.resolve(displayPath);
+  const format = photo ? 'JPG' : 'PNG';
+  const stat = fs.statSync(filePath);
+  const isDisplayPath = path.resolve(filePath) === path.resolve(displayPath);
+
+  const cached = cache[basename];
+  if (isDisplayPath && cached && cached.mtimeMs === stat.mtimeMs && cached.size === stat.size) {
+    return {
+      originalSrc: cached.displaySrc,
+      displaySrc: cached.displaySrc,
+      blurDataURL: cached.blurDataURL,
+      originalSize: stat.size,
+      outputSize: stat.size,
+      format: cached.format,
+      skipped: true,
+    };
+  }
+
+  // First time under the cache — trust the already-generated asset map instead
+  // of forcing a one-time re-encode of every existing image.
+  if (isDisplayPath && !cached) {
+    const displaySrc = toPublicSrc(displayPath);
+    const existing = existingAssetEntries.get(displaySrc);
+    if (existing) {
+      cache[basename] = { mtimeMs: stat.mtimeMs, size: stat.size, displaySrc: existing.src, blurDataURL: existing.blurDataURL, format };
+      return {
+        originalSrc: existing.src,
+        displaySrc: existing.src,
+        blurDataURL: existing.blurDataURL,
+        originalSize: stat.size,
+        outputSize: stat.size,
+        format,
+        skipped: true,
+      };
+    }
+  }
+
+  removeWebpSibling(filePath);
+
+  const originalSize = stat.size;
+  const samePath = isDisplayPath;
   const outputTarget = samePath
     ? path.join(IMAGE_DIR, `.tmp-${basename}${photo ? '.jpg' : '.png'}`)
     : displayPath;
@@ -148,15 +222,18 @@ async function processImage(filePath) {
 
   const displaySrc = toPublicSrc(displayPath);
   const blurDataURL = `data:image/png;base64,${blurBuffer.toString('base64')}`;
-  const outputSize = fs.statSync(displayPath).size;
+  const outputStat = fs.statSync(displayPath);
+
+  cache[basename] = { mtimeMs: outputStat.mtimeMs, size: outputStat.size, displaySrc, blurDataURL, format };
 
   return {
     originalSrc: displaySrc,
     displaySrc,
     blurDataURL,
     originalSize,
-    outputSize,
-    format: photo ? 'JPG' : 'PNG',
+    outputSize: outputStat.size,
+    format,
+    skipped: false,
   };
 }
 
@@ -175,12 +252,30 @@ function writeAssetMap(entries) {
 
 async function main() {
   const files = walkImages(IMAGE_DIR);
+  const cache = loadCache();
+  const existingAssetEntries = loadExistingAssetEntries();
+
+  // Drop cache entries for images that no longer exist.
+  const currentBasenames = new Set(files.map((f) => path.basename(f, path.extname(f))));
+  for (const key of Object.keys(cache)) {
+    if (!currentBasenames.has(key)) delete cache[key];
+  }
+
   const entries = [];
   let savedBytes = 0;
+  let processedCount = 0;
+  let skippedCount = 0;
 
   for (const filePath of files) {
-    const result = await processImage(filePath);
+    const result = await processImage(filePath, cache, existingAssetEntries);
     entries.push(result);
+
+    if (result.skipped) {
+      skippedCount += 1;
+      continue;
+    }
+
+    processedCount += 1;
     savedBytes += Math.max(0, result.originalSize - result.outputSize);
     console.log(
       `${path.basename(filePath)} → ${path.basename(result.displaySrc)} (${result.format}) (${formatBytes(result.originalSize)} → ${formatBytes(result.outputSize)})`,
@@ -195,7 +290,10 @@ async function main() {
   }
 
   writeAssetMap(entries);
-  console.log(`\nWrote ${entries.length} entries to src/data/image-assets.ts`);
+  saveCache(cache);
+
+  console.log(`\nProcessed ${processedCount} image(s), skipped ${skippedCount} unchanged image(s).`);
+  console.log(`Wrote ${entries.length} entries to src/data/image-assets.ts`);
   console.log(`Estimated transfer savings vs originals: ${formatBytes(savedBytes)}`);
 }
 

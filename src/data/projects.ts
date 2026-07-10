@@ -27,6 +27,7 @@ export interface Project {
 
 export const projects: readonly Project[] = [
   {
+    slug: 'verizon',
     clientName: 'Verizon',
     projectTitle: 'Conversational Design System',
     projectDescription:
@@ -42,6 +43,29 @@ export const projects: readonly Project[] = [
     imageAlt:
       'Figma component library and interaction specification screens for Verizon conversational AI',
     imageBorder: true,
+    overviewImages: [
+      {
+        src: '/images/verizon-overview-component-sticker-sheet.png',
+        alt: 'Component sticker sheet organized for rapid copy-and-paste layout assembly',
+        caption:
+          'Component sticker sheet, organized for rapid copy-and-paste layout assembly',
+        border: true,
+      },
+      {
+        src: '/images/verizon-overview-component-anatomy.png',
+        alt: 'Detailed component anatomy guidelines defining visual structure, interactivity, and configurations',
+        caption:
+          'Detailed component anatomy guidelines defining visual structure, interactivity, and configurations',
+        border: true,
+      },
+      {
+        src: '/images/verizon-overview-assembled-chat-experiences.png',
+        alt: 'Components assembled into a wide variety of chat experiences to validate product design viability',
+        caption:
+          'Assembling components into a wide variety of chat experiences to validate product design viability',
+        border: true,
+      },
+    ],
   },
   {
     slug: 'burton-cooperative-residence',
