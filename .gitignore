@@ -26,6 +26,7 @@
 
 # image optimization cache (scripts/optimize-images.mjs)
 /scripts/.image-optimize-cache.json
+/scripts/.preview-image-optimize-cache.json
 
 # debug
 npm-debug.log*

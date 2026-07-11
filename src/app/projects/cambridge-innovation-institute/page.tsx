@@ -169,34 +169,34 @@ const section04Highlights = [
 
 const section04Images: CaptionedImageProps[] = [
   {
-    src: '/images/cii-section-04-discovery-cross-channel.png',
+    src: '/images/cii-section-04-discovery-cross-channel.jpg',
     alt: 'Discovery on Target cross-channel design with responsive website and sponsorship brochure',
     caption:
       'Discovery on Target cross-channel design, featuring responsive website and sponsorship brochure with exhibition floor plan',
     border: true,
   },
   {
-    src: '/images/cii-section-04-dot-infographic.png',
+    src: '/images/cii-section-04-dot-infographic.jpg',
     alt: 'GDUSA award-winning infographic poster for Discovery on Target',
     caption: 'GDUSA award-winning infographic poster for Discovery on Target',
     border: true,
   },
   {
-    src: '/images/cii-section-04-aabc-regional.png',
+    src: '/images/cii-section-04-aabc-regional.jpg',
     alt: 'Advanced Automotive Battery Conference regional sub-branding on signage and infographic poster',
     caption:
       'Advanced Automotive Battery Conference regional sub-branding featured on promotional signage and an infographic poster',
     border: true,
   },
   {
-    src: '/images/cii-section-04-aabc-asia.png',
+    src: '/images/cii-section-04-aabc-asia.jpg',
     alt: 'AABC Asia regional branding with multi-language print announcement and web banners',
     caption:
       'Expansion of regional branding to Asia, featuring a multi-language print announcement and web banner advertising suite',
     border: true,
   },
   {
-    src: '/images/cii-section-04-wayfinding-booklet.png',
+    src: '/images/cii-section-04-wayfinding-booklet.jpg',
     alt: 'Design system applied to wayfinding signage and onsite tutorial booklet',
     caption: 'Design system application to wayfinding signage and onsite tutorial booklet',
     border: true,

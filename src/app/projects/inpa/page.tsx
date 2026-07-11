@@ -91,13 +91,13 @@ const section03Highlights = [
 
 const section03Images: CaptionedImageProps[] = [
   {
-    src: '/images/inpa-section-03-event-website.png',
+    src: '/images/inpa-section-03-event-website.jpg',
     alt: 'Responsive event website supporting content on desktop and mobile viewports',
     caption: 'Responsive event website supporting content on desktop and mobile viewports',
     border: true,
   },
   {
-    src: '/images/inpa-section-03-promotional-signage.png',
+    src: '/images/inpa-section-03-promotional-signage.jpg',
     alt: 'Promotional signage ensuring visual consistency across digital and public environments',
     caption: 'Promotional signage ensuring visual consistency across digital and public environments',
     border: true,
@@ -174,7 +174,7 @@ const section05Images: CaptionedImageProps[] = [
     border: true,
   },
   {
-    src: '/images/inpa-section-05-abstract-guide.png',
+    src: '/images/inpa-section-05-abstract-guide.jpg',
     alt: '329-page digital abstract guide for post-congress reference',
     caption: '329-page digital abstract guide for post-congress reference',
     border: true,

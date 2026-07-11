@@ -38,8 +38,7 @@ export interface Project {
   overviewImages?: readonly ProjectOverviewImage[];
 }
 
-export const projects: readonly Project[] = [
-  {
+export const projects: readonly Project[] = [{
     slug: 'verizon',
     clientName: 'Verizon',
     projectTitle: 'Conversational Design System',
@@ -58,11 +57,11 @@ export const projects: readonly Project[] = [
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/verizon-overview-component-sticker-sheet.png',
-        alt: 'Component sticker sheet organized for rapid copy-and-paste layout assembly',
+        src: '/images/previews/verizon-section-03-international-plan-setup.png',
+        alt: 'Select screens from user flow of AI-assisted international plan setup',
       },
       secondary: {
-        src: '/images/verizon-overview-component-anatomy.png',
+        src: '/images/previews/verizon-overview-component-anatomy.png',
         alt: 'Detailed component anatomy guidelines defining visual structure, interactivity, and configurations',
       },
     },
@@ -108,24 +107,24 @@ export const projects: readonly Project[] = [
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/aon-overview-mobile-simulation.png',
-        alt: 'Mobile-first interactive simulation interface with accessible Angular components',
+        src: '/images/previews/aon-overview-dashboard.jpg',
+        alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
       },
       secondary: {
-        src: '/images/aon-overview-dashboard.png',
-        alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
+        src: '/images/previews/aon-section-05-prioritization-templates.png',
+        alt: 'Feature prioritization process templates for product backlogs',
       },
     },
     overviewImages: [
       {
-        src: '/images/aon-overview-mobile-simulation.png',
+        src: '/images/aon-overview-mobile-simulation.jpg',
         alt: 'Mobile-first interactive simulation interface with accessible Angular components',
         caption:
           'Mobile-first interactive simulation interface powered by refactored, accessible Angular component structures',
         border: true,
       },
       {
-        src: '/images/aon-overview-dashboard.png',
+        src: '/images/aon-overview-dashboard.jpg',
         alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
         caption:
           'Enterprise SaaS B2B admin dashboard and responsive, B2B2C client-branded reporting interface',
@@ -152,7 +151,7 @@ export const projects: readonly Project[] = [
       'Design systems',
       'UX engineering',
     ],
-    imageSrc: '/images/project-arachnology-lab.jpg',
+    imageSrc: '/images/previews/project-arachnology-lab.jpg',
     imageAlt:
       'Arachnology Research Lab website showing the custom academic directory and researcher profiles',
   },
@@ -175,12 +174,12 @@ export const projects: readonly Project[] = [
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/cii-overview-master-templates.png',
-        alt: 'Design system master templates and tokens for conference branding',
+        src: '/images/previews/cii-overview-signage.jpg',
+        alt: 'Environmental signage mockup on three-dimensional venue architecture',
       },
       secondary: {
-        src: '/images/cii-overview-data-flow.png',
-        alt: 'Data flow architecture diagram for automated layout and text styles',
+        src: '/images/previews/cii-section-03-data-flow.png',
+        alt: 'Data flow architecture using JavaScript API streams for automated layout and text styles',
       },
     },
     overviewImages: [
@@ -199,7 +198,7 @@ export const projects: readonly Project[] = [
         border: false,
       },
       {
-        src: '/images/cii-overview-signage.png',
+        src: '/images/cii-overview-signage.jpg',
         alt: 'Environmental signage mockup on three-dimensional venue architecture',
         caption:
           'Translation of cross-channel identity design into environmental signage rendering on three dimensional venue architecture',
@@ -226,12 +225,12 @@ export const projects: readonly Project[] = [
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/inpa-overview-backdrop-signage.jpg',
+        src: '/images/previews/inpa-overview-backdrop-signage.jpg',
         alt: 'Large-scale environmental backdrop signage for stage presentations at the Manaus 2015 joint congress',
       },
       secondary: {
-        src: '/images/inpa-overview-keynote-staging.jpg',
-        alt: 'Keynote presentation staging and integrated environmental branding system',
+        src: '/images/previews/inpa-section-05-editorial-layouts.png',
+        alt: 'Editorial layouts showcasing keynote talks, speaker profiles, and course descriptions',
       },
     },
     overviewImages: [
@@ -268,22 +267,22 @@ export const projects: readonly Project[] = [
       'Architectural planning',
       'Public-private Infrastructure',
     ],
-    imageSrc: '/images/project-botanical-landscape.png',
+    imageSrc: '/images/project-botanical-landscape.jpg',
     imageAlt: '3D render of the Burton Cooperative Residence botanical landscape frontage',
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/burton-render-spatial.png',
+        src: '/images/previews/burton-render-spatial.jpg',
         alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
       },
       secondary: {
-        src: '/images/burton-plan-2d.png',
+        src: '/images/previews/burton-plan-2d.png',
         alt: 'Baseline 2D vector top view layout drafted in AutoCAD',
       },
     },
     overviewImages: [
       {
-        src: '/images/burton-render-spatial.png',
+        src: '/images/burton-render-spatial.jpg',
         alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
         caption:
           'Polished spatial render detailing the relationship between private property lines, native flora canopies, and the public pedestrian corridor',
@@ -304,8 +303,7 @@ export const projects: readonly Project[] = [
         border: true,
       },
     ],
-  },
-];
+  }];
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);

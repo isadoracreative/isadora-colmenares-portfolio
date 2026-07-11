@@ -3,8 +3,8 @@
  * Run: node scripts/optimize-images.mjs
  *
  * Format rules (site-wide):
- *   - Photos → JPG
- *   - Vectors, 3D renders, sketches, UI screenshots, text → PNG
+ *   - Photos and photorealistic renders without text → JPG
+ *   - Vectors, isometric/technical 3D, sketches, UI screenshots, diagrams, text → PNG
  *   - Never WebP
  *
  * Incremental processing:
@@ -25,6 +25,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import { isPhotoAsset } from './image-format-utils.mjs';
 
 const IMAGE_DIR = path.join(process.cwd(), 'public/images');
 const OUTPUT_FILE = path.join(process.cwd(), 'src/data/image-assets.ts');
@@ -33,47 +34,10 @@ const MAX_WIDTH_PNG = 4800;
 const MAX_WIDTH_JPG = 3200;
 const JPG_QUALITY = 90;
 const BLUR_WIDTH = 16;
+/** PNG display files above this size are re-encoded even when already in image-assets.ts. */
+const FORCE_REENCODE_MIN_BYTES = 5 * 1024 * 1024;
 
 const RASTER_EXT = new Set(['.png', '.jpg', '.jpeg']);
-
-/** Exact basenames (no extension) treated as photographs. */
-const PHOTO_BASENAMES = new Set([
-  'aon-section-01-persona-workshop',
-  'aon-section-03-closed-captioning',
-  'aon-section-03-mobile-sjt',
-  'burton-section-03-ideation-workshop',
-  'burton-section-04-drainage-pipe',
-  'burton-section-04-initial-planting',
-  'burton-section-04-storm-flooding',
-  'burton-section-05-mature-growth',
-  'inpa-overview-backdrop-signage',
-  'inpa-overview-event-program',
-  'inpa-overview-keynote-staging',
-  'inpa-section-02-registration-desk',
-  'inpa-section-02-tote-bags',
-  'inpa-section-04-attendee-badges',
-  'inpa-section-04-speaker-namecards',
-  'inpa-section-04-staff-apparel',
-  'project-arachnology-lab',
-  'project-global-conference',
-  'project-immersive-assessment',
-  'project-ornithology-congress',
-]);
-
-/** Basename prefixes treated as photographs. */
-const PHOTO_PREFIXES = [
-  'avatar-',
-  'isa-',
-  'burton-section-01-',
-  'cii-section-05-',
-];
-
-function isPhotoAsset(basename) {
-  if (PHOTO_BASENAMES.has(basename)) return true;
-  return PHOTO_PREFIXES.some(
-    (prefix) => basename === prefix || basename.startsWith(prefix),
-  );
-}
 
 function removeWebpSibling(filePath) {
   const webpPath = filePath.replace(/\.(png|jpe?g)$/i, '.webp');
@@ -154,7 +118,8 @@ async function processImage(filePath, cache, existingAssetEntries) {
   const isDisplayPath = path.resolve(filePath) === path.resolve(displayPath);
 
   const cached = cache[basename];
-  if (isDisplayPath && cached && cached.mtimeMs === stat.mtimeMs && cached.size === stat.size) {
+  const forceReencode = !photo && stat.size >= FORCE_REENCODE_MIN_BYTES;
+  if (isDisplayPath && cached && cached.mtimeMs === stat.mtimeMs && cached.size === stat.size && !forceReencode) {
     return {
       originalSrc: cached.displaySrc,
       displaySrc: cached.displaySrc,
@@ -167,11 +132,13 @@ async function processImage(filePath, cache, existingAssetEntries) {
   }
 
   // First time under the cache — trust the already-generated asset map instead
-  // of forcing a one-time re-encode of every existing image.
+  // of forcing a one-time re-encode of every existing image, unless the file is
+  // an oversized PNG that likely predates optimization.
   if (isDisplayPath && !cached) {
     const displaySrc = toPublicSrc(displayPath);
     const existing = existingAssetEntries.get(displaySrc);
-    if (existing) {
+    const forceReencode = !photo && stat.size >= FORCE_REENCODE_MIN_BYTES;
+    if (existing && !forceReencode) {
       cache[basename] = { mtimeMs: stat.mtimeMs, size: stat.size, displaySrc: existing.src, blurDataURL: existing.blurDataURL, format };
       return {
         originalSrc: existing.src,

@@ -1,7 +1,12 @@
 import Image, { type ImageProps } from 'next/image';
 import { resolveImageAsset, resolveImageSrc } from '@/data/image-assets';
+import { previewImageAssets } from '@/data/preview-image-assets';
 
 type ProgressiveImageProps = Omit<ImageProps, 'placeholder' | 'blurDataURL'>;
+
+function resolveAsset(src: string) {
+  return previewImageAssets[src] ?? resolveImageAsset(src);
+}
 
 /**
  * Serves optimized PNG/JPG assets when available and shows a blur-up placeholder
@@ -13,8 +18,10 @@ export default function ProgressiveImage({
   ...props
 }: ProgressiveImageProps) {
   const originalSrc = typeof src === 'string' ? src : '';
-  const asset = originalSrc ? resolveImageAsset(originalSrc) : undefined;
-  const resolvedSrc = originalSrc ? resolveImageSrc(originalSrc) : src;
+  const asset = originalSrc ? resolveAsset(originalSrc) : undefined;
+  const resolvedSrc = originalSrc
+    ? (asset?.src ?? resolveImageSrc(originalSrc))
+    : src;
 
   return (
     <Image

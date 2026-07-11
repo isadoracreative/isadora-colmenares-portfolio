@@ -213,7 +213,7 @@ const section04Stack: CaptionedImageProps[] = [
     border: true,
   },
   {
-    src: '/images/aon-section-04-assessment-reports.png',
+    src: '/images/aon-section-04-assessment-reports.jpg',
     alt: 'Client-branded assessment reports across varied viewports',
     caption: 'Client-branded assessment reports visualizing test results across varied viewports',
     border: true,

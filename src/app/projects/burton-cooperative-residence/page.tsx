@@ -8,7 +8,7 @@ const project = requireProjectBySlug('burton-cooperative-residence');
 
 const plan2d = project.overviewImages?.find((img) => img.src.endsWith('burton-plan-2d.png'));
 const model3d = project.overviewImages?.find((img) => img.src.endsWith('burton-model-3d-isometric.png'));
-const spatialRender = project.overviewImages?.find((img) => img.src.endsWith('burton-render-spatial.png'));
+const spatialRender = project.overviewImages?.find((img) => img.src.endsWith('burton-render-spatial.jpg'));
 
 if (!plan2d || !model3d || !spatialRender) {
   throw new Error('Missing overview images for burton-cooperative-residence');
@@ -127,7 +127,7 @@ const section03Highlights = [
 
 const section03Images: CaptionedImageProps[] = [
   {
-    src: '/images/burton-section-03-planting-density.png',
+    src: '/images/burton-section-03-planting-density.jpg',
     alt: 'High-fidelity 3D landscape simulation in SketchUp validating plant density distributions',
     caption:
       'High-fidelity 3D landscape simulation in SketchUp validating plant density distributions across specified planting zones',

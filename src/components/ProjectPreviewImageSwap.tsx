@@ -11,7 +11,8 @@ interface ProjectPreviewImageSwapProps {
   sizes?: string;
 }
 
-const DEFAULT_SIZES = '(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw';
+const DEFAULT_SIZES =
+  '(min-width: 1536px) 680px, (min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw';
 
 export default function ProjectPreviewImageSwap({
   primary,
@@ -38,6 +39,7 @@ export default function ProjectPreviewImageSwap({
         alt=""
         aria-hidden
         fill
+        loading="lazy"
         className="object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
         sizes={sizes}
       />

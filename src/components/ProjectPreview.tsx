@@ -94,7 +94,7 @@ export default function ProjectPreview({
       alt={imageAlt}
       fill
       className="object-cover"
-      sizes="(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw"
+      sizes="(min-width: 1536px) 680px, (min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw"
     />
   ) : null;
 
