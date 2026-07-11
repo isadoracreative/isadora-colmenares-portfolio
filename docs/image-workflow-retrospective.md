@@ -4,7 +4,7 @@ Working notes from the July 2026 image optimization pass on the portfolio site. 
 
 **Related files (current state):**
 - `.cursor/rules/image-formats.mdc` — live rules for agents
-- `scripts/image-format-utils.mjs` — photo vs. graphic classification (`PHOTO_BASENAMES`)
+- `scripts/image-format-utils.mjs` — extension-based format helpers (`isJpgFile`, `displayExtension`)
 - `scripts/optimize-images.mjs` — full-size case-study assets + `image-assets.ts`
 - `scripts/optimize-preview-images.mjs` — listing previews + `preview-image-assets.ts`
 - `scripts/figma-export-manifest.json` — partial node ID map (Aon, CII; Burton not fully listed)
@@ -13,6 +13,37 @@ Working notes from the July 2026 image optimization pass on the portfolio site. 
 - `src/data/projects.ts` — `previewImages` primary/secondary URLs
 
 **Figma file:** `wH37Em1J3VfOt6ojRw4d5G` (Portfolio site)
+
+---
+
+## Current workflow (manual export — July 2026)
+
+The exporter handles Figma exports; agents wire up pages from files already in `public/images/`.
+
+### Exporter checklist
+
+1. Export each case-study frame at **3200×1800** from Figma.
+2. Frames have **no stroke** — the site adds borders via CSS (`border: true` on `ProjectCaptionedImage`).
+3. Choose **JPG or PNG** per asset; save with the correct extension to `public/images/` (e.g. `amnh-website.jpg`, `amnh-affinity-map.png`).
+4. One file per basename — never leave both `.png` and `.jpg` for the same name.
+5. Run `node scripts/optimize-images.mjs` (and `optimize-preview-images.mjs` if listing previews changed).
+
+### Agent checklist
+
+1. Read text, captions, image order, and layout from the Figma project page node.
+2. Reference exact filenames (including extension) in `page.tsx` / `projects.ts`.
+3. Run `node scripts/optimize-images.mjs` after any new or replaced images.
+4. Do not re-export via Figma MCP unless an image is missing.
+
+### Optimize script behavior
+
+- **Format source of truth:** file extension on disk (`.jpg` / `.png`).
+- **No format conversion** — JPG stays JPG, PNG stays PNG; re-encodes in place only.
+- Pass `--remove-stale-siblings` only after deliberately swapping an asset's format.
+- JPG quality 90, PNG compression level 9. Max width **3200px** for both formats.
+- Never WebP.
+
+`PHOTO_BASENAMES` is retired. Format guidance lives in `image-formats.mdc` for export decisions only.
 
 ---
 
@@ -36,9 +67,9 @@ Working notes from the July 2026 image optimization pass on the portfolio site. 
 
 ### Full-size optimization
 
-- **`optimize-images.mjs`** imports `isPhotoAsset()` from shared `image-format-utils.mjs`.
-- **Format rule:** JPG when photo/photorealistic imagery dominates; PNG when text, UI, diagrams, or crisp edges are the subject.
-- **Limits:** PNG max width 4800px; JPG max width 3200px at quality 90. **Never WebP** (site rule: WebP looked blurry).
+- **`optimize-images.mjs`** reads format from the file extension via `image-format-utils.mjs`.
+- **Format rule:** chosen by the exporter in Figma; the script optimizes in place without converting.
+- **Limits:** max width 3200px for JPG and PNG; JPG quality 90. **Never WebP** (site rule: WebP looked blurry).
 - **Incremental cache:** `.image-optimize-cache.json` skips unchanged files; bootstraps from existing `image-assets.ts` to avoid one-time re-encode of everything.
 - **Force re-encode:** PNGs ≥ 5 MB re-encoded even when cached (fixes oversized PNGs that were skipped on first run).
 - **Site serves unoptimized images:** `next.config.ts` has `images.unoptimized: true` — files in `public/images/` are what the browser gets (no Next.js resize pass).
@@ -56,7 +87,7 @@ Working notes from the July 2026 image optimization pass on the portfolio site. 
 | Approach | Why it worked |
 |---|---|
 | **Separate preview pipeline** | Listing cards render ~580–680px wide; 2400px previews cover 3× retina without shipping 4800px full-size files on the index page. |
-| **Shared `image-format-utils.mjs`** | One `PHOTO_BASENAMES` list drives both optimize scripts — no duplicated classification logic. |
+| **Extension-based format** | Exporter picks JPG/PNG; optimize script preserves it — no `PHOTO_BASENAMES` registry to maintain. |
 | **Frame export + 4px border strip** | Captures Figma layout (white backgrounds, positioned content) and removes baked `gray-20` stroke so CSS `border: true` on `ProjectCaptionedImage` is the only border. |
 | **White background fill in Figma before export** | Fixes transparent SketchUp/3D PNGs that became **black** when auto-converted to JPG (JPEG has no transparency; sharp fills with black by default). |
 | **Native-resolution export for UI screenshots** | Saving the image fill at its actual pixel dimensions (e.g. 3200×1800) instead of 4× frame export (4800×2697) eliminated upscaling blur on Aon slides. |
@@ -96,7 +127,7 @@ Observed blurriness on this site with WebP. Rule is absolute: PNG or JPG only.
 
 ### Why two optimize scripts
 
-- **Case-study pages** need full resolution (up to 4800px PNG / 3200px JPG).
+- **Case-study pages** need full resolution (3200px wide exports).
 - **Listing page** only needs ~2400px previews in a separate folder — avoids downloading 3–13 MB images for 580px cards.
 
 ### Why `images.unoptimized: true`
@@ -143,47 +174,21 @@ This is the target end-to-end process if starting fresh or re-auditing a project
 
 ### Phase 2 — Choose format before export
 
-| Content | Format | Add to `PHOTO_BASENAMES`? |
-|---|---|---|
-| Photos, event shots, environmental signage | JPG | Yes |
-| Photorealistic 3D renders (white bg baked in) | JPG | Yes |
-| UI screenshots, wireframes, specs, slides with small type | PNG | No |
-| Isometric/technical 3D, floor plans, diagrams | PNG | No |
-| Logos | PNG | No |
-
-When unsure: try JPG + optimize, compare on page, revert to PNG if type is unacceptable.
-
-### Phase 3 — Export from Figma
-
-**Tools:** Figma MCP `get_metadata` / `get_design_context` on project page node → find inner `image` frame node ID.
-
-**Step A — Check native fill size**
-
-Call `download_assets` and inspect `rawImages`, or download the asset URL from `get_design_context`. Note `pixelWidth`.
-
-**Step B — Choose export method**
-
-| Fill native width | Export method |
+| Content | Format |
 |---|---|
-| ≥ 3200px | `download_assets` on **bordered frame node**, `defaultScale: 4`, `defaultFormat: png` (or jpg for photo assets — export PNG first, let optimize script convert) |
-| 2400–3199px | Frame at **2×**, or raw fill if simple full-bleed `object-cover` |
-| < 2400px | **Stop** — replace source in Figma, then export |
-| Simple full-bleed, no bg/positioning issues | Raw fill at native resolution (curl MCP asset URL) |
+| Photos, event shots, environmental signage | JPG |
+| Photorealistic 3D renders (white bg baked in) | JPG |
+| UI screenshots, wireframes, specs, slides with small type | PNG |
+| Isometric/technical 3D, floor plans, diagrams | PNG |
+| Logos | PNG |
 
-**Step C — Border strip (when frame has `gray-20` stroke)**
+When unsure: try JPG + optimize, compare on page, re-export as PNG if type is unacceptable.
 
-```text
-At 4× export: crop 4px from each edge with sharp.extract
-Verify: edge pixels should be ~0% #d4d8d8 (gray-20)
-```
+### Phase 3 — Export from Figma (manual — current default)
 
-Skip strip when frame has no stroke (e.g. `burton-render-spatial`).
+**Exporter:** export each frame at **3200×1800**, no stroke, save to `public/images/` with the correct extension.
 
-**Step D — Save**
-
-- Filename matches usage: `project-section-description.{png|jpg}`
-- Path: `public/images/`
-- Update references in project `page.tsx` and/or `projects.ts`
+**Agent fallback (legacy MCP export):** only when an image is missing from `public/images/`. See historical notes below for border strip, native fill checks, and scale selection.
 
 **Burton Figma page:** `node-id=532-6924` (viewport xl-2xl). Stable symbol nodes live under `content - Burton` (`532:6617`). Recent node IDs:
 - Isometric overview: `532:6638`
@@ -200,7 +205,7 @@ node scripts/optimize-preview-images.mjs   # only if listing previewImages chang
 
 **Order matters:** full-size first, then previews (previews read from `projects.ts` paths).
 
-**After adding a photo-classified asset:** add basename to `PHOTO_BASENAMES` in `image-format-utils.mjs` before running optimize.
+No codebase format registry — the file extension is sufficient.
 
 ### Phase 5 — Verify on site
 
@@ -213,31 +218,26 @@ node scripts/optimize-preview-images.mjs   # only if listing previewImages chang
 
 ---
 
-## How the optimization scripts *should* be structured (recommendation)
+## How the optimization scripts are structured
 
-Current structure is mostly right. Ideal shape for future refinement:
+### `image-format-utils.mjs`
 
-### `image-format-utils.mjs` (classification only)
-
-- `PHOTO_BASENAMES`, `PHOTO_PREFIXES`, `isPhotoAsset()`
-- Optional future: `BORDER_STRIP_PX = 4`, `RETINA_TARGET_WIDTH = 2400`, `CASE_STUDY_MAX_WIDTH_PNG/JPG` as shared constants
+- `isJpgFile(filePath)`, `displayExtension(filePath)` — extension-based only.
 
 ### `optimize-images.mjs` (case-study assets)
 
-**Input:** all raster files in `public/images/` (not `previews/`), one file per basename (prefer PNG source if both exist).
+**Input:** all raster files in `public/images/` (not `previews/`), one file per basename.
 
 **Per file:**
-1. Classify photo vs graphic via `isPhotoAsset()`
-2. Determine output format and max width (JPG 3200 / PNG 4800)
-3. Skip if cache hit (mtime + size match), except force re-encode oversized PNGs ≥ 5 MB
-4. Resize down only if over max width (`withoutEnlargement: true` — **never upscale**)
-5. Re-encode: JPG q90 mozjpeg / PNG compressionLevel 9
+1. Read format from file extension
+2. Skip if cache hit (mtime + size match), except when width exceeds 3200px or PNG ≥ 5 MB
+3. Resize down only if over max width (`withoutEnlargement: true` — **never upscale**)
+4. Re-encode in the same format: JPG q90 mozjpeg / PNG compressionLevel 9
+5. Remove stale sibling only with `--remove-stale-siblings` after a deliberate format swap
 6. Generate 16px-wide blur placeholder
 7. Write entry to `image-assets.ts`
 
-**Should NOT:** convert format based on file size alone without classification; upscale; emit WebP.
-
-**Optional future improvement:** accept a sidecar manifest (`image-export-meta.json`) recording native fill width and export scale per file, so the script can warn when display width exceeds source effective resolution.
+**Should NOT:** convert between JPG and PNG; upscale; emit WebP.
 
 ### `optimize-preview-images.mjs` (listing only)
 
@@ -245,16 +245,16 @@ Current structure is mostly right. Ideal shape for future refinement:
 
 **Per preview:**
 1. Resolve source path in `public/images/`
-2. Downscale to **2400px** max width (never upscale)
-3. Preserve format classification (JPG for photos, PNG for graphics)
+2. Inherit format from source file extension
+3. Downscale to **2400px** max width (never upscale)
 4. Write to `public/images/previews/`
 5. Update `preview-image-assets.ts` and preview paths in `projects.ts`
 
 **Should NOT:** modify full-size case-study files.
 
-### `figma-export-manifest.json` (optional helper)
+### Historical: MCP export workflow
 
-Maintain `{ filename, nodeId, hasBorder, exportScale, notes }` per asset, updated whenever Figma structure changes. Used as export checklist, not as sole source of truth for node IDs.
+The sections above on 4× frame export, border strip, native fill width tables, and `figma-export-manifest.json` remain useful as fallback when the agent must export from Figma directly. They are no longer the default path.
 
 ---
 
@@ -299,6 +299,8 @@ npm run dev
 - Burton `burton-model-3d-isometric` re-exported with white background (PNG).
 - Burton `burton-section-03-planting-density` re-exported with white background (JPG).
 - `image-formats.mdc` updated with export-scale vs native-resolution guidance.
+- Workflow simplified: manual 3200×1800 export, extension-based optimize, `PHOTO_BASENAMES` retired.
+- PNG max width aligned to 3200px (was 4800px); legacy 4800px PNGs downscaled (~43 MB saved).
 
 ---
 

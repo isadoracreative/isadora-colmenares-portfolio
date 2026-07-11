@@ -18,7 +18,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
-import { isPhotoAsset } from './image-format-utils.mjs';
+import { displayExtension, isJpgFile } from './image-format-utils.mjs';
 
 const PROJECTS_FILE = path.join(process.cwd(), 'src/data/projects.ts');
 const IMAGE_DIR = path.join(process.cwd(), 'public/images');
@@ -127,16 +127,14 @@ export function collectPreviewSources(projectsSource) {
   return [...sources].sort();
 }
 
-function previewOutputPath(sourceSrc) {
-  const basename = path.basename(sourceSrc, path.extname(sourceSrc));
-  const ext = isPhotoAsset(basename) ? '.jpg' : '.png';
-  return path.join(PREVIEW_DIR, `${basename}${ext}`);
+function previewOutputPath(sourcePath) {
+  const basename = path.basename(sourcePath, path.extname(sourcePath));
+  return path.join(PREVIEW_DIR, `${basename}${displayExtension(sourcePath)}`);
 }
 
-function previewPublicSrc(sourceSrc) {
-  const basename = path.basename(sourceSrc, path.extname(sourceSrc));
-  const ext = isPhotoAsset(basename) ? '.jpg' : '.png';
-  return `/images/previews/${basename}${ext}`;
+function previewPublicSrc(sourcePath) {
+  const basename = path.basename(sourcePath, path.extname(sourcePath));
+  return `/images/previews/${basename}${displayExtension(sourcePath)}`;
 }
 
 function resolveFullSizeSourcePath(declaredSrc) {
@@ -152,11 +150,11 @@ function resolveFullSizeSourcePath(declaredSrc) {
 
 async function processPreviewSource(declaredSrc, cache) {
   const sourcePath = resolveFullSizeSourcePath(declaredSrc);
-  const basename = path.basename(declaredSrc, path.extname(declaredSrc));
-  const photo = isPhotoAsset(basename);
-  const format = photo ? 'JPG' : 'PNG';
-  const outputPath = previewOutputPath(declaredSrc);
-  const displaySrc = previewPublicSrc(declaredSrc);
+  const basename = path.basename(sourcePath, path.extname(sourcePath));
+  const jpg = isJpgFile(sourcePath);
+  const format = jpg ? 'JPG' : 'PNG';
+  const outputPath = previewOutputPath(sourcePath);
+  const displaySrc = previewPublicSrc(sourcePath);
   const stat = fs.statSync(sourcePath);
 
   const cached = cache[declaredSrc];
@@ -190,7 +188,7 @@ async function processPreviewSource(declaredSrc, cache) {
     ? pipeline.resize(PREVIEW_MAX_WIDTH, null, { withoutEnlargement: true })
     : pipeline;
 
-  if (photo) {
+  if (jpg) {
     await resized.clone().jpeg({ quality: JPG_QUALITY, mozjpeg: true }).toFile(outputPath);
   } else {
     await resized.clone().png({ compressionLevel: 9 }).toFile(outputPath);
@@ -204,7 +202,7 @@ async function processPreviewSource(declaredSrc, cache) {
   const blurDataURL = `data:image/png;base64,${blurBuffer.toString('base64')}`;
   const outputStat = fs.statSync(outputPath);
 
-  removeStalePreviewSiblings(basename, photo ? '.jpg' : '.png');
+  removeStalePreviewSiblings(basename, displayExtension(sourcePath));
 
   cache[declaredSrc] = {
     previewMaxWidth: PREVIEW_MAX_WIDTH,

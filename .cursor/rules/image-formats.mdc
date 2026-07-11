@@ -1,5 +1,5 @@
 ---
-description: Figma image export workflow — formats, frame export at 4×, border stripping, optimize
+description: Figma image export workflow — manual export at 3200×1800, format by extension, optimize
 globs: public/images/**,scripts/optimize-images.mjs,scripts/optimize-preview-images.mjs,scripts/image-format-utils.mjs,src/data/image-assets.ts,src/components/ProgressiveImage.tsx,src/components/ProjectCaptionedImage.tsx,src/app/projects/**
 alwaysApply: true
 ---
@@ -8,7 +8,15 @@ alwaysApply: true
 
 Never use WebP on this site — it makes images look blurry.
 
-## Format rules
+## Who decides format
+
+**The exporter decides JPG vs PNG in Figma.** The codebase does not classify assets.
+
+- Save each file with the correct extension (`.jpg` or `.png`) in `public/images/`.
+- `optimize-images.mjs` reads the extension and optimizes in that format — it never converts between JPG and PNG.
+- Page code must reference the exact filename including extension.
+
+## Format guidance (for export decisions)
 
 | Asset type | Format |
 |------------|--------|
@@ -16,56 +24,49 @@ Never use WebP on this site — it makes images look blurry.
 | Photorealistic 3D renders where imagery dominates (landscapes, spatial renders, volumetric models) | **JPG** |
 | Logos, vectors, isometric/technical 3D views, wireframes, diagrams, text-first editorial layouts | **PNG** |
 
-### How to choose
-
-**Default to JPG when most of the frame is photographic or photorealistic**, even if the image includes some text — signage in a venue, a website on a device in context, a guide with photo backgrounds, or a render with incidental labels. JPG is tuned for light, texture, and gradients; it often looks *better* on these assets and loads far faster.
+**Default to JPG when most of the frame is photographic or photorealistic**, even if the image includes some text — signage in a venue, a website on a device in context, a guide with photo backgrounds, or a render with incidental labels.
 
 **Use PNG when text, UI, or flat graphics are the subject** — component specs, wireframes, floor plans, program grids, editorial layouts where legibility of type is critical, or anything needing crisp edges or transparency.
 
-Logos need crisp edges and often transparency — JPG compression blurs type and geometric marks. Export logos as PNG from Figma (this site uses raster PNGs, e.g. `logo-*.png`). Use SVG only when you have true vector brand assets.
+Logos need crisp edges and often transparency — export as PNG (e.g. `logo-*.png`).
 
-**When unsure:** export a JPG, add the basename to `PHOTO_BASENAMES` in `scripts/image-format-utils.mjs`, run `optimize-images.mjs`, and compare on the case-study page. Revert to PNG only if small type or fine lines look unacceptable.
+**When unsure:** export a JPG, run `optimize-images.mjs`, and compare on the case-study page. Re-export as PNG only if small type or fine lines look unacceptable.
 
-**Site examples (JPG):** `inpa-section-03-promotional-signage`, `inpa-section-03-event-website`, `cii-overview-signage`, `burton-render-spatial`, `burton-section-03-planting-density`.
+**Site examples (JPG):** `amnh-website`, `inpa-section-03-promotional-signage`, `cii-overview-signage`, `burton-render-spatial`.
 
-**Site examples (PNG):** `inpa-section-05-editorial-layouts`, `inpa-section-01-venue-floor-plan`, `verizon-section-02-widget-specifications`, `burton-plan-2d`.
+**Site examples (PNG):** `amnh-affinity-map`, `inpa-section-05-editorial-layouts`, `verizon-section-02-widget-specifications`, `burton-plan-2d`.
 
 ## Figma export workflow
 
 Use this for every project-page image added or re-exported from Figma.
 
-1. **Find the image frame node** — the full-width frame in the page layout, not a thumbnail in a 3-up row. Use `get_design_context` or `get_metadata` on the project page node.
-2. **Export the frame at 4×** via Figma MCP `download_assets` (`defaultScale: 4`). Export the **frame node**, not `rawImages` — **unless** the image fill’s native width is already below the exported frame width (see below).
-3. **Check for a Figma stroke** — captioned image frames often have `border border-[var(--gray-20,#d4d8d8)]` (1px `gray-20`). Pages pass `border: true` to `ProjectCaptionedImage`, which adds the same CSS border. A stroked frame export bakes the border in → double thick border on site.
-4. **Strip the baked border only when the frame has a stroke** — at 4× export, crop **4px** from every edge with `sharp.extract`. If the frame has **no** stroke, save the export as-is.
-5. **Save** to `public/images/` — `.jpg` when photo/photorealistic imagery dominates, `.png` when text/UI/diagrams dominate.
-6. **Run** `node scripts/optimize-images.mjs` — PNG capped at 4800px wide, JPG at 3200px (never WebP). Updates blur placeholders in `src/data/image-assets.ts`.
-7. **Run** `node scripts/optimize-preview-images.mjs` when listing preview images change — writes `public/images/previews/` and `src/data/preview-image-assets.ts`.
+### Exporter (manual)
 
-### Match export resolution to the source — avoid upscaling blur
+1. **Find the image frame node** — the full-width frame in the page layout, not a thumbnail in a 3-up row.
+2. **Export at 3200×1800** — fixed dimensions for all case-study images. Ensures 2× retina coverage at the ~1208px display width without upscaling.
+3. **No border on export** — Figma frames have no stroke. The site adds a 1px `gray-20` border via CSS when pages pass `border: true` to `ProjectCaptionedImage`.
+4. **Choose format and save** to `public/images/` with the project prefix (e.g. `amnh-affinity-map.png`, `amnh-website.jpg`). One file per basename — never leave both `.png` and `.jpg` for the same name.
+5. **Run** `node scripts/optimize-images.mjs` — re-encodes each file **in place** (same extension; JPG quality 90; PNG compression level 9; max width 3200px for both). Updates blur placeholders in `src/data/image-assets.ts`. The script never converts PNG ↔ JPG. After a format swap, delete the old file manually or run with `--remove-stale-siblings`.
+6. **Run** `node scripts/optimize-preview-images.mjs` when listing preview images change — writes `public/images/previews/` and `src/data/preview-image-assets.ts`.
 
-Case-study images display at ~1208px wide (2× retina ≈ **2400px** needed). Blur usually means Figma **upscaled** a low-res fill, not border strip or `optimize-images.mjs` (PNG re-encode is lossless; a 4px strip on a 4800px export is negligible).
+### Agent (page build)
 
-Before exporting, check the fill’s native size (`rawImages` from `download_assets` or `get_design_context` asset URLs):
+When the exporter has already placed images in `public/images/`:
 
-| Fill native width | What to do |
-|---|---|
-| **≥ 3200px** | Frame export at **4×** + strip border (current default). |
-| **2400–3199px** | Frame export at **2×** + strip, **or** save the raw fill directly when it is full-bleed `object-cover` with no positioned layout. |
-| **< 2400px** | **Replace the asset in Figma** with a higher-res original (≥ 3200px wide). Exporting the frame at any scale only enlarges a soft source. |
+1. Read text content, image order, captions, and layout (2-up groupings) from the Figma project page node.
+2. Wire up the project page using exact filenames from `public/images/`.
+3. Run `node scripts/optimize-images.mjs` after any new or replaced images.
+4. Do **not** re-export from Figma MCP unless an image is missing or the exporter requests it.
 
-PNG vs JPG does not fix upscaling blur — both look soft if the underlying pixels were stretched.
+### Source resolution
 
-### Do not use rawImages as the default
+Blur means the **underlying pixels were low-res**, not that optimization failed. Before exporting, confirm image fills in Figma are ≥ 3200px wide. If a fill is smaller, replace it with a higher-res original in Figma first — exporting the frame at any scale only enlarges a soft source.
 
-`rawImages` drops frame positioning and can crop wrong (e.g. missing background fills, white backgrounds). Use frame export + conditional strip when layout matters; use the raw fill only for simple full-bleed `object-cover` frames.
-
-### Verify after stripping
-
-Edge pixels should be ~0% `gray-20` (`#d4d8d8`, RGB 212/216/216). If edge-gray is high after a supposed strip, re-check the node or strip amount.
+PNG vs JPG does not fix upscaling blur.
 
 ## Adding new assets
 
-- Update `PHOTO_BASENAMES` or `PHOTO_PREFIXES` in `scripts/image-format-utils.mjs` when a new photo- or photorealistic-dominant asset doesn't match existing patterns.
-- Do not add WebP conversion or `crop` fields in components — fix cropping at export time.
+- Save with the correct `.jpg` or `.png` extension — that is all the optimize script needs.
+- Do not add WebP conversion or `crop` fields in components.
 - File paths in project pages must match filenames under `public/images/`.
+- Do not update `PHOTO_BASENAMES` or any codebase format registry — that approach is retired.

@@ -2,10 +2,11 @@
  * Generates optimized PNG/JPG derivatives and blur placeholders for raster assets.
  * Run: node scripts/optimize-images.mjs
  *
- * Format rules (site-wide):
- *   - Photos and photorealistic renders without text → JPG
- *   - Vectors, isometric/technical 3D, sketches, UI screenshots, diagrams, text → PNG
- *   - Never WebP
+ * Format: determined by the file extension on disk (.jpg / .png).
+ * The exporter chooses format in Figma — this script never converts between them.
+ * Re-encodes in place only; output extension always matches input.
+ * Pass --remove-stale-siblings to delete the other extension after a format swap.
+ * Never WebP.
  *
  * Incremental processing:
  *   Each file's mtime + size is cached in .image-optimize-cache.json (gitignored).
@@ -18,20 +19,19 @@
  *   the cache doesn't force one big reprocessing pass.
  *
  * Output:
- *   public/images/*.{png,jpg}  — width-capped display files
+ *   public/images/*.{png,jpg}  — width-capped at 3200px
  *   src/data/image-assets.ts   — src + blurDataURL lookup for ProgressiveImage
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
-import { isPhotoAsset } from './image-format-utils.mjs';
+import { displayExtension, isJpgFile } from './image-format-utils.mjs';
 
 const IMAGE_DIR = path.join(process.cwd(), 'public/images');
 const OUTPUT_FILE = path.join(process.cwd(), 'src/data/image-assets.ts');
 const CACHE_FILE = path.join(process.cwd(), 'scripts/.image-optimize-cache.json');
-const MAX_WIDTH_PNG = 4800;
-const MAX_WIDTH_JPG = 3200;
+const MAX_WIDTH = 3200;
 const JPG_QUALITY = 90;
 const BLUR_WIDTH = 16;
 /** PNG display files above this size are re-encoded even when already in image-assets.ts. */
@@ -46,35 +46,38 @@ function removeWebpSibling(filePath) {
   }
 }
 
+function removeStaleSiblings(basename, keepExt) {
+  for (const ext of ['.png', '.jpg', '.jpeg']) {
+    if (ext === keepExt || (keepExt === '.jpg' && ext === '.jpeg')) continue;
+    const stalePath = path.join(IMAGE_DIR, `${basename}${ext}`);
+    if (fs.existsSync(stalePath)) fs.unlinkSync(stalePath);
+  }
+}
+
 function walkImages(dir) {
-  /** One source file per basename — prefer PNG when both PNG and JPG exist. */
-  const byBasename = new Map();
+  const files = [];
 
   for (const entry of fs.readdirSync(dir)) {
     const fullPath = path.join(dir, entry);
     const ext = path.extname(entry).toLowerCase();
     if (!fs.statSync(fullPath).isFile() || !RASTER_EXT.has(ext)) continue;
-
-    const basename = path.basename(entry, ext);
-    const existing = byBasename.get(basename);
-    if (!existing) {
-      byBasename.set(basename, fullPath);
-      continue;
-    }
-
-    const existingExt = path.extname(existing).toLowerCase();
-    if (ext === '.png' && existingExt !== '.png') {
-      byBasename.set(basename, fullPath);
-    }
+    files.push(fullPath);
   }
 
-  return [...byBasename.values()];
+  return files;
 }
 
-function displayPathFor(filePath) {
-  const basename = path.basename(filePath, path.extname(filePath));
-  const ext = isPhotoAsset(basename) ? '.jpg' : '.png';
-  return path.join(IMAGE_DIR, `${basename}${ext}`);
+function findDuplicateBasenames(files) {
+  const byBasename = new Map();
+
+  for (const filePath of files) {
+    const basename = path.basename(filePath, path.extname(filePath));
+    const group = byBasename.get(basename) ?? [];
+    group.push(filePath);
+    byBasename.set(basename, group);
+  }
+
+  return [...byBasename.entries()].filter(([, group]) => group.length > 1);
 }
 
 function toPublicSrc(filePath) {
@@ -109,20 +112,21 @@ function loadExistingAssetEntries() {
   return entries;
 }
 
-async function processImage(filePath, cache, existingAssetEntries) {
+async function processImage(filePath, cache, existingAssetEntries, shouldRemoveStaleSiblings) {
   const basename = path.basename(filePath, path.extname(filePath));
-  const displayPath = displayPathFor(filePath);
-  const photo = isPhotoAsset(basename);
-  const format = photo ? 'JPG' : 'PNG';
+  const jpg = isJpgFile(filePath);
+  const format = jpg ? 'JPG' : 'PNG';
   const stat = fs.statSync(filePath);
-  const isDisplayPath = path.resolve(filePath) === path.resolve(displayPath);
+  const displaySrc = toPublicSrc(filePath);
+  const metadata = await sharp(filePath).metadata();
+  const oversize = (metadata.width ?? 0) > MAX_WIDTH;
+  const forceReencode = oversize || (!jpg && stat.size >= FORCE_REENCODE_MIN_BYTES);
 
-  const cached = cache[basename];
-  const forceReencode = !photo && stat.size >= FORCE_REENCODE_MIN_BYTES;
-  if (isDisplayPath && cached && cached.mtimeMs === stat.mtimeMs && cached.size === stat.size && !forceReencode) {
+  const cached = cache[displaySrc];
+  if (cached && cached.mtimeMs === stat.mtimeMs && cached.size === stat.size && !forceReencode) {
     return {
-      originalSrc: cached.displaySrc,
-      displaySrc: cached.displaySrc,
+      originalSrc: displaySrc,
+      displaySrc,
       blurDataURL: cached.blurDataURL,
       originalSize: stat.size,
       outputSize: stat.size,
@@ -134,14 +138,12 @@ async function processImage(filePath, cache, existingAssetEntries) {
   // First time under the cache — trust the already-generated asset map instead
   // of forcing a one-time re-encode of every existing image, unless the file is
   // an oversized PNG that likely predates optimization.
-  if (isDisplayPath && !cached) {
-    const displaySrc = toPublicSrc(displayPath);
+  if (!cached) {
     const existing = existingAssetEntries.get(displaySrc);
-    const forceReencode = !photo && stat.size >= FORCE_REENCODE_MIN_BYTES;
     if (existing && !forceReencode) {
-      cache[basename] = { mtimeMs: stat.mtimeMs, size: stat.size, displaySrc: existing.src, blurDataURL: existing.blurDataURL, format };
+      cache[displaySrc] = { mtimeMs: stat.mtimeMs, size: stat.size, displaySrc: existing.src, blurDataURL: existing.blurDataURL, format };
       return {
-        originalSrc: existing.src,
+        originalSrc: displaySrc,
         displaySrc: existing.src,
         blurDataURL: existing.blurDataURL,
         originalSize: stat.size,
@@ -155,43 +157,37 @@ async function processImage(filePath, cache, existingAssetEntries) {
   removeWebpSibling(filePath);
 
   const originalSize = stat.size;
-  const samePath = isDisplayPath;
-  const outputTarget = samePath
-    ? path.join(IMAGE_DIR, `.tmp-${basename}${photo ? '.jpg' : '.png'}`)
-    : displayPath;
+  const outputTarget = path.join(IMAGE_DIR, `.tmp-${basename}${displayExtension(filePath)}`);
 
   const pipeline = sharp(filePath).rotate();
-  const metadata = await pipeline.metadata();
-  const maxWidth = photo ? MAX_WIDTH_JPG : MAX_WIDTH_PNG;
+  const maxWidth = MAX_WIDTH;
   const needsResize = (metadata.width ?? 0) > maxWidth;
 
   const resized = needsResize
     ? pipeline.resize(maxWidth, null, { withoutEnlargement: true })
     : pipeline;
 
-  if (photo) {
+  if (jpg) {
     await resized.clone().jpeg({ quality: JPG_QUALITY, mozjpeg: true }).toFile(outputTarget);
   } else {
     await resized.clone().png({ compressionLevel: 9 }).toFile(outputTarget);
   }
 
-  if (samePath) {
-    fs.renameSync(outputTarget, displayPath);
-  } else {
-    fs.renameSync(outputTarget, displayPath);
-    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+  fs.renameSync(outputTarget, filePath);
+
+  if (shouldRemoveStaleSiblings) {
+    removeStaleSiblings(basename, displayExtension(filePath));
   }
 
-  const blurBuffer = await sharp(displayPath)
+  const blurBuffer = await sharp(filePath)
     .resize(BLUR_WIDTH, null, { fit: 'inside' })
     .png({ compressionLevel: 9, palette: true })
     .toBuffer();
 
-  const displaySrc = toPublicSrc(displayPath);
   const blurDataURL = `data:image/png;base64,${blurBuffer.toString('base64')}`;
-  const outputStat = fs.statSync(displayPath);
+  const outputStat = fs.statSync(filePath);
 
-  cache[basename] = { mtimeMs: outputStat.mtimeMs, size: outputStat.size, displaySrc, blurDataURL, format };
+  cache[displaySrc] = { mtimeMs: outputStat.mtimeMs, size: outputStat.size, displaySrc, blurDataURL, format };
 
   return {
     originalSrc: displaySrc,
@@ -218,14 +214,23 @@ function writeAssetMap(entries) {
 }
 
 async function main() {
+  const removeStaleSiblingsFlag = process.argv.includes('--remove-stale-siblings');
   const files = walkImages(IMAGE_DIR);
+  const duplicates = findDuplicateBasenames(files);
+
+  for (const [basename, group] of duplicates) {
+    console.warn(
+      `Duplicate basename "${basename}": ${group.map((f) => path.basename(f)).join(', ')} — remove the unused file, or pass --remove-stale-siblings after a format swap`,
+    );
+  }
+
   const cache = loadCache();
   const existingAssetEntries = loadExistingAssetEntries();
 
   // Drop cache entries for images that no longer exist.
-  const currentBasenames = new Set(files.map((f) => path.basename(f, path.extname(f))));
+  const currentDisplaySrcs = new Set(files.map((f) => toPublicSrc(f)));
   for (const key of Object.keys(cache)) {
-    if (!currentBasenames.has(key)) delete cache[key];
+    if (!currentDisplaySrcs.has(key)) delete cache[key];
   }
 
   const entries = [];
@@ -234,7 +239,7 @@ async function main() {
   let skippedCount = 0;
 
   for (const filePath of files) {
-    const result = await processImage(filePath, cache, existingAssetEntries);
+    const result = await processImage(filePath, cache, existingAssetEntries, removeStaleSiblingsFlag);
     entries.push(result);
 
     if (result.skipped) {
