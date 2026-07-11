@@ -11,9 +11,6 @@ import ProjectHashScroll from "@/components/ProjectHashScroll";
                       each separated by a gray DividerFull.
    ----------------------------------------------------------------------------- */
 
-/** Offset between preview rotators so fades do not happen in unison. */
-const PREVIEW_ROTATION_STAGGER_MS = 1200;
-
 export default function ProjectsPage() {
   return (
     <main id="main-content" tabIndex={-1} className="flex-1 outline-none scroll-mt-12">
@@ -34,10 +31,9 @@ export default function ProjectsPage() {
               {...project}
               anchorId={projectAnchorId(project)}
               tags={[...project.tags]}
-              overviewImages={project.overviewImages?.map(({ src, alt }) => ({ src, alt }))}
+              previewImages={project.previewImages}
               href={projectHref(project)}
               showButton={Boolean(project.slug)}
-              rotationOffsetMs={index * PREVIEW_ROTATION_STAGGER_MS}
             />
           </div>
         ))}

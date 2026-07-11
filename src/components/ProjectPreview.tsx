@@ -2,9 +2,9 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import Tag from '@/components/Tag';
 import ProgressiveImage from '@/components/ProgressiveImage';
-import ProjectPreviewImageRotator, {
+import ProjectPreviewImageSwap, {
   type PreviewImage,
-} from '@/components/ProjectPreviewImageRotator';
+} from '@/components/ProjectPreviewImageSwap';
 
 interface ProjectPreviewProps {
   /** Displayed above the project title in secondary text color */
@@ -17,14 +17,15 @@ interface ProjectPreviewProps {
   /** Path to the project preview image (16:9) */
   imageSrc?: string;
   imageAlt?: string;
-  /** Overview images — when three or more are provided, the preview crossfades between them */
-  overviewImages?: readonly PreviewImage[];
+  /** Primary/secondary pair — hover swaps secondary in place of primary */
+  previewImages?: {
+    primary: PreviewImage;
+    secondary: PreviewImage;
+  };
   /** When true, renders a 1px Core gray light border around the preview image */
   imageBorder?: boolean;
   /** When false, hides the "View Project" button. Defaults to false. */
   showButton?: boolean;
-  /** Delays image rotation so stacked previews fade on different beats. */
-  rotationOffsetMs?: number;
   /** When set, applied to the client name for in-page anchor navigation. */
   anchorId?: string;
   className?: string;
@@ -64,19 +65,17 @@ export default function ProjectPreview({
   href,
   imageSrc,
   imageAlt = '',
-  overviewImages,
+  previewImages,
   imageBorder = false,
   showButton = false,
-  rotationOffsetMs = 0,
   anchorId,
   className = '',
 }: ProjectPreviewProps) {
-  const rotatingImages =
-    overviewImages && overviewImages.length >= 3 ? overviewImages : undefined;
-  const hasPreviewImage = Boolean(rotatingImages?.length || imageSrc);
+  const hasPreviewImage = Boolean(previewImages || imageSrc);
   const imageFrameBase = [
     'w-full aspect-video rounded-sm overflow-hidden',
     'sm:flex-1 sm:w-auto sm:min-w-0',
+    previewImages ? 'group' : '',
     imageBorder ? 'border border-gray-20' : '',
   ]
     .filter(Boolean)
@@ -84,10 +83,10 @@ export default function ProjectPreview({
 
   const imageFrameClass = `relative ${imageFrameBase}`;
 
-  const previewImage = rotatingImages ? (
-    <ProjectPreviewImageRotator
-      images={rotatingImages}
-      rotationOffsetMs={rotationOffsetMs}
+  const previewImage = previewImages ? (
+    <ProjectPreviewImageSwap
+      primary={previewImages.primary}
+      secondary={previewImages.secondary}
     />
   ) : imageSrc ? (
     <ProgressiveImage

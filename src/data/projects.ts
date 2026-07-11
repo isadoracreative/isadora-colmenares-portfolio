@@ -11,6 +11,11 @@ export interface ProjectOverviewImage {
   border?: boolean;
 }
 
+export interface ProjectPreviewImage {
+  src: string;
+  alt: string;
+}
+
 export interface Project {
   /** Route segment when a case-study page exists (e.g. cambridge-innovation-institute) */
   slug?: string;
@@ -21,7 +26,15 @@ export interface Project {
   imageSrc: string;
   imageAlt: string;
   imageBorder?: boolean;
-  /** Overview images from the project page — used for preview rotation when present */
+  /**
+   * Projects listing preview — primary shown by default, secondary on hover.
+   * Edit `primary.src` and `secondary.src` to change listing images.
+   */
+  previewImages?: {
+    primary: ProjectPreviewImage;
+    secondary: ProjectPreviewImage;
+  };
+  /** Overview images from the project page */
   overviewImages?: readonly ProjectOverviewImage[];
 }
 
@@ -43,6 +56,16 @@ export const projects: readonly Project[] = [
     imageAlt:
       'Figma component library and interaction specification screens for Verizon conversational AI',
     imageBorder: true,
+    previewImages: {
+      primary: {
+        src: '/images/verizon-overview-component-sticker-sheet.png',
+        alt: 'Component sticker sheet organized for rapid copy-and-paste layout assembly',
+      },
+      secondary: {
+        src: '/images/verizon-overview-component-anatomy.png',
+        alt: 'Detailed component anatomy guidelines defining visual structure, interactivity, and configurations',
+      },
+    },
     overviewImages: [
       {
         src: '/images/verizon-overview-component-sticker-sheet.png',
@@ -68,41 +91,51 @@ export const projects: readonly Project[] = [
     ],
   },
   {
-    slug: 'burton-cooperative-residence',
-    clientName: 'Burton Cooperative Residence',
-    projectTitle: 'Botanical Landscape 3D Modeling',
+    slug: 'aon',
+    clientName: 'Aon',
+    projectTitle: 'Immersive Assessment Platforms',
     projectDescription:
-      'Modeled a steep variable-grade frontage to engineer on-site stormwater mitigation, balancing structural masonry and botanical retention zoning to capture precipitation, nourish native flora, and comply with pedestrian corridor drainage code.',
+      'Led enterprise product strategy and frontend engineering frameworks to consolidate legacy assessment tools, scaling strict visual token governance and accessibility across immersive mobile simulations to high-density admin dashboards.',
     tags: [
-      '3D spatial modeling',
-      'Environmental design',
-      'Experience design',
-      'Architectural planning',
-      'Public-private Infrastructure',
+      'Design systems',
+      'SaaS product strategy',
+      'UX engineering',
+      'Front-end development',
+      'Data visualization',
     ],
-    imageSrc: '/images/project-botanical-landscape.png',
-    imageAlt: '3D render of the Burton Cooperative Residence botanical landscape frontage',
+    imageSrc: '/images/project-immersive-assessment.jpg',
+    imageAlt: 'Aon immersive assessment platform displayed on mobile and desktop screens',
     imageBorder: true,
+    previewImages: {
+      primary: {
+        src: '/images/aon-overview-mobile-simulation.png',
+        alt: 'Mobile-first interactive simulation interface with accessible Angular components',
+      },
+      secondary: {
+        src: '/images/aon-overview-dashboard.png',
+        alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
+      },
+    },
     overviewImages: [
       {
-        src: '/images/burton-render-spatial.png',
-        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
+        src: '/images/aon-overview-mobile-simulation.png',
+        alt: 'Mobile-first interactive simulation interface with accessible Angular components',
         caption:
-          'Polished spatial render detailing the relationship between private property lines, native flora canopies, and the public pedestrian corridor',
-        border: false,
-      },
-      {
-        src: '/images/burton-plan-2d.png',
-        alt: 'Baseline 2D vector top view layout drafted in AutoCAD',
-        caption:
-          'Baseline 2D vector top view layout drafted in AutoCAD to establish legal boundaries and architectural elements',
+          'Mobile-first interactive simulation interface powered by refactored, accessible Angular component structures',
         border: true,
       },
       {
-        src: '/images/burton-model-3d-isometric.png',
-        alt: '3D isometric SketchUp model evaluating lawn slope gradients and structural stone dimensions',
+        src: '/images/aon-overview-dashboard.png',
+        alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
         caption:
-          '3D isometric SketchUp model to evaluate lawn slope gradients, structural stone dimensions, and visualize residential walkways',
+          'Enterprise SaaS B2B admin dashboard and responsive, B2B2C client-branded reporting interface',
+        border: true,
+      },
+      {
+        src: '/images/aon-overview-triple-diamond.png',
+        alt: 'Modified Triple Diamond product development lifecycle diagram',
+        caption:
+          'Modified Triple Diamond product development lifecycle with templates for UX research and strategy facilitating stakeholder and backlog alignment',
         border: true,
       },
     ],
@@ -140,6 +173,16 @@ export const projects: readonly Project[] = [
     imageAlt:
       'Discovery on Target conference signage and environmental graphics at a CII life sciences event',
     imageBorder: true,
+    previewImages: {
+      primary: {
+        src: '/images/cii-overview-master-templates.png',
+        alt: 'Design system master templates and tokens for conference branding',
+      },
+      secondary: {
+        src: '/images/cii-overview-data-flow.png',
+        alt: 'Data flow architecture diagram for automated layout and text styles',
+      },
+    },
     overviewImages: [
       {
         src: '/images/cii-overview-master-templates.png',
@@ -165,46 +208,6 @@ export const projects: readonly Project[] = [
     ],
   },
   {
-    slug: 'aon',
-    clientName: 'Aon',
-    projectTitle: 'Immersive Assessment Platforms',
-    projectDescription:
-      'Led enterprise product strategy and frontend engineering frameworks to consolidate legacy assessment tools, scaling strict visual token governance and accessibility across immersive mobile simulations to high-density admin dashboards.',
-    tags: [
-      'Design systems',
-      'SaaS product strategy',
-      'UX engineering',
-      'Front-end development',
-      'Data visualization',
-    ],
-    imageSrc: '/images/project-immersive-assessment.jpg',
-    imageAlt: 'Aon immersive assessment platform displayed on mobile and desktop screens',
-    imageBorder: true,
-    overviewImages: [
-      {
-        src: '/images/aon-overview-mobile-simulation.png',
-        alt: 'Mobile-first interactive simulation interface with accessible Angular components',
-        caption:
-          'Mobile-first interactive simulation interface powered by refactored, accessible Angular component structures',
-        border: true,
-      },
-      {
-        src: '/images/aon-overview-dashboard.png',
-        alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
-        caption:
-          'Enterprise SaaS B2B admin dashboard and responsive, B2B2C client-branded reporting interface',
-        border: true,
-      },
-      {
-        src: '/images/aon-overview-triple-diamond.png',
-        alt: 'Modified Triple Diamond product development lifecycle diagram',
-        caption:
-          'Modified Triple Diamond product development lifecycle with templates for UX research and strategy facilitating stakeholder and backlog alignment',
-        border: true,
-      },
-    ],
-  },
-  {
     slug: 'inpa',
     clientName: 'National Institute for Amazonian Research (INPA)',
     projectTitle: 'International Ornithology Congress',
@@ -221,6 +224,16 @@ export const projects: readonly Project[] = [
     imageAlt:
       'International Ornithology Congress banner at the Manaus 2015 joint NOC/CBO congress venue',
     imageBorder: true,
+    previewImages: {
+      primary: {
+        src: '/images/inpa-overview-backdrop-signage.jpg',
+        alt: 'Large-scale environmental backdrop signage for stage presentations at the Manaus 2015 joint congress',
+      },
+      secondary: {
+        src: '/images/inpa-overview-keynote-staging.jpg',
+        alt: 'Keynote presentation staging and integrated environmental branding system',
+      },
+    },
     overviewImages: [
       {
         src: '/images/inpa-overview-backdrop-signage.jpg',
@@ -239,6 +252,56 @@ export const projects: readonly Project[] = [
         alt: 'Event program for self-guided navigation and detailed session information',
         caption: 'Event program for self-guided navigation and detailed session information',
         border: false,
+      },
+    ],
+  },
+  {
+    slug: 'burton-cooperative-residence',
+    clientName: 'Burton Cooperative Residence',
+    projectTitle: 'Botanical Landscape 3D Modeling',
+    projectDescription:
+      'Modeled a steep variable-grade frontage to engineer on-site stormwater mitigation, balancing structural masonry and botanical retention zoning to capture precipitation, nourish native flora, and comply with pedestrian corridor drainage code.',
+    tags: [
+      '3D spatial modeling',
+      'Environmental design',
+      'Experience design',
+      'Architectural planning',
+      'Public-private Infrastructure',
+    ],
+    imageSrc: '/images/project-botanical-landscape.png',
+    imageAlt: '3D render of the Burton Cooperative Residence botanical landscape frontage',
+    imageBorder: true,
+    previewImages: {
+      primary: {
+        src: '/images/burton-render-spatial.png',
+        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
+      },
+      secondary: {
+        src: '/images/burton-plan-2d.png',
+        alt: 'Baseline 2D vector top view layout drafted in AutoCAD',
+      },
+    },
+    overviewImages: [
+      {
+        src: '/images/burton-render-spatial.png',
+        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
+        caption:
+          'Polished spatial render detailing the relationship between private property lines, native flora canopies, and the public pedestrian corridor',
+        border: false,
+      },
+      {
+        src: '/images/burton-plan-2d.png',
+        alt: 'Baseline 2D vector top view layout drafted in AutoCAD',
+        caption:
+          'Baseline 2D vector top view layout drafted in AutoCAD to establish legal boundaries and architectural elements',
+        border: true,
+      },
+      {
+        src: '/images/burton-model-3d-isometric.png',
+        alt: '3D isometric SketchUp model evaluating lawn slope gradients and structural stone dimensions',
+        caption:
+          '3D isometric SketchUp model to evaluate lawn slope gradients, structural stone dimensions, and visualize residential walkways',
+        border: true,
       },
     ],
   },
