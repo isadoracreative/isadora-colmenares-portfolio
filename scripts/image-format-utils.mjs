@@ -42,6 +42,10 @@ export const PHOTO_BASENAMES = new Set([
   'project-global-conference',
   'project-immersive-assessment',
   'project-ornithology-congress',
+  'amnh-arachnid-diversity',
+  'amnh-branding',
+  'amnh-competitive-analysis',
+  'amnh-website',
 ]);
 
 /** Basename prefixes treated as photographs. */

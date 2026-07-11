@@ -140,6 +140,7 @@ export const projects: readonly Project[] = [{
     ],
   },
   {
+    slug: 'amnh',
     clientName: 'American Museum of Natural History (AMNH)',
     projectTitle: 'Arachnology Research Lab',
     projectDescription:
@@ -154,6 +155,15 @@ export const projects: readonly Project[] = [{
     imageSrc: '/images/previews/project-arachnology-lab.jpg',
     imageAlt:
       'Arachnology Research Lab website showing the custom academic directory and researcher profiles',
+    overviewImages: [
+      {
+        src: '/images/amnh-website.jpg',
+        alt: 'People directory and scorpion diversity on the AMNH Arachnology Lab\u2019s website',
+        caption:
+          'People directory and scorpion diversity on the AMNH Arachnology Lab\u2019s website',
+        border: true,
+      },
+    ],
   },
   {
     slug: 'cambridge-innovation-institute',
