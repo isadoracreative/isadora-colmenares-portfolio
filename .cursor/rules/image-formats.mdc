@@ -1,6 +1,6 @@
 ---
-description: Site-wide image format rules — no WebP; PNG for graphics, JPG for photos
-globs: public/images/**,scripts/optimize-images.mjs,src/data/image-assets.ts,src/components/ProgressiveImage.tsx
+description: Figma image export workflow — formats, frame export at 4×, border stripping, optimize
+globs: public/images/**,scripts/optimize-images.mjs,src/data/image-assets.ts,src/components/ProgressiveImage.tsx,src/components/ProjectCaptionedImage.tsx,src/app/projects/**
 alwaysApply: true
 ---
 
@@ -12,17 +12,32 @@ Never use WebP on this site — it makes images look blurry.
 
 | Asset type | Format |
 |------------|--------|
-| Photographs (site photos, avatars, logos, personal photos) | **JPG** |
-| Vectors, 3D renders, sketches, UI screenshots, diagrams, text | **PNG** |
+| Photographs (site photos, avatars, personal photos, event photography) | **JPG** |
+| Logos, vectors, 3D renders, sketches, UI screenshots, diagrams, text | **PNG** |
 
-## Workflow
+Logos need crisp edges and often transparency — JPG compression blurs type and geometric marks. Export logos as PNG from Figma (this site uses raster PNGs, e.g. `logo-*.png`). Use SVG only when you have true vector brand assets.
 
-1. Export from Figma as PNG (frame nodes, not raw fills) so crops match the design.
-2. **Use the full-width frame node** at `@4x` scale — not the smaller thumbnail frame in a 3-up row. At 2xl (1440px container), full-width images need ~4800px source for retina sharpness.
-3. Save photos as `.jpg`, graphics as `.png` under `public/images/`.
-4. Run `node scripts/optimize-images.mjs` — PNG capped at 4800px wide, JPG at 3200px (never WebP).
+## Figma export workflow
+
+Use this for every project-page image added or re-exported from Figma.
+
+1. **Find the image frame node** — the full-width frame in the page layout, not a thumbnail in a 3-up row. Use `get_design_context` or `get_metadata` on the project page node.
+2. **Export the frame at 4×** via Figma MCP `download_assets` (`defaultScale: 4`). Export the **frame node**, not `rawImages`.
+3. **Check for a Figma stroke** — captioned image frames often have `border border-[var(--gray-20,#d4d8d8)]` (1px `gray-20`). Pages pass `border: true` to `ProjectCaptionedImage`, which adds the same CSS border. A stroked frame export bakes the border in → double thick border on site.
+4. **Strip the baked border only when the frame has a stroke** — at 4× export, crop **4px** from every edge with `sharp.extract`. If the frame has **no** stroke, save the export as-is.
+5. **Save** to `public/images/` — `.jpg` for photos, `.png` for graphics.
+6. **Run** `node scripts/optimize-images.mjs` — PNG capped at 4800px wide, JPG at 3200px (never WebP). Updates blur placeholders in `src/data/image-assets.ts`.
+
+### Do not use rawImages as the default
+
+`rawImages` drops frame positioning and can crop wrong (e.g. missing background fills). Use frame export + conditional strip instead.
+
+### Verify after stripping
+
+Edge pixels should be ~0% `gray-20` (`#d4d8d8`, RGB 212/216/216). If edge-gray is high after a supposed strip, re-check the node or strip amount.
 
 ## Adding new assets
 
 - Update `PHOTO_BASENAMES` or `PHOTO_PREFIXES` in `scripts/optimize-images.mjs` when a new photo doesn't match existing patterns.
 - Do not add WebP conversion or `crop` fields in components — fix cropping at export time.
+- File paths in project pages must match filenames under `public/images/`.
