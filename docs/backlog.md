@@ -8,7 +8,6 @@ Project TODOs for Isadora to complete. Add items as list entries; Only Isadora w
 
 - Review all optimized images to ensure correct naming, placement, and format.
     - Reorder CII overview images with DOT arch first.
-    - Move micro-staging and color-coding text between DOT and HCA images.
 - Review text for tone of voice and accuracy of content.
 - Retrieve about images from LinkedIn for avatars and logos.
 - Update screenshots of AMNH after next project update. Current screenshots include unwanted bevel shadow applied by Chrome.

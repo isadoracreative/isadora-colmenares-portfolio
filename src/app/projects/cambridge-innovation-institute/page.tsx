@@ -26,7 +26,7 @@ if (!project.overviewImages || project.overviewImages.length < 3) {
   throw new Error('Missing overview images for cambridge-innovation-institute');
 }
 
-const [masterTemplates, dataFlow, signage] = project.overviewImages;
+const [overviewHero, dataFlow, designSystemTemplate] = project.overviewImages;
 
 // -- Overview: Role (replace placeholder with final copy) --------------------
 
@@ -392,27 +392,27 @@ export default function CIIPage() {
             <figure className="flex flex-col gap-2">
               <div
                 className={`relative w-full aspect-video overflow-hidden${
-                  masterTemplates.border
+                  overviewHero.border
                     ? ' border border-gray-20'
                     : ''
                 }`}
               >
                 <ProgressiveImage
-                  src={masterTemplates.src}
-                  alt={masterTemplates.alt}
+                  src={overviewHero.src}
+                  alt={overviewHero.alt}
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 1000px, 100vw"
                 />
               </div>
               <figcaption className="font-body text-para-xs text-text-primary text-pretty">
-                {masterTemplates.caption}
+                {overviewHero.caption}
               </figcaption>
             </figure>
 
             {/* Two-up image row */}
             <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
-              {[dataFlow, signage].map(
+              {[dataFlow, designSystemTemplate].map(
                 ({ src, alt, caption, border }) => (
                   <figure key={caption} className="flex flex-col gap-2 flex-1 min-w-0">
                     <div

@@ -205,10 +205,10 @@ export const projects: readonly Project[] = [{
     },
     overviewImages: [
       {
-        src: '/images/cii-design-system-template.jpg',
-        alt: 'Design system master templates and tokens for conference branding',
+        src: '/images/cii-dot-entryway-arch-3d-render.jpg',
+        alt: '3D render of Discovery on Target entryway arch integrated with venue architecture',
         caption:
-          'Master templates and design tokens establishing unified design system rules across 60+ annual events',
+          '3D render translating cross-channel entryway design into environmental venue architecture',
         border: true,
       },
       {
@@ -219,10 +219,10 @@ export const projects: readonly Project[] = [{
         border: false,
       },
       {
-        src: '/images/cii-dot-entryway-arch-3d-render.jpg',
-        alt: '3D render of Discovery on Target entryway arch integrated with venue architecture',
+        src: '/images/cii-design-system-template.jpg',
+        alt: 'Design system master templates and tokens for conference branding',
         caption:
-          '3D render translating cross-channel entryway design into environmental venue architecture',
+          'Master templates and design tokens establishing unified design system rules across 60+ annual events',
         border: true,
       },
     ],
