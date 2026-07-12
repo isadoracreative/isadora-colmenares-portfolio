@@ -10,6 +10,7 @@ Project TODOs for Isadora to complete. Add items as list entries; Only Isadora w
 - Retrieve about images from LinkedIn for avatars and logos.
 - Update screenshots of AMNH after next project update. Current screenshots include unwanted bevel shadow applied by Chrome.
 - Add dark mode to message group and radio box configuration screenshots.
+- Update favicon.
 
 ## To Do Suggestions
 
