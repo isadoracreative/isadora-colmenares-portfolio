@@ -152,7 +152,7 @@ export const projects: readonly Project[] = [{
       'Design systems',
       'UX engineering',
     ],
-    imageSrc: '/images/amnh-people-directory.png',
+    imageSrc: '/images/amnh-people-directory.jpg',
     imageAlt:
       'Lab member directory search on the AMNH Arachnology Lab website',
     imageBorder: true,
@@ -162,7 +162,7 @@ export const projects: readonly Project[] = [{
         alt: 'Brand color palette derived from arachnid specimen photos',
       },
       secondary: {
-        src: '/images/previews/amnh-people-directory.png',
+        src: '/images/previews/amnh-people-directory.jpg',
         alt: 'Lab member directory search on the AMNH Arachnology Lab website',
       },
     },
@@ -195,34 +195,34 @@ export const projects: readonly Project[] = [{
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/previews/cii-overview-signage.jpg',
-        alt: 'Environmental signage mockup on three-dimensional venue architecture',
+        src: '/images/previews/cii-dot-entryway-arch-3d-render.jpg',
+        alt: '3D render of Discovery on Target entryway arch integrated with venue architecture',
       },
       secondary: {
-        src: '/images/previews/cii-section-03-data-flow.png',
+        src: '/images/previews/cii-data-flow-output.jpg',
         alt: 'Data flow architecture using JavaScript API streams for automated layout and text styles',
       },
     },
     overviewImages: [
       {
-        src: '/images/cii-overview-master-templates.png',
+        src: '/images/cii-design-system-template.jpg',
         alt: 'Design system master templates and tokens for conference branding',
         caption:
           'Master templates and design tokens establishing unified design system rules across 60+ annual events',
         border: true,
       },
       {
-        src: '/images/cii-overview-data-flow.png',
+        src: '/images/cii-data-flow-output.jpg',
         alt: 'Data flow architecture diagram for automated layout and text styles',
         caption:
           'Data flow architecture automating layout and text styles for web and print output',
         border: false,
       },
       {
-        src: '/images/cii-overview-signage.jpg',
-        alt: 'Environmental signage mockup on three-dimensional venue architecture',
+        src: '/images/cii-dot-entryway-arch-3d-render.jpg',
+        alt: '3D render of Discovery on Target entryway arch integrated with venue architecture',
         caption:
-          'Translation of cross-channel identity design into environmental signage rendering on three dimensional venue architecture',
+          '3D render translating cross-channel entryway design into environmental venue architecture',
         border: true,
       },
     ],
@@ -246,29 +246,29 @@ export const projects: readonly Project[] = [{
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/previews/inpa-overview-backdrop-signage.jpg',
+        src: '/images/previews/inpa-stage-backdrop.jpg',
         alt: 'Large-scale environmental backdrop signage for stage presentations at the Manaus 2015 joint congress',
       },
       secondary: {
-        src: '/images/previews/inpa-section-05-editorial-layouts.png',
+        src: '/images/previews/inpa-editorial-program-layouts.jpg',
         alt: 'Editorial layouts showcasing keynote talks, speaker profiles, and course descriptions',
       },
     },
     overviewImages: [
       {
-        src: '/images/inpa-overview-backdrop-signage.jpg',
+        src: '/images/inpa-stage-backdrop.jpg',
         alt: 'Large-scale environmental backdrop signage for stage presentations at the Manaus 2015 joint congress',
         caption: 'Large-scale environmental backdrop signage for stage presentations',
         border: true,
       },
       {
-        src: '/images/inpa-overview-keynote-staging.jpg',
+        src: '/images/inpa-speaker-podium.jpg',
         alt: 'Keynote presentation staging and integrated environmental branding system',
         caption: 'Keynote presentation staging and integrated environmental branding system',
         border: true,
       },
       {
-        src: '/images/inpa-overview-event-program.jpg',
+        src: '/images/inpa-program.jpg',
         alt: 'Event program for self-guided navigation and detailed session information',
         caption: 'Event program for self-guided navigation and detailed session information',
         border: false,
@@ -293,31 +293,31 @@ export const projects: readonly Project[] = [{
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/previews/burton-render-spatial.jpg',
-        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
+        src: '/images/previews/burton-3d-landscape-model.jpg',
+        alt: '3D isometric SketchUp model evaluating lawn slope gradients and structural stone dimensions',
       },
       secondary: {
-        src: '/images/previews/burton-plan-2d.png',
+        src: '/images/previews/burton-blueprint.jpg',
         alt: 'Baseline 2D vector top view layout drafted in AutoCAD',
       },
     },
     overviewImages: [
       {
-        src: '/images/burton-render-spatial.jpg',
-        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
-        caption:
-          'Polished spatial render detailing the relationship between private property lines, native flora canopies, and the public pedestrian corridor',
-        border: false,
-      },
-      {
-        src: '/images/burton-plan-2d.png',
+        src: '/images/burton-blueprint.jpg',
         alt: 'Baseline 2D vector top view layout drafted in AutoCAD',
         caption:
           'Baseline 2D vector top view layout drafted in AutoCAD to establish legal boundaries and architectural elements',
         border: true,
       },
       {
-        src: '/images/burton-model-3d-isometric.png',
+        src: '/images/burton-isometric-hardscape.jpg',
+        alt: 'Polished spatial render of private property lines, native flora, and the public pedestrian corridor',
+        caption:
+          'Polished spatial render detailing the relationship between private property lines, native flora canopies, and the public pedestrian corridor',
+        border: false,
+      },
+      {
+        src: '/images/burton-3d-landscape-model.jpg',
         alt: '3D isometric SketchUp model evaluating lawn slope gradients and structural stone dimensions',
         caption:
           '3D isometric SketchUp model to evaluate lawn slope gradients, structural stone dimensions, and visualize residential walkways',

@@ -36,7 +36,7 @@ const section01Highlights = [
 ] as const;
 
 const section01Image: CaptionedImageProps = {
-  src: '/images/inpa-section-01-venue-floor-plan.png',
+  src: '/images/inpa-event-map.jpg',
   alt: 'Venue floor plan mapping exhibition area, keynote stage, and other event locations',
   caption: 'Venue floor plan mapping exhibition area, keynote stage, and other event locations',
   border: true,
@@ -57,14 +57,14 @@ const section02Highlights = [
 
 const section02Images: CaptionedImageProps[] = [
   {
-    src: '/images/inpa-section-02-registration-desk.jpg',
+    src: '/images/inpa-registration.jpg',
     alt: 'Registration touchpoint and information delivery',
     caption: 'Registration touchpoint and information delivery',
     border: true,
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/inpa-section-02-tote-bags.jpg',
+    src: '/images/inpa-tote-bag.jpg',
     alt: 'Screen-printed welcome tote bag for carrying event program and other assets',
     caption: 'Screen-printed welcome tote bag for carrying event program and other assets',
     border: true,
@@ -91,13 +91,13 @@ const section03Highlights = [
 
 const section03Images: CaptionedImageProps[] = [
   {
-    src: '/images/inpa-section-03-event-website.jpg',
+    src: '/images/inpa-website.jpg',
     alt: 'Responsive event website supporting content on desktop and mobile viewports',
     caption: 'Responsive event website supporting content on desktop and mobile viewports',
     border: true,
   },
   {
-    src: '/images/inpa-section-03-promotional-signage.jpg',
+    src: '/images/inpa-marketing.jpg',
     alt: 'Promotional signage ensuring visual consistency across digital and public environments',
     caption: 'Promotional signage ensuring visual consistency across digital and public environments',
     border: true,
@@ -122,7 +122,7 @@ const section04Highlights = [
 ] as const;
 
 const section04StaffApparel = {
-  src: '/images/inpa-section-04-staff-apparel.jpg',
+  src: '/images/inpa-staff-apparel.jpg',
   alt: 'Staff identity apparel and color-coded badge',
   caption: 'Staff identity apparel and color-coded badge',
   width: 1800,
@@ -130,7 +130,7 @@ const section04StaffApparel = {
 } as const;
 
 const section04AttendeeBadges = {
-  src: '/images/inpa-section-04-attendee-badges.jpg',
+  src: '/images/inpa-id-badges.jpg',
   alt: 'Color-coded attendee identification badges for varying levels of event access',
   caption: 'Color-coded attendee identification badges for varying levels of event access',
   width: 3008,
@@ -138,7 +138,7 @@ const section04AttendeeBadges = {
 } as const;
 
 const section04Closing: CaptionedImageProps = {
-  src: '/images/inpa-section-04-speaker-namecards.jpg',
+  src: '/images/inpa-namecards.jpg',
   alt: 'Branding applied to panel speaker namecards',
   caption: 'Branding applied to panel speaker namecards',
 };
@@ -162,19 +162,19 @@ const section05Highlights = [
 
 const section05Images: CaptionedImageProps[] = [
   {
-    src: '/images/inpa-section-05-program-grid.png',
+    src: '/images/inpa-program-schedule.jpg',
     alt: 'Program overview grid mapping the multi-track event timetable',
     caption: 'Program overview grid mapping the multi-track event timetable',
     border: true,
   },
   {
-    src: '/images/inpa-section-05-editorial-layouts.png',
+    src: '/images/inpa-editorial-program-layouts.jpg',
     alt: 'Editorial layouts showcasing keynote talks, speaker profiles, and course descriptions',
     caption: 'Editorial layouts showcasing keynote talks, speaker profiles, and course descriptions',
     border: true,
   },
   {
-    src: '/images/inpa-section-05-abstract-guide.jpg',
+    src: '/images/inpa-abstract-book.jpg',
     alt: '329-page digital abstract guide for post-congress reference',
     caption: '329-page digital abstract guide for post-congress reference',
     border: true,

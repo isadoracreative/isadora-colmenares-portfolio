@@ -36,14 +36,14 @@ const section01Highlights = [
 
 const section01TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/amnh-affinity-map.png',
+    src: '/images/amnh-affinity-map.jpg',
     alt: 'Affinity map of stakeholder interviews and contextual inquiry',
     caption: 'Affinity map of stakeholder interviews and contextual inquiry',
     border: true,
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/amnh-empathy-map.png',
+    src: '/images/amnh-empathy-map.jpg',
     alt: 'Empathy mapping for lab curator and collection manager',
     caption: 'Empathy mapping for lab curator and collection manager',
     border: true,
@@ -52,7 +52,7 @@ const section01TwoUp: CaptionedImageProps[] = [
 ];
 
 const section01PersonaEcosystem: CaptionedImageProps = {
-  src: '/images/amnh-persona-ecosystem.png',
+  src: '/images/amnh-persona-ecosystem.jpg',
   alt: 'Interconnected user persona ecosystem',
   caption: 'Interconnected user persona ecosystem',
   border: true,
@@ -77,7 +77,7 @@ const section02Highlights = [
 
 const section02TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/amnh-content-map.png',
+    src: '/images/amnh-content-map.jpg',
     alt: 'Architectural deconstruction of original site content',
     caption: 'Architectural deconstruction of original site content',
     border: true,
@@ -141,7 +141,7 @@ const section04Images: CaptionedImageProps[] = [
     border: true,
   },
   {
-    src: '/images/amnh-people-directory.png',
+    src: '/images/amnh-people-directory.jpg',
     alt: 'Lab member directory search',
     caption: 'Lab member directory search',
     border: true,

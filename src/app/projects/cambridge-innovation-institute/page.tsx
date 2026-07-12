@@ -55,20 +55,20 @@ const section01Highlights = [
 
 const section01ProgressiveImages = {
   websiteTemplate: {
-    src: '/images/cii-section-01-website-template.png',
+    src: '/images/cii-website-template.jpg',
     alt: 'Global responsive website template for conference events',
     caption: 'Global responsive website template',
     border: false,
   },
   webBanners: {
-    src: '/images/cii-section-01-web-banners.png',
+    src: '/images/cii-web-banner-template.jpg',
     alt: 'Web banner templates for advertising and social media aspect ratios',
     caption:
       'Web banner templates for all advertising aspect ratios and social media dimensions',
     border: false,
   },
   signageTemplates: {
-    src: '/images/cii-section-01-signage-templates.png',
+    src: '/images/cii-signage-template.jpg',
     alt: 'Environmental signage templates with typography slots and 2D elevations',
     caption:
       'Environmental signage templates with standardized typography slots and 2D elevations for 3D rendering',
@@ -98,19 +98,19 @@ const section02Highlights = [
 
 const section02Images: CaptionedImageProps[] = [
   {
-    src: '/images/cii-section-02-ux-research.png',
+    src: '/images/cii-userflow-sketches.jpg',
     alt: 'Conference registration UX research plan and user flow logic diagram',
     caption: 'Conference registration UX research plan and user flow logic',
     border: true,
   },
   {
-    src: '/images/cii-section-02-wireframes.png',
+    src: '/images/cii-ideation-sketches.jpg',
     alt: 'Wireframe sketches for improved registration experience',
     caption: 'Ideation and wireframe sketches for improved registration experience',
     border: true,
   },
   {
-    src: '/images/cii-section-02-registration-ui.png',
+    src: '/images/cii-registration-wireframes.jpg',
     alt: 'Initial wireframe and final registration interface for complex transaction pathways',
     caption:
       'Initial wireframe and final registration interface optimized for complex transaction pathways',
@@ -140,7 +140,7 @@ const section03Highlights = [
 
 const section03Images: CaptionedImageProps[] = [
   {
-    src: '/images/cii-section-03-data-flow.png',
+    src: '/images/cii-data-flow-output.jpg',
     alt: 'Data flow architecture using JavaScript API streams for automated layout and text styles',
     caption:
       'Data flow architecture using JavaScript API streams to automate layout and text styles for web and print output',
@@ -176,29 +176,30 @@ const section04Images: CaptionedImageProps[] = [
     border: true,
   },
   {
-    src: '/images/cii-section-04-dot-infographic.jpg',
+    src: '/images/cii-dot-infographic.jpg',
     alt: 'GDUSA award-winning infographic poster for Discovery on Target',
     caption: 'GDUSA award-winning infographic poster for Discovery on Target',
     border: true,
   },
   {
-    src: '/images/cii-section-04-aabc-regional.jpg',
+    src: '/images/cii-aabc.jpg',
     alt: 'Advanced Automotive Battery Conference regional sub-branding on signage and infographic poster',
     caption:
       'Advanced Automotive Battery Conference regional sub-branding featured on promotional signage and an infographic poster',
     border: true,
   },
   {
-    src: '/images/cii-section-04-aabc-asia.jpg',
+    src: '/images/cii-aabc-asia-banners.jpg',
     alt: 'AABC Asia regional branding with multi-language print announcement and web banners',
     caption:
       'Expansion of regional branding to Asia, featuring a multi-language print announcement and web banner advertising suite',
     border: true,
   },
   {
-    src: '/images/cii-section-04-wayfinding-booklet.jpg',
-    alt: 'Design system applied to wayfinding signage and onsite tutorial booklet',
-    caption: 'Design system application to wayfinding signage and onsite tutorial booklet',
+    src: '/images/cii-aabc-asia-signage.jpg',
+    alt: 'Advanced Automotive Battery Conference Asia promotional signage',
+    caption:
+      'Expansion of regional branding to Asia, featured on promotional signage',
     border: true,
   },
 ];
@@ -230,7 +231,7 @@ const section05Highlights = [
 
 const section05Images = {
   hero: {
-    src: '/images/cii-section-05-entrance-portal.jpg',
+    src: '/images/cii-dot-entryway-arch-design-process.jpg',
     alt: 'Architectural scaling for the Discovery on Target entrance portal from flat layout to 3D rendering',
     caption:
       'Architectural scaling for the Discovery on Target entrance portal, demonstrating the workflow from flat production layout to 3D rendering',
@@ -238,35 +239,35 @@ const section05Images = {
   },
   threeUpRowOne: [
     {
-      src: '/images/cii-section-05-entrance-built.jpg',
+      src: '/images/cii-dot-entryway-arch-constructed.jpg',
       alt: 'Fully constructed entrance portal at conference venue',
       caption: 'Fully constructed entrance portal',
     },
     {
-      src: '/images/cii-section-05-exit-signage.jpg',
+      src: '/images/cii-dot-exit-arch.jpg',
       alt: 'Exit signage unit at conference venue',
       caption: 'Exit signage unit',
     },
     {
-      src: '/images/cii-section-05-podium-plaque.jpg',
+      src: '/images/cii-dot-podium-signage.jpg',
       alt: 'Presentation podium plaque with conference branding',
       caption: 'Presentation podium plaque',
     },
   ],
   threeUpRowTwo: [
     {
-      src: '/images/cii-section-05-session-marker.jpg',
+      src: '/images/cii-dot-session-signage.jpg',
       alt: 'Session room marker with conference branding',
       caption: 'Session room marker',
     },
     {
-      src: '/images/cii-section-05-exhibit-hall.jpg',
+      src: '/images/cii-dot-raffle-signage.jpg',
       alt: 'Exhibit hall and raffle table with conference branding',
       caption: 'Exhibit hall and raffle table',
       border: true,
     },
     {
-      src: '/images/cii-section-05-registration-desk.jpg',
+      src: '/images/cii-dot-registration-signage.jpg',
       alt: 'Registration and welcome desk at conference venue',
       caption: 'Registration and welcome desk',
     },

@@ -6,15 +6,15 @@ import DividerShort from '@/components/DividerShort';
 
 const project = requireProjectBySlug('burton-cooperative-residence');
 
-const plan2d = project.overviewImages?.find((img) => img.src.endsWith('burton-plan-2d.png'));
-const model3d = project.overviewImages?.find((img) => img.src.endsWith('burton-model-3d-isometric.png'));
-const spatialRender = project.overviewImages?.find((img) => img.src.endsWith('burton-render-spatial.jpg'));
+const plan2d = project.overviewImages?.find((img) => img.src.endsWith('burton-blueprint.jpg'));
+const model3d = project.overviewImages?.find((img) => img.src.endsWith('burton-3d-landscape-model.jpg'));
+const spatialRender = project.overviewImages?.find((img) => img.src.endsWith('burton-isometric-hardscape.jpg'));
 
 if (!plan2d || !model3d || !spatialRender) {
   throw new Error('Missing overview images for burton-cooperative-residence');
 }
 
-const overviewImageTrio = [plan2d, model3d, spatialRender] as const;
+const overviewImageTrio = [plan2d, spatialRender, model3d] as const;
 
 // -- Overview: Role (replace placeholder with final copy) --------------------
 
@@ -43,26 +43,26 @@ const section01Highlights = [
 
 const section01Images: CaptionedImageProps[] = [
   {
-    src: '/images/burton-section-01-lower-lawn-runoff.jpg',
+    src: '/images/burton-lower-lawn.jpg',
     alt: 'Lower lawn susceptible to excessive storm water runoff',
     caption: 'Lower lawn susceptible to excessive storm water runoff',
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/burton-section-01-seed-blanket.jpg',
+    src: '/images/burton-steep-grade.jpg',
     alt: 'Steep grade change temporarily guarded from erosion using seed blanket',
     caption: 'Steep grade change temporarily guarded from erosion using seed blanket',
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/burton-section-01-retaining-wall.jpg',
+    src: '/images/burton-retaining-wall-gas-lines.jpg',
     alt: 'Retaining wall, gas lines, and temporary engineering structure for exploring drainage management',
     caption:
       'Retaining wall, gas lines, and temporary engineering structure for exploring drainage management',
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/burton-section-01-invasive-hedges.jpg',
+    src: '/images/burton-non-native-hedges.jpg',
     alt: 'Invasive, non-native hedges and chronic flood area at intersection of private and public property',
     caption:
       'Invasive, non-native hedges and chronic flood area at intersection of private and public property',
@@ -98,7 +98,7 @@ const section02Images: CaptionedImageProps[] = [
     border: true,
   },
   {
-    src: model3d.src,
+    src: spatialRender.src,
     alt: '3D volumetric SketchUp model illustrating complex lawn gradients and hardscape layout',
     caption: '3D volumetric SketchUp model illustrating complex lawn gradients and hardscape layout',
     border: true,
@@ -127,14 +127,14 @@ const section03Highlights = [
 
 const section03Images: CaptionedImageProps[] = [
   {
-    src: '/images/burton-section-03-planting-density.jpg',
+    src: '/images/burton-isometric-landscape-plan.jpg',
     alt: 'High-fidelity 3D landscape simulation in SketchUp validating plant density distributions',
     caption:
       'High-fidelity 3D landscape simulation in SketchUp validating plant density distributions across specified planting zones',
     border: true,
   },
   {
-    src: '/images/burton-section-03-ideation-workshop.jpg',
+    src: '/images/burton-planning-sketches.jpg',
     alt: 'Ideation workshop sketch and mapped photo references for native plantings',
     caption:
       'Ideation workshop sketch and mapped photo references compiling qualitative resident feedback and botanist suggestions for native plantings',
@@ -163,20 +163,20 @@ const section04Highlights = [
 ] as const;
 
 const section04Hero: CaptionedImageProps = {
-  src: '/images/burton-section-04-initial-planting.jpg',
+  src: '/images/burton-erosion-control-plantings.jpg',
   alt: 'Initial planting installation including native Black Chokeberry intended to support erosion control',
   caption: 'Initial planting installation including native Black Chokeberry intended to support erosion control',
 };
 
 const section04TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/burton-section-04-storm-flooding.jpg',
+    src: '/images/burton-flooding.jpg',
     alt: 'Storm water flooding due to insufficient erosion control',
     caption: 'Storm water flooding due to insufficient erosion control',
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/burton-section-04-drainage-pipe.jpg',
+    src: '/images/burton-drainage-pipe.jpg',
     alt: 'Installation of drainage pipe redistributing water runoff for increased natural irrigation and flood prevention',
     caption:
       'Installation of drainage pipe redistributing water runoff for increased natural irrigation and flood prevention',
@@ -206,13 +206,13 @@ const section05Highlights = [
 
 const section05Images: CaptionedImageProps[] = [
   {
-    src: spatialRender.src,
+    src: model3d.src,
     alt: '3D model simulating human scale perspective at adjoining resident walkway and public city sidewalk',
     caption:
       '3D model simulating human scale perspective at adjoining resident walkway and public city sidewalk',
   },
   {
-    src: '/images/burton-section-05-mature-growth.jpg',
+    src: '/images/burton-plant-growth.jpg',
     alt: 'Sustained mature plant growth after a 2 year period, featuring native Red Osier Dogwood and pollinator-attracting Beebalms, Milkweed, and Lobelia',
     caption:
       'Sustained mature plant growth after a 2 year period, featuring native Red Osier Dogwood and pollinator-attracting Beebalms, Milkweed, and Lobelia',
