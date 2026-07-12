@@ -57,31 +57,31 @@ export const projects: readonly Project[] = [{
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/previews/verizon-section-03-international-plan-setup.png',
+        src: '/images/previews/verizon-international-plan-flow.png',
         alt: 'Select screens from user flow of AI-assisted international plan setup',
       },
       secondary: {
-        src: '/images/previews/verizon-overview-component-anatomy.png',
+        src: '/images/previews/verizon-input-field-specs.png',
         alt: 'Detailed component anatomy guidelines defining visual structure, interactivity, and configurations',
       },
     },
     overviewImages: [
       {
-        src: '/images/verizon-overview-component-sticker-sheet.png',
+        src: '/images/verizon-sticker-sheet.png',
         alt: 'Component sticker sheet organized for rapid copy-and-paste layout assembly',
         caption:
           'Component sticker sheet, organized for rapid copy-and-paste layout assembly',
         border: true,
       },
       {
-        src: '/images/verizon-overview-component-anatomy.png',
+        src: '/images/verizon-input-field-specs.png',
         alt: 'Detailed component anatomy guidelines defining visual structure, interactivity, and configurations',
         caption:
           'Detailed component anatomy guidelines defining visual structure, interactivity, and configurations',
         border: true,
       },
       {
-        src: '/images/verizon-overview-assembled-chat-experiences.png',
+        src: '/images/verizon-mobile-chat.png',
         alt: 'Components assembled into a wide variety of chat experiences to validate product design viability',
         caption:
           'Assembling components into a wide variety of chat experiences to validate product design viability',

@@ -35,7 +35,7 @@ const section01Highlights = [
 ] as const;
 
 const section01Image: CaptionedImageProps = {
-  src: '/images/verizon-section-01-surface-logic-variables.png',
+  src: '/images/verizon-vds-variables.png',
   alt: 'Global surface logic variables leveraged in Chat Expansion Pack for rapid mode switching in prototypes',
   caption: 'Global surface logic variables leveraged in Chat Expansion Pack for rapid mode switching in prototypes',
   border: true,
@@ -43,14 +43,14 @@ const section01Image: CaptionedImageProps = {
 
 const section01TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/verizon-section-01-message-group-config.png',
+    src: '/images/verizon-message-group-configuration.png',
     alt: 'Message group configuration for conversation with AI or live agent',
     caption: 'Message group configuration for conversation with AI or live agent',
     border: true,
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/verizon-section-01-radio-box-payment.png',
+    src: '/images/verizon-radio-box-configuration.png',
     alt: 'Radio box configuration for payment selection',
     caption: 'Radio box configuration for payment selection',
     border: true,
@@ -76,7 +76,7 @@ const section02Highlights = [
 ] as const;
 
 const section02Image: CaptionedImageProps = {
-  src: '/images/verizon-section-02-widget-specifications.png',
+  src: '/images/verizon-widget-specs.png',
   alt: 'Widget component specifications and guidelines',
   caption: 'Widget component specifications and guidelines',
   border: true,
@@ -84,14 +84,14 @@ const section02Image: CaptionedImageProps = {
 
 const section02TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/verizon-section-02-widget-anatomy.png',
+    src: '/images/verizon-widget-anatomy.png',
     alt: 'Widget component anatomy',
     caption: 'Widget component anatomy',
     border: true,
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/verizon-section-02-button-properties-matrix.png',
+    src: '/images/verizon-button-component.png',
     alt: 'Button component properties matrix',
     caption: 'Button component properties matrix',
     border: true,
@@ -100,7 +100,7 @@ const section02TwoUp: CaptionedImageProps[] = [
 ];
 
 const section02Closing: CaptionedImageProps = {
-  src: '/images/verizon-section-02-dos-donts-top-nav.png',
+  src: '/images/verizon-top-navigation-dos-donts.png',
   alt: `Dos and Don'ts for Top Navigation component`,
   caption: `Dos and Don'ts for Top Navigation component`,
   border: true,
@@ -125,19 +125,19 @@ const section03Highlights = [
 
 const section03Images: CaptionedImageProps[] = [
   {
-    src: '/images/verizon-section-03-radio-box-testing.png',
+    src: '/images/verizon-radio-box-use-cases.png',
     alt: 'Testing Radio Box standard usage and edge cases on light and dark surfaces',
     caption: 'Testing Radio Box standard usage and edge cases on light and dark surfaces',
     border: true,
   },
   {
-    src: '/images/verizon-section-03-chat-template.png',
+    src: '/images/verizon-chat-template.png',
     alt: 'Chat template for creating new conversation flows',
     caption: 'Chat template for creating new conversation flows',
     border: true,
   },
   {
-    src: '/images/verizon-section-03-international-plan-setup.png',
+    src: '/images/verizon-international-plan-flow.png',
     alt: 'Select screens from user flow of AI-assisted international plan setup',
     caption: 'Select screens from user flow of AI-assisted international plan setup',
     border: true,
