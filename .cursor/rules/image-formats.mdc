@@ -1,5 +1,5 @@
 ---
-description: Figma image export workflow — manual export at 3200×1800, format by extension, optimize
+description: Figma image export workflow — manual export at 2400×1350, format by extension, optimize
 globs: public/images/**,scripts/optimize-images.mjs,scripts/optimize-preview-images.mjs,scripts/image-format-utils.mjs,src/data/image-assets.ts,src/components/ProgressiveImage.tsx,src/components/ProjectCaptionedImage.tsx,src/app/projects/**
 alwaysApply: true
 ---
@@ -43,10 +43,10 @@ Use this for every project-page image added or re-exported from Figma.
 ### Exporter (manual)
 
 1. **Find the image frame node** — the full-width frame in the page layout, not a thumbnail in a 3-up row.
-2. **Export at 3200×1800** — fixed dimensions for all case-study images. Ensures 2× retina coverage at the ~1208px display width without upscaling.
+2. **Export at 2400×1350** — fixed dimensions for all case-study images. Ensures 2× retina coverage at the ~1208px display width without upscaling.
 3. **No border on export** — Figma frames have no stroke. The site adds a 1px `gray-20` border via CSS when pages pass `border: true` to `ProjectCaptionedImage`.
 4. **Choose format and save** to `public/images/` with the project prefix (e.g. `amnh-affinity-map.png`, `amnh-website.jpg`). One file per basename — never leave both `.png` and `.jpg` for the same name.
-5. **Run** `node scripts/optimize-images.mjs` — re-encodes each file **in place** (same extension; JPG quality 90; PNG compression level 9; max width 3200px for both). Updates blur placeholders in `src/data/image-assets.ts`. The script never converts PNG ↔ JPG. After a format swap, delete the old file manually or run with `--remove-stale-siblings`.
+5. **Run** `node scripts/optimize-images.mjs` — re-encodes each file **in place** (same extension; JPG quality 90; PNG compression level 9; max width 2400px for both). Updates blur placeholders in `src/data/image-assets.ts`. The script never converts PNG ↔ JPG. After a format swap, delete the old file manually or run with `--remove-stale-siblings`.
 6. **Run** `node scripts/optimize-preview-images.mjs` when listing preview images change — writes `public/images/previews/` and `src/data/preview-image-assets.ts`.
 
 ### Agent (page build)
@@ -60,7 +60,7 @@ When the exporter has already placed images in `public/images/`:
 
 ### Source resolution
 
-Blur means the **underlying pixels were low-res**, not that optimization failed. Before exporting, confirm image fills in Figma are ≥ 3200px wide. If a fill is smaller, replace it with a higher-res original in Figma first — exporting the frame at any scale only enlarges a soft source.
+Blur means the **underlying pixels were low-res**, not that optimization failed. Before exporting, confirm image fills in Figma are ≥ 2400px wide. If a fill is smaller, replace it with a higher-res original in Figma first — exporting the frame at any scale only enlarges a soft source.
 
 PNG vs JPG does not fix upscaling blur.
 

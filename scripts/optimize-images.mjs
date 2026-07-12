@@ -19,7 +19,7 @@
  *   the cache doesn't force one big reprocessing pass.
  *
  * Output:
- *   public/images/*.{png,jpg}  — width-capped at 3200px
+ *   public/images/*.{png,jpg}  — width-capped at 2400px
  *   src/data/image-assets.ts   — src + blurDataURL lookup for ProgressiveImage
  */
 
@@ -31,7 +31,7 @@ import { displayExtension, isJpgFile } from './image-format-utils.mjs';
 const IMAGE_DIR = path.join(process.cwd(), 'public/images');
 const OUTPUT_FILE = path.join(process.cwd(), 'src/data/image-assets.ts');
 const CACHE_FILE = path.join(process.cwd(), 'scripts/.image-optimize-cache.json');
-const MAX_WIDTH = 3200;
+const MAX_WIDTH = 2400;
 const JPG_QUALITY = 90;
 const BLUR_WIDTH = 16;
 /** PNG display files above this size are re-encoded even when already in image-assets.ts. */

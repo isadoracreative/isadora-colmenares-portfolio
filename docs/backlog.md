@@ -1,10 +1,13 @@
 # Backlog
 
-Project TODOs. Add items as list entries; remove when complete.
+Project TODOs for Isadora to complete. Add items as list entries; Only Isadora will remove them when complete. Agents can add to "To Do Suggestions" if they identify areas for improvement.
 
 ---
 
 ## To Do
 
-- Restructure site image workflow to optimize size and appearance. See [image-workflow-retrospective.md](./image-workflow-retrospective.md) for context.
-- Adjust Verizon project images to show more Verizon logos where possible.
+- Retrieve about images from LinkedIn for avatars and logos.
+
+## To Do Suggestions
+
+- 
