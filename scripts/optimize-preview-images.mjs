@@ -5,7 +5,7 @@
  * Reads preview image sources from src/data/projects.ts (previewImages primary/
  * secondary, or imageSrc when no previewImages block exists). Downscales each
  * source to a width suited for the projects listing card (up to ~680px rendered
- * at 2xl; 2400px wide covers 3× retina without upscaling) and writes copies to
+ * at 2xl; 1360px wide covers 2× retina without upscaling) and writes copies to
  * public/images/previews/.
  *
  * Does not replace or modify full-size case-study assets in public/images/.
@@ -26,8 +26,8 @@ const PREVIEW_DIR = path.join(IMAGE_DIR, 'previews');
 const OUTPUT_FILE = path.join(process.cwd(), 'src/data/preview-image-assets.ts');
 const CACHE_FILE = path.join(process.cwd(), 'scripts/.preview-image-optimize-cache.json');
 
-/** Listing card can reach ~680px CSS at 2xl; 2400px covers 3× retina (680 × 3). */
-const PREVIEW_MAX_WIDTH = 2400;
+/** Listing card max 680px CSS at 2xl; 1360px covers 2× retina (680 × 2). */
+const PREVIEW_MAX_WIDTH = 1360;
 const JPG_QUALITY = 90;
 const BLUR_WIDTH = 16;
 
