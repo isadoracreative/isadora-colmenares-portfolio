@@ -107,31 +107,31 @@ export const projects: readonly Project[] = [{
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/previews/aon-overview-dashboard.jpg',
+        src: '/images/previews/aon-reporting-project-comparison.png',
         alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
       },
       secondary: {
-        src: '/images/previews/aon-section-05-prioritization-templates.png',
+        src: '/images/previews/aon-feature-prioritization-template.png',
         alt: 'Feature prioritization process templates for product backlogs',
       },
     },
     overviewImages: [
       {
-        src: '/images/aon-overview-mobile-simulation.jpg',
-        alt: 'Mobile-first interactive simulation interface with accessible Angular components',
-        caption:
-          'Mobile-first interactive simulation interface powered by refactored, accessible Angular component structures',
-        border: true,
-      },
-      {
-        src: '/images/aon-overview-dashboard.jpg',
+        src: '/images/aon-reporting-project-comparison.png',
         alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
         caption:
           'Enterprise SaaS B2B admin dashboard and responsive, B2B2C client-branded reporting interface',
         border: true,
       },
       {
-        src: '/images/aon-overview-triple-diamond.png',
+        src: '/images/aon-mobile-simulation.jpg',
+        alt: 'Mobile-first interactive simulation interface with accessible Angular components',
+        caption:
+          'Mobile-first interactive simulation interface powered by refactored, accessible Angular component structures',
+        border: true,
+      },
+      {
+        src: '/images/aon-agile-process.png',
         alt: 'Modified Triple Diamond product development lifecycle diagram',
         caption:
           'Modified Triple Diamond product development lifecycle with templates for UX research and strategy facilitating stakeholder and backlog alignment',

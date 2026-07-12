@@ -40,14 +40,14 @@ const section01Highlights = [
 
 const section01TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/aon-section-01-affinity-map.png',
+    src: '/images/aon-affinity-mapping.png',
     alt: 'Affinity map and theme synthesis from global stakeholder interviews',
     caption: 'Affinity map and theme synthesis compiled from global stakeholder interviews',
     border: true,
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/aon-section-01-persona-workshop.jpg',
+    src: '/images/aon-persona-ecosystem.png',
     alt: 'Collaborative workshop output defining user persona ecosystems',
     caption:
       'Collaborative workshop output redefining user persona ecosystem and interrelated problem statements',
@@ -57,7 +57,7 @@ const section01TwoUp: CaptionedImageProps[] = [
 ];
 
 const section01Closing: CaptionedImageProps = {
-  src: '/images/aon-section-01-strategy-presentation.png',
+  src: '/images/aon-product-strategy-presentation.jpg',
   alt: 'Presentation mapping research insights to product development strategies',
   caption:
     'Comprehensive presentation mapping research insights to product development strategies',
@@ -86,14 +86,14 @@ const section02Highlights = [
 
 const section02Images: CaptionedImageProps[] = [
   {
-    src: '/images/aon-section-02-token-architecture.png',
+    src: '/images/aon-theme-architecture.png',
     alt: 'Token-based design system architecture mapping variables to client-branded components',
     caption:
       'Expansion of global design system to a token-based architecture mapping variables to client-branded components',
     border: true,
   },
   {
-    src: '/images/aon-section-02-scss-theme.png',
+    src: '/images/aon-themes.jpg',
     alt: 'Variable-driven SCSS theme structure for automated styling',
     caption: 'Variable-driven styling architecture demonstrating automated SCSS theme structure',
     border: true,
@@ -102,7 +102,7 @@ const section02Images: CaptionedImageProps[] = [
 
 const section02TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/aon-section-02-theme-editor.png',
+    src: '/images/aon-themes-admin.jpg',
     alt: 'Administrative Theme Editor interface for asset publishing and color token generation',
     caption:
       'Administrative Theme Editor interface designed for real-time asset publishing and accessible color token generation',
@@ -110,7 +110,7 @@ const section02TwoUp: CaptionedImageProps[] = [
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/aon-section-02-theme-editor-output.png',
+    src: '/images/aon-design-system.png',
     alt: 'Theme Editor output applying client branding to token-based components',
     caption: 'Theme Editor output showcasing application of client branding to token-based components',
     border: true,
@@ -140,7 +140,7 @@ const section03Highlights = [
 
 const section03TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/aon-section-03-mobile-sjt.jpg',
+    src: '/images/aon-mobile-first-simulation.jpg',
     alt: 'Mobile-first situational judgment test interface',
     caption:
       'Mobile-first user interface for the immersive situational judgment test, optimized for fluid scaling across viewport sizes and device constraints',
@@ -148,7 +148,7 @@ const section03TwoUp: CaptionedImageProps[] = [
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/aon-section-03-closed-captioning.jpg',
+    src: '/images/aon-simulation-closed-captioning.jpg',
     alt: 'Immersive simulation interface with closed-captioning',
     caption:
       'Immersive simulation interface demonstrating integration of closed-captioning for increased accessibility',
@@ -158,7 +158,7 @@ const section03TwoUp: CaptionedImageProps[] = [
 ];
 
 const section03Closing: CaptionedImageProps = {
-  src: '/images/aon-section-03-simulation-microsite.png',
+  src: '/images/aon-study-materials-microsite.png',
   alt: 'Interactive candidate simulation microsite with reference data and communication feeds',
   caption:
     'Interactive candidate simulation microsite containing time-sensitive reference data and example communication feeds with live notifications for roleplay scenarios',
@@ -187,7 +187,7 @@ const section04Highlights = [
 
 const section04TwoUp: CaptionedImageProps[] = [
   {
-    src: '/images/aon-section-04-architecture-comparison.png',
+    src: '/images/aon-platform-architecture.png',
     alt: 'Technical architecture comparison for platform consolidation',
     caption:
       'Technical architecture comparison detailing client directory structures and content management strategies for platform consolidation',
@@ -195,7 +195,7 @@ const section04TwoUp: CaptionedImageProps[] = [
     sizes: '(min-width: 640px) 482px, 100vw',
   },
   {
-    src: '/images/aon-section-04-governance-admin.png',
+    src: '/images/aon-client-admin.png',
     alt: 'Client governance admin interface for organizational structures',
     caption:
       'Client governance admin interface simplifying complex organizational structures and facilitating streamlined customer relationship management workflows',
@@ -206,14 +206,14 @@ const section04TwoUp: CaptionedImageProps[] = [
 
 const section04Stack: CaptionedImageProps[] = [
   {
-    src: '/images/aon-section-04-project-dashboard.png',
+    src: '/images/aon-assessment-dashboard.png',
     alt: 'B2B project dashboard modules for global assessment pipelines',
     caption:
       'B2B project dashboard modules used by corporate administrators overseeing simultaneous global assessment pipelines',
     border: true,
   },
   {
-    src: '/images/aon-section-04-assessment-reports.jpg',
+    src: '/images/aon-reports.png',
     alt: 'Client-branded assessment reports across varied viewports',
     caption: 'Client-branded assessment reports visualizing test results across varied viewports',
     border: true,
@@ -242,14 +242,14 @@ const section05Highlights = [
 
 const section05Images: CaptionedImageProps[] = [
   {
-    src: '/images/aon-section-05-triple-diamond-lifecycle.png',
+    src: '/images/aon-triple-diamond-product-development-lifecycle.png',
     alt: 'Triple diamond product delivery lifecycle with design and development checkpoints',
     caption:
       'Adapted triple diamond product delivery lifecycle mapping strategic integration checkpoints between design and development workstreams',
     border: true,
   },
   {
-    src: '/images/aon-section-05-prioritization-templates.png',
+    src: '/images/aon-feature-prioritization-template.png',
     alt: 'Feature prioritization process templates for product backlogs',
     caption:
       'Standardized feature prioritization process templates utilized to funnel ideation into product backlogs',
