@@ -152,9 +152,20 @@ export const projects: readonly Project[] = [{
       'Design systems',
       'UX engineering',
     ],
-    imageSrc: '/images/previews/project-arachnology-lab.jpg',
+    imageSrc: '/images/amnh-people-directory.png',
     imageAlt:
-      'Arachnology Research Lab website showing the custom academic directory and researcher profiles',
+      'Lab member directory search on the AMNH Arachnology Lab website',
+    imageBorder: true,
+    previewImages: {
+      primary: {
+        src: '/images/previews/amnh-branding.jpg',
+        alt: 'Brand color palette derived from arachnid specimen photos',
+      },
+      secondary: {
+        src: '/images/previews/amnh-people-directory.png',
+        alt: 'Lab member directory search on the AMNH Arachnology Lab website',
+      },
+    },
     overviewImages: [
       {
         src: '/images/amnh-website.jpg',
