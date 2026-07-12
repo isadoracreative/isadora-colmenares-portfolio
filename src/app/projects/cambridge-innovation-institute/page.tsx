@@ -199,7 +199,7 @@ const section04Images: CaptionedImageProps[] = [
     src: '/images/cii-aabc-asia-signage.jpg',
     alt: 'Advanced Automotive Battery Conference Asia promotional signage',
     caption:
-      'Expansion of regional branding to Asia, featured on promotional signage',
+      'Design system application to wayfinding signage and onsite tutorial booklet',
     border: true,
   },
 ];
