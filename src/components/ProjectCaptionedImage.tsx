@@ -30,7 +30,7 @@ export default function ProjectCaptionedImage({
           sizes={sizes}
         />
       </div>
-      <figcaption className="font-body text-para-sm text-text-primary text-pretty">
+      <figcaption className="font-body text-para-xs text-text-primary text-pretty">
         {caption}
       </figcaption>
     </figure>

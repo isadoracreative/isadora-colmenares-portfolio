@@ -319,7 +319,7 @@ export default function InpaPage() {
                   className="block w-full h-auto"
                 />
               </div>
-              <figcaption className="mb-4 sm:mb-0 sm:col-span-4 sm:row-start-2 font-body text-para-sm text-text-primary text-pretty">
+              <figcaption className="mb-4 sm:mb-0 sm:col-span-4 sm:row-start-2 font-body text-para-xs text-text-primary text-pretty">
                 {section04StaffApparel.caption}
               </figcaption>
             </figure>
@@ -334,7 +334,7 @@ export default function InpaPage() {
                   className="block w-full h-auto sm:absolute sm:inset-0 sm:h-full sm:object-cover"
                 />
               </div>
-              <figcaption className="sm:col-span-8 sm:row-start-2 font-body text-para-sm text-text-primary text-pretty">
+              <figcaption className="sm:col-span-8 sm:row-start-2 font-body text-para-xs text-text-primary text-pretty">
                 {section04AttendeeBadges.caption}
               </figcaption>
             </figure>

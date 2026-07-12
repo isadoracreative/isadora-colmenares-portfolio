@@ -107,17 +107,17 @@ export const projects: readonly Project[] = [{
     imageBorder: true,
     previewImages: {
       primary: {
-        src: '/images/previews/aon-reporting-project-comparison.png',
+        src: '/images/previews/aon-reporting-project-comparison.jpg',
         alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
       },
       secondary: {
-        src: '/images/previews/aon-feature-prioritization-template.png',
+        src: '/images/previews/aon-feature-prioritization-template.jpg',
         alt: 'Feature prioritization process templates for product backlogs',
       },
     },
     overviewImages: [
       {
-        src: '/images/aon-reporting-project-comparison.png',
+        src: '/images/aon-reporting-project-comparison.jpg',
         alt: 'Enterprise SaaS B2B admin dashboard and client-branded reporting interface',
         caption:
           'Enterprise SaaS B2B admin dashboard and responsive, B2B2C client-branded reporting interface',
@@ -131,7 +131,7 @@ export const projects: readonly Project[] = [{
         border: true,
       },
       {
-        src: '/images/aon-agile-process.png',
+        src: '/images/aon-agile-process.jpg',
         alt: 'Modified Triple Diamond product development lifecycle diagram',
         caption:
           'Modified Triple Diamond product development lifecycle with templates for UX research and strategy facilitating stakeholder and backlog alignment',
