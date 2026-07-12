@@ -206,7 +206,7 @@ const section04Images: CaptionedImageProps[] = [
 
 // -- Section 05 -------------------------------------------------------------
 
-const section05Highlights = [
+const section05LeadHighlights = [
   {
     title: 'Lifecycle Scaling & Fabrication',
     body:
@@ -217,6 +217,9 @@ const section05Highlights = [
     body:
       'Structured high-density tower signage with floor plans and information matrices to manage traffic flow and reduce attendee navigation friction.',
   },
+] as const;
+
+const section05TrailingHighlights = [
   {
     title: 'Micro-Staging Interaction',
     body:
@@ -573,21 +576,67 @@ export default function CIIPage() {
         </ProjectContentSection>
 
         {/* -- 05 / Experiential Spatial Extensions --------------------------- */}
-        <ProjectContentSection
-          id="section-05-heading"
-          number="05"
-          title="Experiential Spatial Extensions"
-          lead="Translated digital brand identities into large-scale environmental design artifacts and structural wayfinding networks, managing physical venue touchpoints and attendee routing systems for live conference environments."
-          highlights={section05Highlights}
+        <section
+          aria-labelledby="section-05-heading"
+          className="col-span-12 grid grid-cols-12 gap-y-8"
         >
-          <ProjectCaptionedImage {...section05Images.hero} />
+          <div className="col-span-12 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6 flex flex-col gap-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
+                <ProjectSectionHeading
+                  id="section-05-heading"
+                  number="05"
+                  title="Experiential Spatial Extensions"
+                />
+                <DividerShort />
+              </div>
+              <p className="font-body font-medium text-para-lg text-text-primary leading-tight text-pretty">
+                Translated digital brand identities into large-scale environmental
+                design artifacts and structural wayfinding networks, managing
+                physical venue touchpoints and attendee routing systems for live
+                conference environments.
+              </p>
+            </div>
 
-          <ThreeUpRow images={section05Images.threeUpRowOne} />
+            <div className="flex flex-col gap-4">
+              {section05LeadHighlights.map(({ title, body }) => (
+                <div key={title} className="flex flex-col gap-1">
+                  <p className="font-body font-bold text-text-primary text-pretty">
+                    {title}
+                  </p>
+                  <p className="text-text-primary text-pretty">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-          <ThreeUpRow images={section05Images.threeUpRowTwo} />
+          <div className="col-span-12">
+            <div className="w-full flex flex-col gap-6 lg:gap-9">
+              <ProjectCaptionedImage {...section05Images.hero} />
 
-          <ProjectCaptionedImage {...section05Images.closing} />
-        </ProjectContentSection>
+              <ThreeUpRow images={section05Images.threeUpRowOne} />
+
+              <ThreeUpRow images={section05Images.threeUpRowTwo} />
+            </div>
+          </div>
+
+          <div className="col-span-12 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6 flex flex-col gap-4">
+            {section05TrailingHighlights.map(({ title, body }) => (
+              <div key={title} className="flex flex-col gap-1">
+                <p className="font-body font-bold text-text-primary text-pretty">
+                  {title}
+                </p>
+                <p className="text-text-primary text-pretty">{body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="col-span-12">
+            <div className="w-full flex flex-col gap-6 lg:gap-9">
+              <ProjectCaptionedImage {...section05Images.closing} />
+            </div>
+          </div>
+        </section>
 
       </div>
 
