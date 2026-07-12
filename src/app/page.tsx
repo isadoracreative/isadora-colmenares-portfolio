@@ -214,42 +214,42 @@ const smallPhotos = [
 const recommendations = [
   {
     quote:
-      '\u201cIsadora brought a formidable range of UX and front-end development knowledge; her collaboration with content providers, marketers, engineers, and designers assured a project\u2019s success. Major initiatives were successful due to her involvement. Unfailingly generous with her time and willingness to assist others, we all benefited from Isadora\u2019s excellent energy, humor, and creative nature.\u201d',
+      `"Isadora brought a formidable range of UX and front-end development knowledge; her collaboration with content providers, marketers, engineers, and designers assured a project's success. Major initiatives were successful due to her involvement. Unfailingly generous with her time and willingness to assist others, we all benefited from Isadora's excellent energy, humor, and creative nature."`,
     source: 'Tom Norton, Design Director at Cambridge Innovation Institute',
     avatar: '/images/avatar-tom-norton.jpg',
     avatarAlt: 'Tom Norton',
   },
   {
     quote:
-      '\u201cI was always impressed by her diligence and steady leadership as a UX Manager. She did a great job keeping projects organized and creating a collaborative environment where people could do their best work. Isa combines strong UX expertise with clear communication and thoughtful management.\u201d',
+      '"I was always impressed by her diligence and steady leadership as a UX Manager. She did a great job keeping projects organized and creating a collaborative environment where people could do their best work. Isa combines strong UX expertise with clear communication and thoughtful management."',
     source: 'Meera Butler, Senior Director Product Management at Korn Ferry',
     avatar: '/images/avatar-meera-butler.jpg',
     avatarAlt: 'Meera Butler',
   },
   {
     quote:
-      '\u201cI was impressed by her strong system thinking and deep understanding of design systems. She played a key role in translating foundational components into scalable, application-level patterns that enabled her team to deliver high-quality and consistent design outcomes. She continually brought in fresh ideas and best practices from her own learning.\u201d',
+      '"I was impressed by her strong system thinking and deep understanding of design systems. She played a key role in translating foundational components into scalable, application-level patterns that enabled her team to deliver high-quality and consistent design outcomes. She continually brought in fresh ideas and best practices from her own learning."',
     source: 'Pei-Yu Shen, Design System Lead at UBS',
     avatar: '/images/avatar-pei-yu-shen.jpg',
     avatarAlt: 'Pei-Yu Shen',
   },
   {
     quote:
-      '\u201cIsadora went above and beyond, found solutions to complex components, filled in when others were sick, and truly was there for any change or improvement. Her work included an intense ramp up on a library that was complicated and she dove right into it and was more than dedicated. Her attention to detail is fantastic and her documentation process was so helpful.\u201d',
+      '"Isadora went above and beyond, found solutions to complex components, filled in when others were sick, and truly was there for any change or improvement. Her work included an intense ramp up on a library that was complicated and she dove right into it and was more than dedicated. Her attention to detail is fantastic and her documentation process was so helpful."',
     source: 'Kate Baillargeon, Senior UX Designer for Conversational AI at Verizon',
     avatar: '/images/avatar-kate-baillargeon.jpg',
     avatarAlt: 'Kate Baillargeon',
   },
   {
     quote:
-      '\u201cI observed how glowingly her reports speak of her and credit her leadership to their success. I rarely speak with designers who have such a deep understanding of users with disabilities and real empathy for their needs. Isadora made a positive impact on our culture with her warm and engaging leadership style. She identified process improvements to increase efficiency and business value.\u201d',
+      '"I observed how glowingly her reports speak of her and credit her leadership to their success. I rarely speak with designers who have such a deep understanding of users with disabilities and real empathy for their needs. Isadora made a positive impact on our culture with her warm and engaging leadership style. She identified process improvements to increase efficiency and business value."',
     source: 'Michellanne Li, Accessibility Product Designer at Aon',
     avatar: '/images/avatar-michellanne-li.jpg',
     avatarAlt: 'Michellanne Li',
   },
   {
     quote:
-      '\u201cAs a new employee, Isadora worked on a complex, multi-screen animation. Her creative input and attention to detail were matched by her speed and efficiency in completing the program on time and on budget. I enjoyed working with Isadora. Her talents, good nature, and adaptability will be a measurable asset on any project she works on.\u201d',
+      '"As a new employee, Isadora worked on a complex, multi-screen animation. Her creative input and attention to detail were matched by her speed and efficiency in completing the program on time and on budget. I enjoyed working with Isadora. Her talents, good nature, and adaptability will be a measurable asset on any project she works on."',
     source: 'Robert Pascarella, Creative Director at Cramer Productions',
     avatar: '/images/avatar-robert-pascarella.jpg',
     avatarAlt: 'Robert Pascarella',

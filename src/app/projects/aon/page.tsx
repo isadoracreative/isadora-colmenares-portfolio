@@ -124,7 +124,7 @@ const section03Highlights = [
   {
     title: 'Mobile-First Immersive Simulations',
     body:
-      'Migrated desktop-only situational judgment tests to mobile-first application design, extending product inclusivity to users who don\u2019t own a computer.',
+      "Migrated desktop-only situational judgment tests to mobile-first application design, extending product inclusivity to users who don't own a computer.",
   },
   {
     title: 'Universal & Accessible Design',

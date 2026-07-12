@@ -67,7 +67,7 @@ const section02Highlights = [
   },
   {
     title: 'Usage Guidelines',
-    body: 'Authored contextual "Dos and Don\u2019ts" usage frameworks to visually guide product designers away from incorrect component configurations, prohibited nesting combinations, and content mismatches.',
+    body: `Authored contextual "Dos and Don'ts" usage frameworks to visually guide product designers away from incorrect component configurations, prohibited nesting combinations, and content mismatches.`,
   },
   {
     title: 'Active Partnership with Developers',
@@ -101,8 +101,8 @@ const section02TwoUp: CaptionedImageProps[] = [
 
 const section02Closing: CaptionedImageProps = {
   src: '/images/verizon-section-02-dos-donts-top-nav.png',
-  alt: 'Dos and Don\u2019ts for Top Navigation component',
-  caption: 'Dos and Don\u2019ts for Top Navigation component',
+  alt: `Dos and Don'ts for Top Navigation component`,
+  caption: `Dos and Don'ts for Top Navigation component`,
   border: true,
 };
 
@@ -115,7 +115,7 @@ const section03Highlights = [
   },
   {
     title: 'Edge Case Identification',
-    body: 'Based testing on lead designer\u2019s extensive audit of chat product implementation across the company to ensure all edge cases like extreme character-length expansion and custom content are supported.',
+    body: "Based testing on lead designer's extensive audit of chat product implementation across the company to ensure all edge cases like extreme character-length expansion and custom content are supported.",
   },
   {
     title: 'Streamlined Product Design',

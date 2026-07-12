@@ -22,7 +22,7 @@ const overviewRole =
 const section01Highlights = [
   {
     title: 'Internal Persona Development',
-    body: 'Focused the first iteration on the website admin (the lab\u2019s collection manager) to streamline administrative tasks and improve site maintenance velocity.',
+    body: "Focused the first iteration on the website admin (the lab's collection manager) to streamline administrative tasks and improve site maintenance velocity.",
   },
   {
     title: 'Contextual Inquiry Integration',
@@ -101,11 +101,11 @@ const section03Highlights = [
   },
   {
     title: 'Scientific Illustration Integration',
-    body: 'Incorporated a precise scientific illustration to maintain a rigorous academic connection to the lab\u2019s scorpion systematics research.',
+    body: "Incorporated a precise scientific illustration to maintain a rigorous academic connection to the lab's scorpion systematics research.",
   },
   {
     title: 'Institutional Alignment',
-    body: 'Maintained structural ties to the museum collection through the tagline \u201cArachnology at AMNH\u201d while establishing a distinct, memorable identity for the specific curator-driven lab.',
+    body: `Satisfied curator's requirement to maintain structural ties to the museum collection through the rebranding of the lab as "Arachnology at AMNH" while establishing a distinct, memorable identity for the specific curator-driven lab.`,
   },
 ] as const;
 
@@ -220,7 +220,7 @@ export default function AmnhPage() {
           id="section-01-heading"
           number="01"
           title="User Research & Operational Empathy"
-          lead="Synthesized stakeholder interviews and contextual inquiries to map the operational workflows of the lab\u2019s curator, collection manager, and auxiliary staff. By utilizing empathy mapping and constructing a persona ecosystem, the strategy shifted to prioritizing the internal administrator as the primary user, which indirectly solves the communication and logistical needs of external personas."
+          lead="Synthesized stakeholder interviews and contextual inquiries to map the operational workflows of the lab's curator, collection manager, and auxiliary staff. By utilizing empathy mapping and constructing a persona ecosystem, the strategy shifted to prioritizing the internal administrator as the primary user, which indirectly solves the communication and logistical needs of external personas."
           highlights={section01Highlights}
         >
           <div className="flex flex-col sm:flex-row gap-6 lg:gap-9">
@@ -251,7 +251,7 @@ export default function AmnhPage() {
           id="section-03-heading"
           number="03"
           title="Institutional Branding & Visual Identity"
-          lead="Navigated unique institutional design guidelines to establish an independent yet aligned visual identity for the arachnology lab. The visual strategy successfully adhered to the AMNH design department\u2019s requirement for curatorial lab branding having a distinct, highly recognizable presence apart from the museum."
+          lead="Navigated unique institutional design guidelines to establish an independent yet aligned visual identity for the arachnology lab. The visual strategy successfully adhered to the AMNH design department's requirement for curatorial lab branding having a distinct, highly recognizable presence apart from the museum."
           highlights={section03Highlights}
         >
           <ProjectCaptionedImage {...section03Branding} />

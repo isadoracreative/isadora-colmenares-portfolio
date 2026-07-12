@@ -169,9 +169,9 @@ export const projects: readonly Project[] = [{
     overviewImages: [
       {
         src: '/images/amnh-website.jpg',
-        alt: 'People directory and scorpion diversity on the AMNH Arachnology Lab\u2019s website',
+        alt: "People directory and scorpion diversity on the AMNH Arachnology Lab's website",
         caption:
-          'People directory and scorpion diversity on the AMNH Arachnology Lab\u2019s website',
+          "People directory and scorpion diversity on the AMNH Arachnology Lab's website",
         border: true,
       },
     ],
