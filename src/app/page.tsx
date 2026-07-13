@@ -25,7 +25,8 @@ const coreSkills = [
       'Stakeholder Workshops',
       'Contextual Inquiry',
       'User Journey Mapping',
-      'UI Pattern Analysis, Usability Testing',
+      'UI Pattern Analysis',
+      'Usability Testing',
     ],
   },
   {
