@@ -12,6 +12,7 @@ Project TODOs for Isadora to complete. Add items as list entries; Only Isadora w
 - Add dark mode to message group and radio box configuration screenshots.
 - Update favicon.
 - Add button or link to work experience highlights where there is a related project available to view.
+- Edit layout of INPA Event Map image so photos are both on the right side.
 
 ## To Do Suggestions
 
