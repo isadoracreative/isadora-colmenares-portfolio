@@ -103,14 +103,16 @@ function CardContent({
   return (
     <div className="flex h-full flex-col gap-3 min-w-0">
       <i
-        className={`fa-sharp fa-thin fa-${section.icon} text-[40px] leading-none text-core-purple`}
+        className={`fa-sharp fa-thin fa-${section.icon} text-[32px] sm:text-[40px] leading-none text-core-purple`}
         aria-hidden="true"
       />
       <div className="flex flex-col gap-2 pb-3">
         <h6>{section.heading}</h6>
         <div className="flex flex-col gap-4 text-text-primary">
           {section.paragraphs.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
+            <p key={i} className="text-para-xs sm:text-para">
+              {paragraph}
+            </p>
           ))}
         </div>
       </div>
