@@ -69,9 +69,9 @@ const ROLE_WIDTH = ['100%', '82.5%', '65%', '47.5%'];
 const ROLE_Z = ['z-[4]', 'z-[3]', 'z-[2]', 'z-[1]'];
 /* Pushes each role down from the shared top edge of the stack — since every card is a uniform
    height (see block comment above), this both tucks a card behind the one in front of it and
-   leaves a 32px sliver of it peeking out below, role over role. Shared by the skeleton box and
-   content box of a given role so the two always coincide. */
-const ROLE_OFFSET_PX = [0, 32, 64, 96];
+   leaves a ~16px sliver of it peeking out below, role over role (half the original 32px step).
+   Shared by the skeleton box and content box of a given role so the two always coincide. */
+const ROLE_OFFSET_PX = [0, 16, 32, 48];
 
 /* Shared visual shape for both the skeleton box and the content box. */
 const CARD_BOX =
