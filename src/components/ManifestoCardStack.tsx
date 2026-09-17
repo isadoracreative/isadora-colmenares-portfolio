@@ -101,7 +101,7 @@ function CardContent({
   ctaDisabled?: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-3 flex-1 min-w-0">
+    <div className="flex h-full flex-col gap-3 min-w-0">
       <i
         className={`fa-sharp fa-thin fa-${section.icon} text-[40px] leading-none text-core-purple`}
         aria-hidden="true"
@@ -114,12 +114,15 @@ function CardContent({
           ))}
         </div>
       </div>
+      {/* mt-auto pins the CTA to the bottom of the card regardless of how much (or little)
+          text precedes it — every card shares one height (see block comment above), so
+          shorter sections just leave more breathing room above the button, not below it. */}
       <Button
         variant="solid"
         icon={section.cta.icon}
         label={section.cta.label}
         fullWidth
-        className="sm:w-auto sm:self-start"
+        className="mt-auto sm:w-auto sm:self-start"
         onClick={onCtaClick}
         disabled={ctaDisabled}
       />
