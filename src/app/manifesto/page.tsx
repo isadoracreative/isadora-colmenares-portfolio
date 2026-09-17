@@ -23,7 +23,7 @@ const manifestoSections = [
       'It starts with a spark of inspiration, an idea, a thought. Ideate until the subject is exhausted. Collaborate and listen to input from multiple sources. The best design results from listening to and considering all ideas before deciding.',
       'A concept is proposed based on an assumption. The subject is explored with the target audience to test for relevance. The research leads to adjustments and edits.',
     ],
-    cta: { icon: 'owl', label: 'Gain Knowledge' },
+    cta: { icon: 'owl', label: 'Embrace Knowledge' },
   },
   {
     icon: 'owl',
