@@ -41,6 +41,9 @@ interface ButtonProps {
   target?:         string;
   rel?:             string;
   className?:       string;
+  /** Only used when `href` is omitted — renders a real `<button type="button">`. */
+  onClick?:        () => void;
+  disabled?:       boolean;
 }
 
 /* -- Size tokens -------------------------------------------------------- */
@@ -117,6 +120,8 @@ export default function Button({
   target,
   rel,
   className     = '',
+  onClick,
+  disabled      = false,
 }: ButtonProps) {
   const iconClass = icon
     ? [
@@ -190,7 +195,12 @@ export default function Button({
   }
 
   return (
-    <button type="button" className={rootClass}>
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={`${rootClass} disabled:cursor-not-allowed disabled:opacity-60`}
+    >
       {content}
     </button>
   );
